@@ -3,6 +3,8 @@
 //! Every struct uses `#[serde(rename_all = "camelCase")]` so the
 //! TypeScript side matches `src/lib/types.ts` exactly.
 
+use std::collections::BTreeMap;
+
 use serde::{Deserialize, Serialize};
 
 // =========================================================
@@ -132,6 +134,16 @@ pub struct CatalogUpdateCheck {
 
 // ---------- Agent (parsed from the corpus) ----------
 
+/// Validated, display-only metadata for one locale. The hash fingerprints only
+/// these localized strings and is never an identity or path input.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct AgentLocalization {
+    pub name: String,
+    pub description: String,
+    pub localization_hash: String,
+}
+
 /// An agent as parsed from a single corpus `.md` file. `body` is the
 /// markdown persona and is omitted/empty in list views (`corpus_list`)
 /// to keep payloads small; `corpus_get` returns it populated.
@@ -144,6 +156,9 @@ pub struct Agent {
     pub name: String,
     /// Frontmatter `description`.
     pub description: String,
+    /// Valid, non-stale display metadata keyed by BCP-47 locale.
+    #[serde(default)]
+    pub localizations: BTreeMap<String, AgentLocalization>,
     /// Parent directory, e.g. `"engineering"`.
     pub category: String,
     /// Frontmatter `emoji`.

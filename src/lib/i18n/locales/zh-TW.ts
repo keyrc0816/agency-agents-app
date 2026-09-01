@@ -151,6 +151,7 @@ const zhTW = {
   "state.attention": "需要處理",
   "state.current": "已同步",
   "state.outdated": "有更新",
+  "state.localizationUpdate": "翻譯文字更新",
   "state.modified": "已修改",
   "state.foreign": "未納管",
   "state.removed": "缺失",

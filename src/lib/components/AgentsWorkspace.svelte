@@ -44,6 +44,7 @@
     clampDetailPaneWidth,
   } from "$lib/stores/ui.svelte";
   import { resolveCategoryIcon } from "$lib/util/categoryIcon";
+  import { agentDisplayName } from "$lib/util/agentLocalization";
   import { i18n } from "$lib/stores/i18n.svelte";
   import type { MessageKey } from "$lib/i18n/messages";
   import type { Agent, InstalledAgent, InstallState, Tool } from "$lib/types";
@@ -440,12 +441,12 @@
             {@const isSel = panelAgent?.slug === a.slug}
             <li class="row" class:active={isSel} class:picked={selectMode && selected.has(a.slug)}>
               {#if selectMode}
-                <input type="checkbox" class="check" checked={selected.has(a.slug)} onchange={() => toggleRow(a.slug)} aria-label={`${i18n.t("common.select")} ${a.name}`} />
+                <input type="checkbox" class="check" checked={selected.has(a.slug)} onchange={() => toggleRow(a.slug)} aria-label={`${i18n.t("common.select")} ${agentDisplayName(a, i18n.locale)}`} />
               {/if}
               <button class="row-main" onclick={() => openAgent(a)} aria-current={isSel ? "true" : undefined}>
                 <span class="row-emoji" aria-hidden="true">{a.emoji ?? "🧩"}</span>
                 <span class="row-text">
-                  <span class="row-name truncate">{a.name}</span>
+                  <span class="row-name truncate">{agentDisplayName(a, i18n.locale)}</span>
                   {#if a.vibe}<span class="row-vibe truncate">{a.vibe}</span>{/if}
                 </span>
                 {#if rows.length > 0}
@@ -517,7 +518,7 @@
 {/if}
 
 {#if installOpen && panelAgent}
-  <InstallModal title={i18n.t("agents.installAgentTitle", { name: panelAgent.name })} agentSlugs={[panelAgent.slug]} onClose={() => (installOpen = false)} />
+  <InstallModal title={i18n.t("agents.installAgentTitle", { name: agentDisplayName(panelAgent, i18n.locale) })} agentSlugs={[panelAgent.slug]} onClose={() => (installOpen = false)} />
 {/if}
 
 {#if bulkInstallOpen && selected.size > 0}

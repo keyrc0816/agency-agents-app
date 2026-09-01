@@ -19,6 +19,10 @@
 import { invoke } from "@tauri-apps/api/core";
 
 import { i18n } from "$lib/stores/i18n.svelte";
+import {
+  agentSearchText,
+  normalizeAgentSearch,
+} from "$lib/util/agentLocalization";
 import type { Agent, Category } from "$lib/types";
 
 class CorpusStore {
@@ -153,11 +157,11 @@ class CorpusStore {
    * deterministic alphabetical-by-name slice so the dense grid is stable.
    */
   filtered(categorySlug: string | null, query: string): Agent[] {
-    const q = query.trim().toLowerCase();
+    const q = normalizeAgentSearch(query.trim(), i18n.locale);
     const out = this.agents.filter((a) => {
       if (categorySlug && a.category !== categorySlug) return false;
       if (!q) return true;
-      const hay = `${a.name} ${a.description} ${a.vibe ?? ""}`.toLowerCase();
+      const hay = agentSearchText(a, i18n.locale);
       return hay.includes(q);
     });
     out.sort((a, b) => a.name.localeCompare(b.name));

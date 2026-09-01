@@ -310,6 +310,13 @@ export type Tool = string;
     project-scoped tools install into a tracked `projectPath`. */
 export type Scope = "user" | "project";
 
+/** Validated display-only metadata for one locale. */
+export interface AgentLocalization {
+  name: string;
+  description: string;
+  localizationHash: string;
+}
+
 /**
  * An agent as parsed from a single corpus `.md` file. `body` is the
  * markdown persona — empty in list views (`corpusList`) to keep payloads
@@ -322,6 +329,8 @@ export interface Agent {
   name: string;
   /** Frontmatter `description`. */
   description: string;
+  /** Valid, non-stale display metadata keyed by BCP-47 locale. */
+  localizations: Record<string, AgentLocalization>;
   /** Parent directory, e.g. `"engineering"`. */
   category: string;
   /** Frontmatter `emoji`. */
