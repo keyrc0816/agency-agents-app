@@ -22,8 +22,8 @@ use crate::registry;
 use crate::render;
 use crate::state::AppState;
 use crate::types::{
-    AgentDiff, InstallRecord, InstallState, InstalledAgent, ProjectInfo, Tool, ToolInfo, ToolVersion,
-    UpdateKind,
+    AgentDiff, InstallRecord, InstallState, InstalledAgent, ProjectInfo, Tool, ToolInfo,
+    ToolVersion, UpdateKind,
 };
 use crate::util::fs::{atomic_write, read_capped};
 
@@ -50,9 +50,11 @@ async fn load_ledger(app: &AppHandle) -> Result<Vec<InstallRecord>, AppError> {
 async fn save_ledger(app: &AppHandle, records: &[InstallRecord]) -> Result<(), AppError> {
     let path = ledger_path(app)?;
     if let Some(parent) = path.parent() {
-        tokio::fs::create_dir_all(parent).await.map_err(|e| AppError::Io {
-            message: format!("create state dir {}: {e}", parent.display()),
-        })?;
+        tokio::fs::create_dir_all(parent)
+            .await
+            .map_err(|e| AppError::Io {
+                message: format!("create state dir {}: {e}", parent.display()),
+            })?;
     }
     let bytes = serde_json::to_vec_pretty(records).map_err(|e| AppError::Io {
         message: format!("serialize installs.json: {e}"),
@@ -102,6 +104,39 @@ fn now_iso() -> String {
     Utc::now().to_rfc3339()
 }
 
+fn render_locale_for(tool: &str, requested: Option<&str>) -> Option<String> {
+    (tool == "codex" && requested == Some("zh-TW")).then(|| "zh-TW".to_string())
+}
+
+fn effective_render_locale(
+    tool: &str,
+    requested: Option<&str>,
+    recorded: Option<&str>,
+    preserve_recorded: bool,
+) -> Option<String> {
+    render_locale_for(
+        tool,
+        if preserve_recorded {
+            recorded
+        } else {
+            requested
+        },
+    )
+}
+
+fn localization_hash_for(
+    agent: &crate::types::Agent,
+    tool: &str,
+    render_locale: Option<&str>,
+) -> Option<String> {
+    if tool != "codex" {
+        return None;
+    }
+    render_locale
+        .and_then(|locale| agent.localizations.get(locale))
+        .map(|localized| localized.localization_hash.clone())
+}
+
 /// Where overwritten files are preserved before a write replaces them. Lives
 /// under app data, NOT inside any tool's agent dir — so the Foreign sweep never
 /// mistakes a backup for an installed agent. Every destructive write copies the
@@ -139,6 +174,8 @@ fn record_for(
         dest: primary_dest.to_string_lossy().to_string(),
         source_hash: source_hash.to_string(),
         body_hash: body_hash.to_string(),
+        render_locale: None,
+        localization_hash: None,
         rendered_hash,
         installed_at: installed_at.to_string(),
         corpus_version: corpus_version.to_string(),
@@ -168,10 +205,15 @@ async fn backup_if_differs(
     if existing == new_bytes {
         return Ok(()); // identical → not a destructive write
     }
-    tokio::fs::create_dir_all(backup_dir).await.map_err(|e| AppError::Io {
-        message: format!("create backups dir {}: {e}", backup_dir.display()),
-    })?;
-    let fname = dest.file_name().map(|s| s.to_string_lossy().to_string()).unwrap_or_else(|| "agent".into());
+    tokio::fs::create_dir_all(backup_dir)
+        .await
+        .map_err(|e| AppError::Io {
+            message: format!("create backups dir {}: {e}", backup_dir.display()),
+        })?;
+    let fname = dest
+        .file_name()
+        .map(|s| s.to_string_lossy().to_string())
+        .unwrap_or_else(|| "agent".into());
     let backup = backup_dir.join(format!("{fname}.{}.bak", fs_stamp(stamp)));
     atomic_write(&backup, &existing).await
 }
@@ -184,6 +226,8 @@ async fn do_install(
     slug: String,
     tool: Tool,
     project_path: Option<String>,
+    requested_render_locale: Option<String>,
+    preserve_recorded_locale: bool,
 ) -> Result<InstallRecord, AppError> {
     let corpus = corpus::ensure_corpus(app, state).await?;
     let agent = corpus.get(&slug).ok_or_else(|| AppError::Io {
@@ -198,14 +242,21 @@ async fn do_install(
     let proot = project_path.as_ref().map(PathBuf::from);
     let backups = backups_dir(app)?;
     let mut ledger = load_ledger(app).await?;
-    let existing_dest = ledger
+    let existing_record = ledger
         .iter()
-        .find(|r| r.slug == slug && r.tool == tool && r.project_path == project_path)
-        .map(|r| PathBuf::from(&r.dest));
-    let record = write_agent_files_to(
+        .find(|r| r.slug == slug && r.tool == tool && r.project_path == project_path);
+    let existing_dest = existing_record.map(|r| PathBuf::from(&r.dest));
+    let render_locale = effective_render_locale(
+        &tool,
+        requested_render_locale.as_deref(),
+        existing_record.and_then(|record| record.render_locale.as_deref()),
+        preserve_recorded_locale,
+    );
+    let mut record = write_agent_files_to_locale(
         &agent,
         &raw,
         &tool,
+        render_locale.as_deref(),
         &home,
         proot.as_deref(),
         Some(&backups),
@@ -216,6 +267,8 @@ async fn do_install(
         existing_dest.as_deref(),
     )
     .await?;
+    record.render_locale = render_locale.clone();
+    record.localization_hash = localization_hash_for(&agent, &tool, render_locale.as_deref());
 
     ledger.retain(|r| !(r.slug == slug && r.tool == tool && r.project_path == project_path));
     ledger.push(record.clone());
@@ -331,10 +384,10 @@ fn tool_is_dir_unit(tool: &str) -> bool {
     let Some(dest) = meta.dest.as_ref() else {
         return false;
     };
-    dest.user
-        .iter()
-        .chain(dest.project.iter())
-        .any(|t| t.split_once("{slug}").is_some_and(|(_, after)| after.starts_with('/')))
+    dest.user.iter().chain(dest.project.iter()).any(|t| {
+        t.split_once("{slug}")
+            .is_some_and(|(_, after)| after.starts_with('/'))
+    })
 }
 
 /// Back up divergent files, then remove every existing physical destination.
@@ -431,6 +484,7 @@ async fn write_agent_files(
 }
 
 #[allow(clippy::too_many_arguments)]
+#[cfg(test)]
 async fn write_agent_files_to(
     agent: &crate::types::Agent,
     raw: &str,
@@ -444,7 +498,40 @@ async fn write_agent_files_to(
     installed_at: &str,
     preferred_dest: Option<&Path>,
 ) -> Result<InstallRecord, AppError> {
-    let (bytes, rendered_hash) = render::render_with_hash(agent, raw, tool)?;
+    write_agent_files_to_locale(
+        agent,
+        raw,
+        tool,
+        None,
+        home,
+        project_root,
+        backup_dir,
+        source_hash,
+        body_hash,
+        corpus_version,
+        installed_at,
+        preferred_dest,
+    )
+    .await
+}
+
+#[allow(clippy::too_many_arguments)]
+async fn write_agent_files_to_locale(
+    agent: &crate::types::Agent,
+    raw: &str,
+    tool: &str,
+    render_locale: Option<&str>,
+    home: &Path,
+    project_root: Option<&Path>,
+    backup_dir: Option<&Path>,
+    source_hash: &str,
+    body_hash: &str,
+    corpus_version: &str,
+    installed_at: &str,
+    preferred_dest: Option<&Path>,
+) -> Result<InstallRecord, AppError> {
+    let (bytes, rendered_hash) =
+        render::render_with_hash_for_locale(agent, raw, tool, render_locale)?;
     let mut paths = render::dests(tool, &agent.slug, home, project_root)?;
     if let Some(preferred) = preferred_dest {
         if paths.len() == 1 {
@@ -458,9 +545,11 @@ async fn write_agent_files_to(
             backup_if_differs(dest, bytes.as_bytes(), bdir, installed_at).await?;
         }
         if let Some(parent) = dest.parent() {
-            tokio::fs::create_dir_all(parent).await.map_err(|e| AppError::Io {
-                message: format!("create {}: {e}", parent.display()),
-            })?;
+            tokio::fs::create_dir_all(parent)
+                .await
+                .map_err(|e| AppError::Io {
+                    message: format!("create {}: {e}", parent.display()),
+                })?;
         }
         atomic_write(dest, bytes.as_bytes()).await?;
     }
@@ -505,11 +594,71 @@ fn classify(
 /// for `tool`. Pure (no I/O) so it's unit-testable. When they match, the file
 /// on disk IS this agent verbatim — there's nothing to "adopt"; reconcile can
 /// treat it as `Current` even if we didn't install it.
-fn bytes_match_render(agent: &crate::types::Agent, raw: &str, tool: &str, file_bytes: &[u8]) -> bool {
-    match render::render_with_hash(agent, raw, tool) {
-        Ok((_, expected)) => render::sha256_hex(file_bytes) == expected,
-        Err(_) => false,
+#[cfg(test)]
+fn bytes_match_render(
+    agent: &crate::types::Agent,
+    raw: &str,
+    tool: &str,
+    file_bytes: &[u8],
+) -> bool {
+    matching_render(agent, raw, tool, file_bytes).is_some()
+}
+
+fn classify_update_kind(
+    canonical_changed: bool,
+    body_changed: bool,
+    localization_changed: bool,
+) -> UpdateKind {
+    if canonical_changed && body_changed {
+        UpdateKind::Substantive
+    } else if canonical_changed {
+        UpdateKind::Cosmetic
+    } else if localization_changed {
+        UpdateKind::Localization
+    } else {
+        UpdateKind::Cosmetic
     }
+}
+
+#[derive(Debug)]
+struct RenderMatch {
+    render_locale: Option<String>,
+    localization_hash: Option<String>,
+    rendered_hash: String,
+}
+
+/// Match canonical English first, then the valid zh-TW bilingual Codex render.
+/// Candidate filenames and logical identity are deliberately unchanged.
+fn matching_render(
+    agent: &crate::types::Agent,
+    raw: &str,
+    tool: &str,
+    file_bytes: &[u8],
+) -> Option<RenderMatch> {
+    let disk_hash = render::sha256_hex(file_bytes);
+    if let Ok((_, expected)) = render::render_with_hash(agent, raw, tool) {
+        if disk_hash == expected {
+            return Some(RenderMatch {
+                render_locale: None,
+                localization_hash: None,
+                rendered_hash: expected,
+            });
+        }
+    }
+    if tool == "codex" && agent.localizations.contains_key("zh-TW") {
+        if let Ok((_, expected)) =
+            render::render_with_hash_for_locale(agent, raw, tool, Some("zh-TW"))
+        {
+            if disk_hash == expected {
+                return Some(RenderMatch {
+                    render_locale: Some("zh-TW".into()),
+                    localization_hash: localization_hash_for(agent, tool, Some("zh-TW")),
+                    rendered_hash: expected,
+                });
+            }
+        }
+    }
+    None
 }
 
 // ---------- Tool detection ----------
@@ -547,8 +696,9 @@ pub async fn install_agent(
     slug: String,
     tool: Tool,
     project_path: Option<String>,
+    render_locale: Option<String>,
 ) -> Result<InstallRecord, AppError> {
-    do_install(&app, &state, slug, tool, project_path).await
+    do_install(&app, &state, slug, tool, project_path, render_locale, false).await
 }
 
 /// Update an install to the current corpus version (re-render + write). The
@@ -563,7 +713,7 @@ pub async fn update_agent(
     tool: Tool,
     project_path: Option<String>,
 ) -> Result<InstallRecord, AppError> {
-    do_install(&app, &state, slug, tool, project_path).await
+    do_install(&app, &state, slug, tool, project_path, None, true).await
 }
 
 /// Track a recognized Foreign install into the ledger **non-destructively** —
@@ -597,15 +747,17 @@ pub async fn agent_diff(
         message: format!("unknown agent: {slug}"),
     })?;
     let raw = corpus::read_source(&app, &agent.category, &slug).await?;
-    let (proposed, _hash) = render::render_with_hash(&agent, &raw, &tool)?;
 
     let home = tool_home(&state, &tool).await?;
     let proot = project_path.as_ref().map(PathBuf::from);
     let ledger = load_ledger(&app).await?;
-    let ledger_dest = ledger
+    let ledger_record = ledger
         .iter()
-        .find(|r| r.slug == slug && r.tool == tool && r.project_path == project_path)
-        .map(|r| PathBuf::from(&r.dest));
+        .find(|r| r.slug == slug && r.tool == tool && r.project_path == project_path);
+    let render_locale = ledger_record.and_then(|record| record.render_locale.as_deref());
+    let (proposed, _hash) =
+        render::render_with_hash_for_locale(&agent, &raw, &tool, render_locale)?;
+    let ledger_dest = ledger_record.map(|record| PathBuf::from(&record.dest));
     let candidates = candidate_dests(&agent, &raw, &tool, &home, proot.as_deref())?;
     let dest = ledger_dest
         .as_ref()
@@ -671,10 +823,7 @@ pub async fn uninstall_agent(
 /// only project roots the ledger still references, so dropped rows don't come
 /// back). Callers that want the files gone use `uninstall_agent` per row first.
 #[tauri::command]
-pub async fn project_forget(
-    app: AppHandle,
-    project_path: String,
-) -> Result<(), AppError> {
+pub async fn project_forget(app: AppHandle, project_path: String) -> Result<(), AppError> {
     let mut ledger = load_ledger(&app).await?;
     prune_project_rows(&mut ledger, &project_path);
     save_ledger(&app, &ledger).await?;
@@ -711,20 +860,39 @@ pub async fn installs_reconcile(
         };
         let centry = corpus.entry(&r.slug);
         let corpus_source = centry.as_ref().map(|e| e.source_hash.as_str());
-        let st = classify(disk_hash.as_deref(), &r.rendered_hash, &r.source_hash, corpus_source);
-        // Cosmetic vs substantive: only meaningful when Outdated. Body unchanged
-        // upstream → the update is metadata-only.
+        let current_agent = corpus.get(&r.slug);
+        let current_localization_hash = current_agent
+            .as_ref()
+            .and_then(|agent| localization_hash_for(agent, &r.tool, r.render_locale.as_deref()));
+        let localization_changed =
+            r.render_locale.is_some() && r.localization_hash != current_localization_hash;
+        let canonical_changed =
+            corpus_source.is_some_and(|source| source != r.source_hash.as_str());
+        let mut st = classify(
+            disk_hash.as_deref(),
+            &r.rendered_hash,
+            &r.source_hash,
+            corpus_source,
+        );
+        if st == InstallState::Current && localization_changed {
+            st = InstallState::Outdated;
+        }
+        // Canonical content changes retain the existing cosmetic/substantive
+        // classification. Only an otherwise-current localization delta is
+        // labeled Localization, so it never implies a prompt/capability change.
         let update_kind = if st == InstallState::Outdated {
             let cur_body = centry.as_ref().map(|e| e.body_hash.as_str());
-            Some(if cur_body == Some(r.body_hash.as_str()) {
-                UpdateKind::Cosmetic
-            } else {
-                UpdateKind::Substantive
-            })
+            Some(classify_update_kind(
+                canonical_changed,
+                cur_body != Some(r.body_hash.as_str()),
+                localization_changed,
+            ))
         } else {
             None
         };
-        let name = corpus.get(&r.slug).map(|a| a.name).unwrap_or_else(|| r.slug.clone());
+        let name = current_agent
+            .map(|a| a.name)
+            .unwrap_or_else(|| r.slug.clone());
         out.push(InstalledAgent {
             slug: r.slug.clone(),
             name,
@@ -780,13 +948,18 @@ pub async fn installs_reconcile(
         // Each entry: (scope-key, agents-root, suffix-after-`{slug}`).
         let mut scan_roots: Vec<(Option<String>, PathBuf, String)> = Vec::new();
         if render::supports_user(tool) {
-            scan_roots
-                .extend(agent_units(tool, &home, None).into_iter().map(|(d, s)| (None, d, s)));
+            scan_roots.extend(
+                agent_units(tool, &home, None)
+                    .into_iter()
+                    .map(|(d, s)| (None, d, s)),
+            );
         }
         if render::supports_project(tool) {
             scan_roots.extend(project_dirs.iter().flat_map(|p| {
                 let key = Some(p.to_string_lossy().to_string());
-                agent_units(tool, &home, Some(p)).into_iter().map(move |(d, s)| (key.clone(), d, s))
+                agent_units(tool, &home, Some(p))
+                    .into_iter()
+                    .map(move |(d, s)| (key.clone(), d, s))
             }));
         }
         for (proj, agents_root, suffix) in scan_roots {
@@ -804,14 +977,22 @@ pub async fn installs_reconcile(
                 // bytes. Dir unit: the entry IS the slug dir, bytes at <dir>/<leaf>.
                 // File unit: the entry is `<slug><suffix>`.
                 let (token, byte_path) = if dir_unit {
-                    (name.to_string(), agents_root.join(name).join(suffix.trim_start_matches('/')))
+                    (
+                        name.to_string(),
+                        agents_root.join(name).join(suffix.trim_start_matches('/')),
+                    )
                 } else if name.ends_with(suffix.as_str()) && name.len() > suffix.len() {
-                    (name[..name.len() - suffix.len()].to_string(), agents_root.join(name))
+                    (
+                        name[..name.len() - suffix.len()].to_string(),
+                        agents_root.join(name),
+                    )
                 } else {
                     continue; // not a unit for this template (stray file/dir)
                 };
                 let cand = token.strip_prefix(prefix).unwrap_or(&token);
-                let Some(agent) = corpus.get(cand).or_else(|| corpus.get_by_conversion_slug(cand))
+                let Some(agent) = corpus
+                    .get(cand)
+                    .or_else(|| corpus.get_by_conversion_slug(cand))
                 else {
                     continue; // unrecognized → not ours to claim
                 };
@@ -827,16 +1008,16 @@ pub async fn installs_reconcile(
                 // recognized-but-DIVERGENT file stays Foreign + untracked.
                 let raw = corpus::read_source(&app, &agent.category, &slug).await.ok();
                 let disk = read_capped(&byte_path, MAX_INSTALLED_BYTES).await.ok();
-                let canonical = matches!(
-                    (raw.as_deref(), disk.as_deref()),
-                    (Some(rw), Some(db)) if bytes_match_render(&agent, rw, tool, db)
-                );
+                let render_match = match (raw.as_deref(), disk.as_deref()) {
+                    (Some(rw), Some(db)) => matching_render(&agent, rw, tool, db),
+                    _ => None,
+                };
                 let mut tracked = false;
-                let state = if canonical {
+                let state = if let Some(matched) = render_match {
                     if let (Some(rw), Some(entry)) = (raw.as_deref(), corpus.entry(&slug)) {
                         let key = (slug.clone(), tool.to_string(), proj.clone());
                         if !adopted_seen.contains(&key) {
-                            if let Ok(rec) = track_agent_record(
+                            if let Ok(mut rec) = track_agent_record(
                                 &agent,
                                 rw,
                                 tool,
@@ -847,6 +1028,9 @@ pub async fn installs_reconcile(
                                 &corpus.version(),
                                 &now_iso(),
                             ) {
+                                rec.rendered_hash = matched.rendered_hash.clone();
+                                rec.render_locale = matched.render_locale.clone();
+                                rec.localization_hash = matched.localization_hash.clone();
                                 adopted.push(rec);
                                 adopted_seen.insert(key);
                             }
@@ -1028,12 +1212,12 @@ pub async fn tool_versions() -> Result<Vec<ToolVersion>, AppError> {
     let supported = supported();
     let mut handles = Vec::with_capacity(supported.len());
     for tool in supported {
-        handles.push(tokio::spawn(
-            async move { ToolVersion {
+        handles.push(tokio::spawn(async move {
+            ToolVersion {
                 tool: tool.to_string(),
                 version: probe_version(tool).await,
-            } },
-        ));
+            }
+        }));
     }
     let mut out = Vec::with_capacity(handles.len());
     for h in handles {
@@ -1061,7 +1245,11 @@ pub async fn projects_list(app: AppHandle) -> Result<Vec<ProjectInfo>, AppError>
                 .file_name()
                 .map(|s| s.to_string_lossy().to_string())
                 .unwrap_or_else(|| path.clone());
-            ProjectInfo { path, label, installed_count }
+            ProjectInfo {
+                path,
+                label,
+                installed_count,
+            }
         })
         .collect())
 }
@@ -1100,7 +1288,10 @@ pub async fn loadout_export(app: AppHandle, path: String) -> Result<u32, AppErro
         })
         .collect();
     let n = installs.len() as u32;
-    let af = Agentfile { agentfile: 1, installs };
+    let af = Agentfile {
+        agentfile: 1,
+        installs,
+    };
     let bytes = serde_json::to_vec_pretty(&af).map_err(|e| AppError::Io {
         message: format!("serialize Agentfile: {e}"),
     })?;
@@ -1123,7 +1314,8 @@ pub async fn loadout_import(
     })?;
     let mut out = Vec::with_capacity(af.installs.len());
     for e in af.installs {
-        if let Ok(rec) = do_install(&app, &state, e.slug, e.tool, e.project_path).await {
+        if let Ok(rec) = do_install(&app, &state, e.slug, e.tool, e.project_path, None, false).await
+        {
             out.push(rec);
         }
     }
@@ -1139,7 +1331,11 @@ mod tests {
         let af = Agentfile {
             agentfile: 1,
             installs: vec![
-                LoadoutEntry { slug: "a".into(), tool: "claudeCode".to_string(), project_path: None },
+                LoadoutEntry {
+                    slug: "a".into(),
+                    tool: "claudeCode".to_string(),
+                    project_path: None,
+                },
                 LoadoutEntry {
                     slug: "b".into(),
                     tool: "cursor".to_string(),
@@ -1165,6 +1361,8 @@ mod tests {
             dest: format!("/dest/{slug}"),
             source_hash: String::new(),
             body_hash: String::new(),
+            render_locale: None,
+            localization_hash: None,
             rendered_hash: String::new(),
             installed_at: String::new(),
             corpus_version: String::new(),
@@ -1182,11 +1380,15 @@ mod tests {
         prune_project_rows(&mut ledger, "/p1");
         // Both /p1 rows gone; the other project + the global row survive.
         assert_eq!(ledger.len(), 2);
-        assert!(ledger.iter().all(|r| r.project_path.as_deref() != Some("/p1")));
+        assert!(ledger
+            .iter()
+            .all(|r| r.project_path.as_deref() != Some("/p1")));
         assert!(ledger
             .iter()
             .any(|r| r.slug == "c" && r.project_path.as_deref() == Some("/p2")));
-        assert!(ledger.iter().any(|r| r.slug == "d" && r.project_path.is_none()));
+        assert!(ledger
+            .iter()
+            .any(|r| r.slug == "d" && r.project_path.is_none()));
 
         // Forgetting an unknown project changes nothing.
         prune_project_rows(&mut ledger, "/nope");
@@ -1198,13 +1400,54 @@ mod tests {
         // file gone
         assert_eq!(classify(None, "r", "s1", Some("s1")), InstallState::Removed);
         // bytes differ from what we wrote → user-edited
-        assert_eq!(classify(Some("x"), "r", "s1", Some("s1")), InstallState::Modified);
+        assert_eq!(
+            classify(Some("x"), "r", "s1", Some("s1")),
+            InstallState::Modified
+        );
         // matches our render, corpus unchanged → current
-        assert_eq!(classify(Some("r"), "r", "s1", Some("s1")), InstallState::Current);
+        assert_eq!(
+            classify(Some("r"), "r", "s1", Some("s1")),
+            InstallState::Current
+        );
         // matches our render, corpus advanced → outdated
-        assert_eq!(classify(Some("r"), "r", "s1", Some("s2")), InstallState::Outdated);
+        assert_eq!(
+            classify(Some("r"), "r", "s1", Some("s2")),
+            InstallState::Outdated
+        );
         // agent gone from corpus but file intact → current
         assert_eq!(classify(Some("r"), "r", "s1", None), InstallState::Current);
+    }
+
+    #[test]
+    fn canonical_and_localization_updates_are_distinct() {
+        assert_eq!(
+            classify_update_kind(false, false, true),
+            UpdateKind::Localization
+        );
+        assert_eq!(
+            classify_update_kind(true, false, true),
+            UpdateKind::Cosmetic
+        );
+        assert_eq!(
+            classify_update_kind(true, true, true),
+            UpdateKind::Substantive
+        );
+    }
+
+    #[test]
+    fn updates_preserve_recorded_codex_locale() {
+        assert_eq!(
+            effective_render_locale("codex", Some("en"), Some("zh-TW"), true).as_deref(),
+            Some("zh-TW")
+        );
+        assert_eq!(
+            effective_render_locale("codex", Some("zh-TW"), None, false).as_deref(),
+            Some("zh-TW")
+        );
+        assert_eq!(
+            effective_render_locale("cursor", Some("zh-TW"), Some("zh-TW"), true),
+            None
+        );
     }
 
     #[test]
@@ -1213,14 +1456,26 @@ mod tests {
         let os = Path::new("/Users/me");
         let mut tp: HashMap<String, String> = HashMap::new();
         // No entry → OS home.
-        assert_eq!(resolve_tool_base(&tp, "claudeCode", os), PathBuf::from("/Users/me"));
+        assert_eq!(
+            resolve_tool_base(&tp, "claudeCode", os),
+            PathBuf::from("/Users/me")
+        );
         // Empty entry is treated as unset → OS home.
         tp.insert("claudeCode".into(), String::new());
-        assert_eq!(resolve_tool_base(&tp, "claudeCode", os), PathBuf::from("/Users/me"));
+        assert_eq!(
+            resolve_tool_base(&tp, "claudeCode", os),
+            PathBuf::from("/Users/me")
+        );
         // Non-empty override wins, and ONLY for that tool.
         tp.insert("claudeCode".into(), "/wsl/home/me".into());
-        assert_eq!(resolve_tool_base(&tp, "claudeCode", os), PathBuf::from("/wsl/home/me"));
-        assert_eq!(resolve_tool_base(&tp, "codex", os), PathBuf::from("/Users/me"));
+        assert_eq!(
+            resolve_tool_base(&tp, "claudeCode", os),
+            PathBuf::from("/wsl/home/me")
+        );
+        assert_eq!(
+            resolve_tool_base(&tp, "codex", os),
+            PathBuf::from("/Users/me")
+        );
     }
 
     #[test]
@@ -1229,14 +1484,20 @@ mod tests {
         // File-per-agent (Claude): root = ~/.claude/agents, suffix = ".md".
         let claude = agent_units("claudeCode", home, None);
         assert!(
-            claude.iter().any(|(d, s)| d.ends_with(".claude/agents") && s == ".md"),
+            claude
+                .iter()
+                .any(|(d, s)| d.ends_with(".claude/agents") && s == ".md"),
             "claude: {claude:?}"
         );
         // Dir-per-agent (Osaurus): the bug was scanning `.osaurus/skills/_probe`.
         // It must scan `.osaurus/skills` with a `/SKILL.md` leaf.
         let osa = agent_units("osaurus", home, None);
         assert_eq!(osa.len(), 1, "osaurus: {osa:?}");
-        assert!(osa[0].0.ends_with(".osaurus/skills"), "osaurus dir: {:?}", osa[0].0);
+        assert!(
+            osa[0].0.ends_with(".osaurus/skills"),
+            "osaurus dir: {:?}",
+            osa[0].0
+        );
         assert_eq!(osa[0].1, "/SKILL.md");
     }
 
@@ -1245,6 +1506,7 @@ mod tests {
             slug: "frontend-developer".into(),
             name: "Frontend Developer".into(),
             description: "Builds UIs.".into(),
+            localizations: BTreeMap::new(),
             category: "engineering".into(),
             emoji: None,
             color: Some("blue".into()),
@@ -1262,34 +1524,68 @@ mod tests {
 
         // Codex (user-scoped, TOML transform).
         let rec = write_agent_files(
-            &agent, raw, "codex", home.path(), None, None, "src-1", "body-1", "v1",
+            &agent,
+            raw,
+            "codex",
+            home.path(),
+            None,
+            None,
+            "src-1",
+            "body-1",
+            "v1",
             "2026-06-05T00:00:00Z",
         )
         .await
         .unwrap();
 
-        let path = home.path().join(".codex").join("agents").join("frontend-developer.toml");
+        let path = home
+            .path()
+            .join(".codex")
+            .join("agents")
+            .join("frontend-developer.toml");
         assert!(path.exists(), "install wrote the file");
         let on_disk = std::fs::read(&path).unwrap();
         let disk_hash = render::sha256_hex(&on_disk);
-        assert_eq!(disk_hash, rec.rendered_hash, "on-disk bytes match recorded render");
+        assert_eq!(
+            disk_hash, rec.rendered_hash,
+            "on-disk bytes match recorded render"
+        );
 
         // Reconcile classifications off the real bytes:
         assert_eq!(
-            classify(Some(&disk_hash), &rec.rendered_hash, &rec.source_hash, Some("src-1")),
+            classify(
+                Some(&disk_hash),
+                &rec.rendered_hash,
+                &rec.source_hash,
+                Some("src-1")
+            ),
             InstallState::Current
         );
         assert_eq!(
-            classify(Some(&disk_hash), &rec.rendered_hash, &rec.source_hash, Some("src-2")),
+            classify(
+                Some(&disk_hash),
+                &rec.rendered_hash,
+                &rec.source_hash,
+                Some("src-2")
+            ),
             InstallState::Outdated
         );
         assert_eq!(
-            classify(Some("useredited"), &rec.rendered_hash, &rec.source_hash, Some("src-1")),
+            classify(
+                Some("useredited"),
+                &rec.rendered_hash,
+                &rec.source_hash,
+                Some("src-1")
+            ),
             InstallState::Modified
         );
         // delete → Removed
         std::fs::remove_file(&path).unwrap();
-        let gone = if path.exists() { Some(disk_hash.as_str()) } else { None };
+        let gone = if path.exists() {
+            Some(disk_hash.as_str())
+        } else {
+            None
+        };
         assert_eq!(
             classify(gone, &rec.rendered_hash, &rec.source_hash, Some("src-1")),
             InstallState::Removed
@@ -1301,11 +1597,21 @@ mod tests {
         let home = tempfile::tempdir().unwrap();
         let raw = "---\nname: Frontend Developer\ncolor: blue\n---\nVERBATIM BODY\n";
         write_agent_files(
-            &sample_agent(), raw, "claudeCode", home.path(), None, None, "s", "b", "v", "t",
+            &sample_agent(),
+            raw,
+            "claudeCode",
+            home.path(),
+            None,
+            None,
+            "s",
+            "b",
+            "v",
+            "t",
         )
         .await
         .unwrap();
-        let got = std::fs::read_to_string(home.path().join(".claude/agents/frontend-developer.md")).unwrap();
+        let got = std::fs::read_to_string(home.path().join(".claude/agents/frontend-developer.md"))
+            .unwrap();
         assert_eq!(got, raw, "identity tool ships the source unchanged");
     }
 
@@ -1314,12 +1620,27 @@ mod tests {
         let home = tempfile::tempdir().unwrap();
         let proj = tempfile::tempdir().unwrap();
         let rec = write_agent_files(
-            &sample_agent(), "raw", "cursor", home.path(), Some(proj.path()), None, "s", "b", "v", "t",
+            &sample_agent(),
+            "raw",
+            "cursor",
+            home.path(),
+            Some(proj.path()),
+            None,
+            "s",
+            "b",
+            "v",
+            "t",
         )
         .await
         .unwrap();
-        assert!(proj.path().join(".cursor/rules/frontend-developer.mdc").exists());
-        assert_eq!(rec.project_path.as_deref(), Some(proj.path().to_string_lossy().as_ref()));
+        assert!(proj
+            .path()
+            .join(".cursor/rules/frontend-developer.mdc")
+            .exists());
+        assert_eq!(
+            rec.project_path.as_deref(),
+            Some(proj.path().to_string_lossy().as_ref())
+        );
         assert_eq!(rec.scope, crate::types::Scope::Project);
     }
 
@@ -1327,16 +1648,45 @@ mod tests {
     /// (so the Foreign sweep can call it Current); any difference is not.
     #[test]
     fn canonical_render_is_recognized_byte_for_byte() {
-        let agent = sample_agent();
+        let mut agent = sample_agent();
         let raw = "---\nname: Frontend Developer\ncolor: blue\n---\nBODY\n";
         // The exact canonical render matches…
         let (rendered, _h) = render::render_with_hash(&agent, raw, "codex").unwrap();
-        assert!(bytes_match_render(&agent, raw, "codex", rendered.as_bytes()));
+        assert!(bytes_match_render(
+            &agent,
+            raw,
+            "codex",
+            rendered.as_bytes()
+        ));
         // …a hand-edited / different file does not.
-        assert!(!bytes_match_render(&agent, raw, "codex", b"different bytes"));
+        assert!(!bytes_match_render(
+            &agent,
+            raw,
+            "codex",
+            b"different bytes"
+        ));
         // Identity tool (claude-code ships the source verbatim) also matches.
         let (raw_render, _h2) = render::render_with_hash(&agent, raw, "claudeCode").unwrap();
-        assert!(bytes_match_render(&agent, raw, "claudeCode", raw_render.as_bytes()));
+        assert!(bytes_match_render(
+            &agent,
+            raw,
+            "claudeCode",
+            raw_render.as_bytes()
+        ));
+
+        agent.localizations.insert(
+            "zh-TW".into(),
+            crate::types::AgentLocalization {
+                name: "前端開發工程師".into(),
+                description: "建立使用者介面。".into(),
+                localization_hash: "localized".into(),
+            },
+        );
+        let (localized, _) =
+            render::render_with_hash_for_locale(&agent, raw, "codex", Some("zh-TW")).unwrap();
+        let matched = matching_render(&agent, raw, "codex", localized.as_bytes()).unwrap();
+        assert_eq!(matched.render_locale.as_deref(), Some("zh-TW"));
+        assert_eq!(matched.localization_hash.as_deref(), Some("localized"));
     }
 
     /// Track records provenance but must NOT create or touch any file.
@@ -1347,26 +1697,50 @@ mod tests {
         let raw = "---\nname: Frontend Developer\n---\nBODY\n";
 
         let rec = track_agent_record(
-            &agent, raw, "codex", home.path(), None, "src-1", "body-1", "v1",
+            &agent,
+            raw,
+            "codex",
+            home.path(),
+            None,
+            "src-1",
+            "body-1",
+            "v1",
             "2026-06-06T00:00:00Z",
         )
         .unwrap();
 
-        let path = home.path().join(".codex/agents").join("frontend-developer.toml");
+        let path = home
+            .path()
+            .join(".codex/agents")
+            .join("frontend-developer.toml");
         assert!(!path.exists(), "Track must not write the agent file");
-        assert_eq!(rec.dest, path.to_string_lossy(), "record points at the canonical dest");
+        assert_eq!(
+            PathBuf::from(&rec.dest),
+            path,
+            "record points at the canonical dest"
+        );
 
         // The recorded rendered_hash equals a real render — so if the user's file
         // happens to match it, reconcile yields Current; otherwise Modified.
         let (_b, render_hash) = render::render_with_hash(&agent, raw, "codex").unwrap();
         assert_eq!(rec.rendered_hash, render_hash);
         assert_eq!(
-            classify(Some(&render_hash), &rec.rendered_hash, &rec.source_hash, Some("src-1")),
+            classify(
+                Some(&render_hash),
+                &rec.rendered_hash,
+                &rec.source_hash,
+                Some("src-1")
+            ),
             InstallState::Current,
             "a tracked file that matches the canonical render reconciles as Current"
         );
         assert_eq!(
-            classify(Some("hand-edited"), &rec.rendered_hash, &rec.source_hash, Some("src-1")),
+            classify(
+                Some("hand-edited"),
+                &rec.rendered_hash,
+                &rec.source_hash,
+                Some("src-1")
+            ),
             InstallState::Modified,
             "a tracked file that differs reconciles as Modified (never silently clobbered)"
         );
@@ -1379,7 +1753,10 @@ mod tests {
         let mut agent = sample_agent();
         agent.slug = "engineering-frontend-developer".into();
         let raw = "---\nname: Frontend Developer\ndescription: Builds UIs.\n---\nBODY\n";
-        let conversion_dest = home.path().join(".codex/agents").join("frontend-developer.toml");
+        let conversion_dest = home
+            .path()
+            .join(".codex/agents")
+            .join("frontend-developer.toml");
         std::fs::create_dir_all(conversion_dest.parent().unwrap()).unwrap();
         std::fs::write(&conversion_dest, b"OLDER CLI OUTPUT").unwrap();
 
@@ -1395,7 +1772,7 @@ mod tests {
             "2026-06-12T00:00:00Z",
         )
         .unwrap();
-        assert_eq!(tracked.dest, conversion_dest.to_string_lossy());
+        assert_eq!(PathBuf::from(&tracked.dest), conversion_dest);
 
         write_agent_files_to(
             &agent,
@@ -1441,8 +1818,16 @@ mod tests {
 
         // Update over it (with backups enabled).
         write_agent_files(
-            &agent, "---\nname: Frontend Developer\n---\nNEW\n", "codex", home.path(),
-            None, Some(backups.path()), "src-2", "body-2", "v2", "2026-06-06T01:02:03Z",
+            &agent,
+            "---\nname: Frontend Developer\n---\nNEW\n",
+            "codex",
+            home.path(),
+            None,
+            Some(backups.path()),
+            "src-2",
+            "body-2",
+            "v2",
+            "2026-06-06T01:02:03Z",
         )
         .await
         .unwrap();
@@ -1454,13 +1839,24 @@ mod tests {
             .map(|e| std::fs::read(e.path()).unwrap())
             .collect();
         assert_eq!(saved.len(), 1, "exactly one backup created");
-        assert_eq!(saved[0], b"USER EDITED CONTENT", "backup holds the pre-overwrite bytes");
+        assert_eq!(
+            saved[0], b"USER EDITED CONTENT",
+            "backup holds the pre-overwrite bytes"
+        );
 
         // A second, byte-identical write makes no new backup (not destructive).
         let before = std::fs::read(&dest).unwrap();
         write_agent_files(
-            &agent, "---\nname: Frontend Developer\n---\nNEW\n", "codex", home.path(),
-            None, Some(backups.path()), "src-2", "body-2", "v2", "2026-06-06T02:02:03Z",
+            &agent,
+            "---\nname: Frontend Developer\n---\nNEW\n",
+            "codex",
+            home.path(),
+            None,
+            Some(backups.path()),
+            "src-2",
+            "body-2",
+            "v2",
+            "2026-06-06T02:02:03Z",
         )
         .await
         .unwrap();
@@ -1608,7 +2004,10 @@ mod tests {
             for dest in &dests {
                 assert!(!dest.exists(), "{tool}: SKILL.md still present at {dest:?}");
                 let slug_dir = dest.parent().unwrap();
-                assert!(!slug_dir.exists(), "{tool}: orphaned skill dir left at {slug_dir:?}");
+                assert!(
+                    !slug_dir.exists(),
+                    "{tool}: orphaned skill dir left at {slug_dir:?}"
+                );
             }
         }
     }
@@ -1625,20 +2024,18 @@ mod tests {
         std::fs::create_dir_all(dest.parent().unwrap()).unwrap();
         std::fs::write(&dest, b"USER MODIFIED").unwrap();
 
-        assert!(
-            remove_agent_files(
-                &agent,
-                raw,
-                "codex",
-                home.path(),
-                None,
-                None,
-                &backup_path,
-                "2026-06-12T00:00:00Z",
-            )
-            .await
-            .is_err()
-        );
+        assert!(remove_agent_files(
+            &agent,
+            raw,
+            "codex",
+            home.path(),
+            None,
+            None,
+            &backup_path,
+            "2026-06-12T00:00:00Z",
+        )
+        .await
+        .is_err());
         assert_eq!(std::fs::read(&dest).unwrap(), b"USER MODIFIED");
     }
 
@@ -1661,6 +2058,8 @@ mod tests {
             dest: "/p/.cursor/rules/a.mdc".into(),
             source_hash: "sh".into(),
             body_hash: "bh".into(),
+            render_locale: Some("zh-TW".into()),
+            localization_hash: Some("lh".into()),
             rendered_hash: "rh".into(),
             installed_at: "2026-06-05T00:00:00Z".into(),
             corpus_version: "v".into(),
@@ -1671,5 +2070,14 @@ mod tests {
         let back: Vec<InstallRecord> = serde_json::from_slice(&bytes).unwrap();
         assert_eq!(back.len(), 1);
         assert_eq!(back[0].tool, "cursor");
+    }
+
+    #[test]
+    fn old_ledger_row_deserializes_without_migration() {
+        let old = r#"[{"slug":"a","tool":"codex","scope":"user","projectPath":null,"dest":"/a.toml","sourceHash":"s","bodyHash":"b","renderedHash":"r","installedAt":"t","corpusVersion":"v"}]"#;
+        let rows: Vec<InstallRecord> = serde_json::from_str(old).unwrap();
+        assert_eq!(rows.len(), 1);
+        assert_eq!(rows[0].render_locale, None);
+        assert_eq!(rows[0].localization_hash, None);
     }
 }

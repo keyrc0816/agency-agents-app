@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "keyrc0816/agency-agents",
+  "sourceBaselineCommit": "3c9588880b7cafaec325a104899fd8bbe27e7d72",
+  "sourceDefaultRef": "main",
+  "resourcePath": "scripts/i18n/agent-metadata-zh-TW.json",
+  "resourceSha256": "b564bbcdfa1fc71cabaaecf936eb13791d49c3b35624f3a7d9cfa0ec67089bb9"
+}

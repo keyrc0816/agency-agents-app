@@ -310,6 +310,13 @@ export type Tool = string;
     project-scoped tools install into a tracked `projectPath`. */
 export type Scope = "user" | "project";
 
+/** Validated display-only metadata for one locale. */
+export interface AgentLocalization {
+  name: string;
+  description: string;
+  localizationHash: string;
+}
+
 /**
  * An agent as parsed from a single corpus `.md` file. `body` is the
  * markdown persona — empty in list views (`corpusList`) to keep payloads
@@ -322,6 +329,8 @@ export interface Agent {
   name: string;
   /** Frontmatter `description`. */
   description: string;
+  /** Valid, non-stale display metadata keyed by BCP-47 locale. */
+  localizations: Record<string, AgentLocalization>;
   /** Parent directory, e.g. `"engineering"`. */
   category: string;
   /** Frontmatter `emoji`. */
@@ -452,6 +461,10 @@ export interface InstallRecord {
   sourceHash: string;
   /** SHA-256 of the agent body at install time (cosmetic vs substantive updates). */
   bodyHash: string;
+  /** Codex display locale used for the installed TOML; null for canonical English. */
+  renderLocale: string | null;
+  /** Hash of display-only localization metadata used for that render. */
+  localizationHash: string | null;
   renderedHash: string;
   installedAt: string;
   corpusVersion: string;
@@ -471,7 +484,7 @@ export type InstallState =
 
 /** Whether an available update is cosmetic (frontmatter/metadata only,
     `bodyHash` unchanged) or substantive (prompt body changed). */
-export type UpdateKind = "cosmetic" | "substantive";
+export type UpdateKind = "cosmetic" | "substantive" | "localization";
 
 /**
  * Reconciled view-model for the Library — one on-disk agent file resolved

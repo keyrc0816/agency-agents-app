@@ -151,6 +151,7 @@ const en = {
   "state.attention": "Needs attention",
   "state.current": "In sync",
   "state.outdated": "Outdated",
+  "state.localizationUpdate": "Translation text update",
   "state.modified": "Modified",
   "state.foreign": "Untracked",
   "state.removed": "Missing",

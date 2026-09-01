@@ -11,7 +11,7 @@
    */
   import { install } from "$lib/stores/install.svelte";
   import { i18n } from "$lib/stores/i18n.svelte";
-  import type { Agent, InstallState, Tool } from "$lib/types";
+  import type { Agent, InstallState, Tool, UpdateKind } from "$lib/types";
 
   let {
     agent,
@@ -38,15 +38,18 @@
   function basename(p: string): string {
     return p.replace(/\/+$/, "").split("/").pop() || p;
   }
-  function stateLabel(state: InstallState): string {
+  function stateLabel(state: InstallState, updateKind: UpdateKind | null = null): string {
     if (state === "current") return i18n.t("state.current");
+    if (state === "outdated" && updateKind === "localization") {
+      return i18n.t("state.localizationUpdate");
+    }
     if (state === "outdated") return i18n.t("state.outdated");
     if (state === "modified") return i18n.t("state.modified");
     if (state === "foreign") return i18n.t("state.foreign");
     return i18n.t("state.removed");
   }
-  function pillTitle(tool: string, project: string | null, state: InstallState, diffable: boolean): string {
-    const target = `${tool}${project ? " · " + basename(project) : ""} · ${stateLabel(state)}`;
+  function pillTitle(tool: string, project: string | null, state: InstallState, updateKind: UpdateKind | null, diffable: boolean): string {
+    const target = `${tool}${project ? " · " + basename(project) : ""} · ${stateLabel(state, updateKind)}`;
     return diffable ? i18n.t("deployment.diffTitle", { target }) : target;
   }
 </script>
@@ -60,7 +63,7 @@
         class:link={diffable}
         data-tone={tone(r.state)}
         disabled={!diffable}
-        title={pillTitle(install.toolLabel(r.tool), r.projectPath, r.state, diffable)}
+        title={pillTitle(install.toolLabel(r.tool), r.projectPath, r.state, r.updateKind, diffable)}
         onclick={() => diffable && onDiff({ slug: r.slug, tool: r.tool, projectPath: r.projectPath, name: agent.name })}
       >
         <span class="pdot" data-tone={tone(r.state)}></span>

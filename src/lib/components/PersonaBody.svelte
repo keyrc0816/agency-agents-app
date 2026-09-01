@@ -15,6 +15,10 @@
   import { corpus } from "$lib/stores/corpus.svelte";
   import { i18n } from "$lib/stores/i18n.svelte";
   import { resolveCategoryIcon } from "$lib/util/categoryIcon";
+  import {
+    agentDisplayName,
+    agentLocalizedDescription,
+  } from "$lib/util/agentLocalization";
   import { renderMarkdown } from "$lib/util/markdown";
   import type { Agent } from "$lib/types";
 
@@ -43,10 +47,11 @@
 
 {#if agent}
   {@const DivIcon = resolveCategoryIcon(corpus.iconOf(agent.category))}
+  {@const zhDescription = agentLocalizedDescription(agent, i18n.locale)}
   <header class="pb-head">
     <span class="pb-emoji" aria-hidden="true">{agent.emoji ?? "🧩"}</span>
     <div class="pb-titles">
-      <h2 class="pb-name">{agent.name}</h2>
+      <h2 class="pb-name">{agentDisplayName(agent, i18n.locale)}</h2>
       <span class="pb-cat">
         {#if onCategory}
           <button class="pb-cat-btn" onclick={() => onCategory(agent.category)} title={i18n.t("coverage.seeDivision", { division: corpus.labelOf(agent.category) })}>
@@ -74,6 +79,12 @@
     {/if}
     {#if agent.description}
       <p class="pb-desc">{agent.description}</p>
+    {/if}
+    {#if zhDescription}
+      <div class="pb-localized">
+        <span class="pb-localized-label">中文：</span>
+        <p class="pb-desc">{zhDescription}</p>
+      </div>
     {/if}
 
     <div class="pb-persona">
@@ -128,6 +139,8 @@
     flex-direction: column;
     gap: var(--space-3);
   }
+  .pb-localized { display: flex; flex-direction: column; gap: 4px; }
+  .pb-localized-label { font-size: var(--text-caption); font-weight: var(--fw-semibold); color: var(--color-text-secondary); }
   .pb-vibe {
     margin: 0;
     font-size: var(--text-body);

@@ -232,7 +232,13 @@ class InstallStore {
   async install(slug: string, tool: Tool, projectPath: string | null = null): Promise<InstallRecord> {
     this.busy = `${slug}:${tool}`;
     try {
-      const rec = await invoke<InstallRecord>("install_agent", { slug, tool, projectPath });
+      const renderLocale = tool === "codex" && i18n.locale === "zh-TW" ? "zh-TW" : "en";
+      const rec = await invoke<InstallRecord>("install_agent", {
+        slug,
+        tool,
+        projectPath,
+        renderLocale,
+      });
       await this.reconcile();
       void this.loadTools();
       activity.log({
@@ -396,7 +402,16 @@ class InstallStore {
     let fail = 0;
     for (const t of targets) {
       try {
-        await invoke(cmd, { slug: t.slug, tool: t.tool, projectPath: t.projectPath });
+        const renderLocale =
+          action === "install" && t.tool === "codex" && i18n.locale === "zh-TW"
+            ? "zh-TW"
+            : "en";
+        await invoke(cmd, {
+          slug: t.slug,
+          tool: t.tool,
+          projectPath: t.projectPath,
+          ...(action === "install" ? { renderLocale } : {}),
+        });
         ok++;
       } catch {
         fail++;

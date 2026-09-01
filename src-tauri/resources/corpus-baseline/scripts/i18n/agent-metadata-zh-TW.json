@@ -1,0 +1,1644 @@
+{
+  "schemaVersion": 1,
+  "locale": "zh-TW",
+  "agents": {
+    "academic-anthropologist": {
+      "sourceName": "Anthropologist",
+      "sourceDescriptionSha256": "68c80434f0ae42c40077635d401480e80254ad4022f3fe817d8b5f81a76980d3",
+      "name": "人類學家",
+      "description": "精通文化體系、儀式、親屬關係、信仰體系和民族誌方法──建構文化連貫、真實可信而非虛構的社會"
+    },
+    "academic-geographer": {
+      "sourceName": "Geographer",
+      "sourceDescriptionSha256": "12f968d5488da5b46d5562896ead1e4d503b5997003cb9af591cc62e19601ea9",
+      "name": "地理學家",
+      "description": "精通自然地理和人文地理、氣候系統、製圖學和空間分析——建構地理連貫的世界，使地形、氣候、資源和聚落模式符合科學邏輯"
+    },
+    "academic-historian": {
+      "sourceName": "Historian",
+      "sourceDescriptionSha256": "c1f20de254133910db3b1dbd48e40e70ca35997ecf5d0f7d698f2128db9c7d00",
+      "name": "歷史學家",
+      "description": "精通歷史分析、時期劃分、物質文化和史學——驗證歷史連貫性，並以一手和二手資料所支持的真實時代細節豐富場景。"
+    },
+    "academic-narratologist": {
+      "sourceName": "Narratologist",
+      "sourceDescriptionSha256": "b9da9e9f398cefa37151d28ff8b7f7ba2c4b1cef1763754c8ffe2a68382b4294",
+      "name": "敘事學家",
+      "description": "精通敘事理論、故事結構、人物弧線和文學分析——以從普羅普到坎貝爾再到現代敘事學的現有框架為基礎提供建議"
+    },
+    "academic-psychologist": {
+      "sourceName": "Psychologist",
+      "sourceDescriptionSha256": "b15b026a23b3bfa16e6f4648fa860d864dbfa84ee0d94ac94d4e92ed940dbfc5",
+      "name": "心理學家",
+      "description": "精通人類行為、人格理論、動機和認知模式——以臨床與研究框架為基礎，建構心理上可信的人物和互動。"
+    },
+    "academic-statistician": {
+      "sourceName": "Statistician",
+      "sourceDescriptionSha256": "f7d19918070a473aca0204f7dea9a0a255edadfcc64d88f39e202811c6a1cf56",
+      "name": "統計學家",
+      "description": "精通量化研究方法、實驗設計和統計推論——對主張進行壓力測試、設計嚴謹的研究，並區分真實訊號與雜訊、偶然因素和偏誤。"
+    },
+    "accounts-payable-agent": {
+      "sourceName": "Accounts Payable Agent",
+      "sourceDescriptionSha256": "bec6ce690845afbefb93fa496839e475253edf6b57cf0799f12e291a513acd3b",
+      "name": "應付帳款專員",
+      "description": "自主支付處理專家，能夠透過任何支付管道（包括加密貨幣、法幣和穩定幣）執行供應商付款、承包商發票和定期帳單。透過工具呼叫與 AI 代理工作流程整合。"
+    },
+    "agentic-identity-trust": {
+      "sourceName": "Agentic Identity & Trust Architect",
+      "sourceDescriptionSha256": "ad07b87b0ed926b9e0a19fe9c9a26a958c0bae30536e5add8add62f9aa914634",
+      "name": "Agent 身分與信任架構師",
+      "description": "為在多代理環境中運作的自主 AI 代理程式設計身分、認證和信任驗證系統。確保代理能夠證明其身分、授權權限以及實際執行的操作。"
+    },
+    "agents-orchestrator": {
+      "sourceName": "Agents Orchestrator",
+      "sourceDescriptionSha256": "5c01321eaced3513219d0b882500ec7dd89bee12e3344f2588964ddcd18b6790",
+      "name": "多 Agent 協調器",
+      "description": "自主開發管線管理專家，負責協調完整的開發工作流程並領導各階段順利銜接。"
+    },
+    "automation-governance-architect": {
+      "sourceName": "Automation Governance Architect",
+      "sourceDescriptionSha256": "4a925366a7b40557b8acb6efa6adac71a0b589ada91f41afa16d8e6152b2e3c9",
+      "name": "自動化治理架構師",
+      "description": "以治理為先的業務自動化架構師（n8n 優先），在實施前審核價值、風險和可維護性。"
+    },
+    "blender-addon-engineer": {
+      "sourceName": "Blender Add-on Engineer",
+      "sourceDescriptionSha256": "d9d02d9e8e146ef8de017141bc45fd273d8d594f0b47098dbd87cb778ab0470e",
+      "name": "Blender外掛工程師",
+      "description": "Blender 工具專家 - 建立 Python 外掛程式、資產驗證器、匯出器和流程自動化工具，將重複的 DCC 工作轉化為可靠的一鍵式工作流程。"
+    },
+    "business-strategist": {
+      "sourceName": "Business Strategist",
+      "sourceDescriptionSha256": "317f25e546038ec9e45353d3889cd25e38c72815ef33e49f6a1bad2b9dd99fac",
+      "name": "商業策略顧問",
+      "description": "資深管理顧問專家，擅長競爭分析、市場進入策略、商業模式設計、成長規劃、組織策略和策略決策——將複雜的市場動態轉化為清晰可行的策略，從而創造可持續的競爭優勢。"
+    },
+    "change-management-consultant": {
+      "sourceName": "Change Management Consultant",
+      "sourceDescriptionSha256": "c2302767a01bf6dbe9699b40a68f00da8b6b6b95e4963acc215c72ea4fce57dd",
+      "name": "變革管理顧問",
+      "description": "變革管理專家，運用 ADKAR、Kotter 和 Prosci 框架指導組織完成技術實施、重組、文化轉型和併購整合——有效管理阻力、促進採納，並確保變革在上線後長期有效。"
+    },
+    "chief-financial-officer": {
+      "sourceName": "Chief Financial Officer",
+      "sourceDescriptionSha256": "4b5f45ce65761a71ffc81f2c26788eb30f6762175674ced495974717f5774c54",
+      "name": "財務長",
+      "description": "策略財務主管，負責資本配置、資金管理、財務規劃、併購財務、投資人關係和董事會報告——將複雜的財務問題轉化為清楚決策，推動企業績效並增進利害關係人的信心。"
+    },
+    "corporate-training-designer": {
+      "sourceName": "Corporate Training Designer",
+      "sourceDescriptionSha256": "b9c2f2ab3ff2671ea0eceeaffb99ef3d98231250247459bee175954a865ee7a8",
+      "name": "企業培訓設計師",
+      "description": "企業訓練系統設計和課程開發專家——精通訓練需求分析、教學設計方法、混成學習計畫設計、內部講師培育、領導力計畫，以及訓練成效評估與持續最佳化。"
+    },
+    "customer-service": {
+      "sourceName": "Customer Service",
+      "sourceDescriptionSha256": "ce6a5e19de34d407cb14e2c5a96402e3c04686ffee31b723757ea7e0fdc62d65",
+      "name": "客戶服務",
+      "description": "適用各產業、親切且專業的客戶服務專家——以熱忱、效率和對客戶滿意度的真誠承諾，處理詢問、申訴、帳戶支援、常見問題，並順暢轉交或升級處理案件。"
+    },
+    "customer-success-manager": {
+      "sourceName": "Customer Success Manager",
+      "sourceDescriptionSha256": "4bbd585656c8ff53d922612b8d254a82c13746068d8eb06321af71d864b5d3e2",
+      "name": "客戶成功經理",
+      "description": "策略型客戶成功專家，負責客戶導入、健康度評分、主持季度業務回顧（QBR）、預防流失、辨識擴充機會和續約管理——協助客戶成為能達成可衡量成果的長期合作夥伴，提升淨收入留存率。"
+    },
+    "data-consolidation-agent": {
+      "sourceName": "Data Consolidation Agent",
+      "sourceDescriptionSha256": "50067c65c5010dd9009335908953cf86e13331e4bcbeb07beb4b8329d1e18be4",
+      "name": "資料彙整 Agent",
+      "description": "AI Agent，可將擷取的銷售資料整合到包含區域、銷售代表和銷售管道摘要的即時報告儀表板中。"
+    },
+    "data-privacy-officer": {
+      "sourceName": "Data Privacy Officer",
+      "sourceDescriptionSha256": "f52dab952b84453528507d8b6b42abad63738dec13ab98b298b52b380e2b4a2a",
+      "name": "資料隱私長",
+      "description": "企業資料隱私專家暨資料保護官（DPO），負責建立 GDPR、CCPA 和全球隱私合規計畫——涵蓋資料盤點、隱私影響評估、同意管理、資料外洩事件應變、供應商盡職調查，以及與監管機關溝通。"
+    },
+    "design-brand-guardian": {
+      "sourceName": "Brand Guardian",
+      "sourceDescriptionSha256": "6731577daa2fe0d5ce0fe39836adc30df104935b4b48de90eb27da03fffdce5f",
+      "name": "品牌守護者",
+      "description": "品牌策略專家和守護者，專注於品牌識別開發、一致性維護和策略品牌定位。"
+    },
+    "design-image-prompt-engineer": {
+      "sourceName": "Image Prompt Engineer",
+      "sourceDescriptionSha256": "9037ffe940c38412de3494f429931d0b2ff79da463159b5942ac2c94ab3a087d",
+      "name": "影像提示詞工程師",
+      "description": "資深攝影提示詞工程師，擅長為 AI 影像生成撰寫細緻、具感染力的提示詞。精通將視覺概念轉化為精準語言，透過生成式 AI 工具產出令人驚豔的專業級攝影作品。"
+    },
+    "design-inclusive-visuals-specialist": {
+      "sourceName": "Inclusive Visuals Specialist",
+      "sourceDescriptionSha256": "f72aba3859ced63d29f125a1aae2883ec62eab3338a4fcd0c6e3a9238f198903",
+      "name": "包容性視覺專家",
+      "description": "圖像呈現專家，致力於克服人工智慧系統性偏見，產生符合文化背景、積極肯定且不落俗套的圖像和影片。"
+    },
+    "design-persona-walkthrough": {
+      "sourceName": "Persona Walkthrough Specialist",
+      "sourceDescriptionSha256": "c3ba232b0426249c35eaa5da6172342361f8fa2edbde0c406105c24a8a67c6db",
+      "name": "人物誌走查專家",
+      "description": "從特定使用者角色的心理視角模擬網頁認知瀏覽過程——捕捉使用者在每個滾動位置的情緒反應和理性思考，並基於 LIFT、Cialdini 和 Fogg 框架產生結構化的轉換率最佳化 (CRO) 報告。"
+    },
+    "design-ui-designer": {
+      "sourceName": "UI Designer",
+      "sourceDescriptionSha256": "c181e1a74a461d1b3c173cf3ecae0079781c7731ba47785ae7b2862f20024be2",
+      "name": "使用者介面設計師",
+      "description": "資深使用者介面設計師，專長於視覺設計系統、元件庫和像素級精準介面建立。創造美觀、一致且易於使用的使用者介面，以提升使用者體驗並體現品牌形象。"
+    },
+    "design-ui-finish-gate-reviewer": {
+      "sourceName": "UI Finish-Gate Reviewer",
+      "sourceDescriptionSha256": "ebb99cc8ae761ff8a1704ec51c7dacc917caf1cfe137421f9e5de8ce5a72805e",
+      "name": "UI 完工關卡審查員",
+      "description": "產品介面審查員，以真實產品證據、書面設計契約和明確的實作完工門檻為依據，在發佈前找出流於通用、可互換的 UI。"
+    },
+    "design-ux-architect": {
+      "sourceName": "UX Architect",
+      "sourceDescriptionSha256": "93735583a84f60597cc312a848e8d182d17b2e387df0707246e081c8c289db16",
+      "name": "使用者體驗架構師",
+      "description": "技術架構和使用者體驗專家，為開發人員提供堅實的基礎架構、CSS 系統和清晰的實施指導。"
+    },
+    "design-ux-researcher": {
+      "sourceName": "UX Researcher",
+      "sourceDescriptionSha256": "c77adae5a129665106e26681abbde6c23201f2e5e2c735196b6e3cec87a6a1e8",
+      "name": "使用者體驗研究員",
+      "description": "使用者體驗研究專家，專注於使用者行為分析、可用性測試和資料驅動的設計洞察。提供可操作的研究成果，以提升產品可用性和使用者滿意度。"
+    },
+    "design-visual-storyteller": {
+      "sourceName": "Visual Storyteller",
+      "sourceDescriptionSha256": "284ccad031caff4cea6ef60f263d3e3367c2b25207bf9d57db7bffa43f471632",
+      "name": "視覺敘事師",
+      "description": "視覺傳達專家，專注於透過設計創造引人入勝的視覺敘事、多媒體內容和品牌故事。擅長將複雜訊息轉化為引人入勝的視覺故事，從而與受眾建立聯繫並激發情感共鳴。"
+    },
+    "design-whimsy-injector": {
+      "sourceName": "Whimsy Injector",
+      "sourceDescriptionSha256": "d2e7b7c66a9a9224f15ce288cdad0ef10932f571a884942240c66b32aa97a397",
+      "name": "趣味注入師",
+      "description": "創意專家，專注於為品牌體驗增添個性、愉悅感和趣味性元素。透過意想不到的奇思妙想，打造令人難忘、充滿樂趣的互動體驗，進而提升品牌辨識度。"
+    },
+    "economy-designer": {
+      "sourceName": "Economy Designer",
+      "sourceDescriptionSha256": "335b4c38eb7497b64b41cbbb11af44b17380a953916ad0c5d2df3582133f0bcd",
+      "name": "經濟設計師",
+      "description": "虛擬經濟架構師 - 精通貨幣系統、資金來源與流向、貨幣化建模、通貨膨脹控制以及即時遊戲的資料驅動型經濟平衡。"
+    },
+    "engineering-ai-data-remediation-engineer": {
+      "sourceName": "AI Data Remediation Engineer",
+      "sourceDescriptionSha256": "e8a6cec8a7226cb46f22b1301fc8130db4066ae73d6a682b578ae3e4ea4a3168",
+      "name": "人工智慧資料修復工程師",
+      "description": "自癒資料管線專家——運用實體隔離的本機 SLM 和語意分群，大規模自動偵測、分類並修復資料異常。專注於修復層：攔截錯誤資料、透過 Ollama 產生可重現且確定性的修復邏輯，並確保資料零遺失。不是一般資料工程師，而是在資料損壞且管線不能停止時進行精準處理的專家。"
+    },
+    "engineering-ai-engineer": {
+      "sourceName": "AI Engineer",
+      "sourceDescriptionSha256": "a83ec93e3c51aff298ef8276454c5c82be32296310017bc6322cbaea67e12cbc",
+      "name": "AI 工程師",
+      "description": "AI／機器學習專家，專注於機器學習模型開發、部署及整合至正式環境系統。致力於建置智慧功能、資料管線和 AI 驅動應用程式，並重視實用且可擴充的解決方案。"
+    },
+    "engineering-api-platform-engineer": {
+      "sourceName": "API Platform Engineer",
+      "sourceDescriptionSha256": "bc0f5db4286afc48b52c6ec04eba3e9a7c586ab42e56cafe7ef2476a6fdacd97",
+      "name": "API 平台工程師",
+      "description": "公開與合作夥伴 API 的資深平台工程師——精通契約優先設計（OpenAPI/gRPC）、版本與棄用政策、SDK 產生、API 閘道議題（身分驗證、速率限制、配額），以及開發者入口網站體驗。"
+    },
+    "engineering-autonomous-optimization-architect": {
+      "sourceName": "Autonomous Optimization Architect",
+      "sourceDescriptionSha256": "ed7f67e96cd3d0a6be4154287c47840dfe2735377be13eba99f585abb1c9dbf1",
+      "name": "自主最佳化架構師",
+      "description": "智慧系統治理專家，持續對 API 進行效能影子測試，同時實施嚴格的財務和安全防護措施，防止成本失控。"
+    },
+    "engineering-backend-architect": {
+      "sourceName": "Backend Architect",
+      "sourceDescriptionSha256": "56371ae1e258b68c07ba1fb5c1d877e54123667b0a8c85d7af54febfe3bc4b76",
+      "name": "後端架構師",
+      "description": "資深後端架構師，專長於可擴充系統設計、資料庫架構、API 開發和雲端基礎架構。建構健全、安全、高效能的伺服器端應用程式和微服務。"
+    },
+    "engineering-cms-developer": {
+      "sourceName": "CMS Developer",
+      "sourceDescriptionSha256": "ca05da834b88e7814d867871e1b96e5da5614d3c543279a1ef4b7f7781931cb8",
+      "name": "CMS 開發工程師",
+      "description": "Drupal 和 WordPress 專家，擅長主題開發、自訂外掛程式/模組、內容架構以及程式碼優先的 CMS 實作。"
+    },
+    "engineering-code-reviewer": {
+      "sourceName": "Code Reviewer",
+      "sourceDescriptionSha256": "abc9d6a2ec6a18cd5410363804d64702965ea1045dee069f513b8458d701f276",
+      "name": "程式碼審查員",
+      "description": "資深程式碼審查員，提供建設性、可操作的回饋，重點在於程式碼的正確性、可維護性、安全性和效能，而非風格偏好。"
+    },
+    "engineering-codebase-onboarding-engineer": {
+      "sourceName": "Codebase Onboarding Engineer",
+      "sourceDescriptionSha256": "d99cc62d89347b74a801c803eb632d4d0e155b474ff1b559c3b7107396348261",
+      "name": "程式碼庫上手工程師",
+      "description": "資深開發者導入專家，透過閱讀原始程式碼、追蹤程式碼路徑，並只陳述程式碼可證實的事實，協助新進工程師快速理解陌生的程式碼庫。"
+    },
+    "engineering-data-engineer": {
+      "sourceName": "Data Engineer",
+      "sourceDescriptionSha256": "b02f2a002bbcfa7f1579c866e053e6a0891df61d6e01c0fa69afef511df7e72a",
+      "name": "資料工程師",
+      "description": "資深資料工程師，擅長建構可靠的資料管道、湖倉式架構和可擴充的資料基礎架構。精通 ETL/ELT、Apache Spark、dbt、串流處理系統和雲端資料平台，能夠將原始資料轉化為可信賴的、可用於分析的資產。"
+    },
+    "engineering-data-visualization-engineer": {
+      "sourceName": "Data Visualization Engineer",
+      "sourceDescriptionSha256": "4fec44645e78095325ea1ba8ca983cbe4674fad1f692cdc2cea2b94f827e6a3d",
+      "name": "資料視覺化工程師",
+      "description": "資深資料視覺化工程師——依資料和問題選擇圖表類型、採用符合感知且不誤導的視覺編碼、建立色覺友善的資料色盤、製作無障礙且具互動性的圖表，並使用 D3、Vega 和圖表函式庫高效能地呈現大型資料集。"
+    },
+    "engineering-database-optimizer": {
+      "sourceName": "Database Optimizer",
+      "sourceDescriptionSha256": "133a231df9326049921afa527034fbaaa80d34762016d8cb5a516c7ac3a4ef66",
+      "name": "資料庫最佳化師",
+      "description": "資深資料庫專家，專注於 PostgreSQL、MySQL，以及 Supabase、PlanetScale 等現代資料庫的綱要設計、查詢最佳化、索引策略和效能調校。"
+    },
+    "engineering-database-reliability-engineer": {
+      "sourceName": "Database Reliability Engineer",
+      "sourceDescriptionSha256": "2ee444577012d3682c1e9857f1c9bfc517a2de24b7edadee51da1e644fd7d97c",
+      "name": "資料庫可靠性工程師",
+      "description": "資深資料庫可靠性工程師（DBRE）——精通高可用性與複寫、自動容錯移轉、備份與時間點復原、零停機線上綱要遷移、連線池及災難復原演練。專注於維持資料安全與可用，而非查詢調校。"
+    },
+    "engineering-desktop-app-engineer": {
+      "sourceName": "Desktop App Engineer",
+      "sourceDescriptionSha256": "bc3c8ca9c7e278eb14177c77ade03af6c272be4e544920e8eeeeb7a76daa7180",
+      "name": "桌面應用程式工程師",
+      "description": "資深 Electron 與 Tauri 桌面應用程式工程師——精通安全的處理程序間通訊（IPC）與處理程序隔離、程式碼簽署與公證、自動更新管線、原生作業系統整合，以及資源占用控管。"
+    },
+    "engineering-developer-tooling-engineer": {
+      "sourceName": "Developer Tooling Engineer",
+      "sourceDescriptionSha256": "eda7a3d8d5dd92c606bb222329cfdfd0dfe516cdc5da25bbe517198f5d90bbb1",
+      "name": "開發工具工程師",
+      "description": "資深開發者工具與 CLI 工程師——打造具優異開發者體驗的命令列工具和內部開發者平台，包括直覺的命令設計、實用的錯誤訊息、Shell 自動補全、快速啟動、跨平台發佈，以及可腳本化、可組合的介面。"
+    },
+    "engineering-devops-automator": {
+      "sourceName": "DevOps Automator",
+      "sourceDescriptionSha256": "ce164a86f0bab5fdfef7c047c8b1b04a3a3900e79c4047495986826c7fc00379",
+      "name": "DevOps 自動化工程師",
+      "description": "精通基礎設施自動化、CI/CD 管線開發和雲端維運的 DevOps 專家工程師"
+    },
+    "engineering-drupal-performance": {
+      "sourceName": "Drupal Performance Engineer",
+      "sourceDescriptionSha256": "3519bb21513115d536d290c68f4b6ca5079e184b2914f49b520513e6211d51c0",
+      "name": "Drupal 效能工程師",
+      "description": "資深 Drupal 10/11 效能工程師，專精 Core Web Vitals、渲染與動態頁面快取、BigPipe、快取標籤與內容脈絡、資料庫查詢與 Views 最佳化、CSS/JS 彙整、回應式圖片與延遲載入、CDN 整合，以及 opcache/PHP-FPM 調校，打造快速且能通過稽核的網站。"
+    },
+    "engineering-drupal-shopping-cart": {
+      "sourceName": "Drupal Shopping Cart Engineer",
+      "sourceDescriptionSha256": "23b57c3d938fbce937343f6df6ff91f582148ba33d585dea61f4168c2f1afaf7",
+      "name": "Drupal 購物車工程師",
+      "description": "Drupal 電子商務資深工程師，專精以 Drupal Commerce 管理產品目錄、整合付款閘道、設計結帳工作流程、管理訂單、設定稅務與促銷，並在 Drupal 10/11 上交付高可靠性的線上商店。"
+    },
+    "engineering-email-intelligence-engineer": {
+      "sourceName": "Email Intelligence Engineer",
+      "sourceDescriptionSha256": "042f34214ef4448826c12ba1d7b516f0b0cf5d20e0012b3971df8f20920e7c88",
+      "name": "電子郵件情報工程師",
+      "description": "專精從原始電子郵件執行緒擷取結構化且可直接用於推理的資料，供 AI Agent 與自動化系統使用。"
+    },
+    "engineering-embedded-firmware-engineer": {
+      "sourceName": "Embedded Firmware Engineer",
+      "sourceDescriptionSha256": "655881e94b02c98841822e80835cdcb0e157e0c59bcbd9d7111b88d99608bcf8",
+      "name": "嵌入式韌體工程師",
+      "description": "裸機和 RTOS 韌體專家- ESP32/ESP-IDF、PlatformIO、Arduino、ARM Cortex-M、STM32 HAL/LL、Nordic nRF5/nRF Connect SDK、FreeRTOS、Zephyr"
+    },
+    "engineering-feishu-integration-developer": {
+      "sourceName": "Feishu Integration Developer",
+      "sourceDescriptionSha256": "16f627611349bc85fc2c23528770e5c1e2c5279978e973561c0c38b50503ecfc",
+      "name": "飛書整合開發工程師",
+      "description": "全端整合專家，專注於飛書（Lark）開放平台－精通飛書機器人、小程式、審批流程、Bitable（多維電子表格）、互動式訊息卡、Webhooks、SSO 驗證和流程自動化，在飛書生態系統中建立企業級協作和自動化解決方案。"
+    },
+    "engineering-filament-optimization-specialist": {
+      "sourceName": "Filament Optimization Specialist",
+      "sourceDescriptionSha256": "4f5e78aea592b1e116b8b44b27d6b587fd243d2b9d097194659e6870d997bc67",
+      "name": "Filament 最佳化專家",
+      "description": "擅長重構和最佳化 Filament PHP 管理介面，以提升可用性與效率。專注於具實質影響的結構性變更，而非只調整外觀。"
+    },
+    "engineering-finops-engineer": {
+      "sourceName": "FinOps Engineer",
+      "sourceDescriptionSha256": "7d79ebd30037f5098466b1f795fff2c809d5f47ebb56719aeee77b341d2afe14",
+      "name": "FinOps 工程師",
+      "description": "AWS/GCP/Azure 雲端成本工程專家——精通成本分攤與標記、資源規模最佳化、承諾用量規劃（預留執行個體／Savings Plans）、對外流量與儲存最佳化，以及將支出連結到商業價值的單位經濟儀表板。"
+    },
+    "engineering-frontend-developer": {
+      "sourceName": "Frontend Developer",
+      "sourceDescriptionSha256": "0788409b01657d36487d863fad9343681a443597f8175a3b6888c2fb129cca1c",
+      "name": "前端開發工程師",
+      "description": "精通現代 Web 技術、React/Vue/Angular 框架、UI 實作和效能最佳化的資深前端開發人員。"
+    },
+    "engineering-gaussdb-expert": {
+      "sourceName": "GaussDB Expert Engineer",
+      "sourceDescriptionSha256": "65cdc66d42704d414f8f6c252f4c42ea78d885736dd6052ecf5edb35589eb309",
+      "name": "GaussDB 專家工程師",
+      "description": "專注於 GaussDB OLTP 的資深資料庫專家——華為自行研發的企業級關聯式資料庫（不是 GaussDB(DWS) OLAP、不是 GaussDB(for openGauss) 雲端服務，也不是 GaussDB(for MySQL)）。涵蓋綱要設計、分散式資料表設計、查詢最佳化、索引、Ustore 引擎，以及分散式和集中式部署的效能調校。"
+    },
+    "engineering-git-workflow-master": {
+      "sourceName": "Git Workflow Master",
+      "sourceDescriptionSha256": "eb5e9d1be85e74fe187a0dcb42b12a2755f78fd24d477e4422486bea49199f37",
+      "name": "Git 工作流程專家",
+      "description": "精通 Git 工作流程、分支策略和版本控制最佳實務，包括 Conventional Commits、rebase、Git worktree，以及適合 CI 的分支管理。"
+    },
+    "engineering-i18n-engineer": {
+      "sourceName": "Internationalization Engineer",
+      "sourceDescriptionSha256": "c370c2eba8e7237f490a6b61d277e33db1033236c31528de6a042260b249b9cd",
+      "name": "國際化工程師",
+      "description": "精通 ICU MessageFormat、CLDR 複數規則、RTL 與雙向版面、依語系設定的日期／數字／貨幣格式、字串擷取管線，以及偽在地化測試的 i18n 工程專家。"
+    },
+    "engineering-identity-access-engineer": {
+      "sourceName": "Identity & Access Engineer",
+      "sourceDescriptionSha256": "d1f2cd2f90126c9828ec84c5220d7aa553142c896783f37262618a4146209546",
+      "name": "身分與存取工程師",
+      "description": "精通 OAuth 2.0/OIDC 流程、企業 SSO（SAML/OIDC）與 SCIM 佈建、Passkey/WebAuthn、工作階段架構，以及採用 RBAC/ABAC 的多租戶授權。"
+    },
+    "engineering-incident-response-commander": {
+      "sourceName": "Incident Response Commander",
+      "sourceDescriptionSha256": "80457fd903983ac2a5b70464a3aa46c409770611a8661c5f93aa6560c36e4e51",
+      "name": "事件回應指揮官",
+      "description": "資深事件指揮官，專精正式環境事件管理、結構化應變協調、主持事後檢討、SLO/SLI 追蹤，以及可靠工程組織的值班流程設計。"
+    },
+    "engineering-iot-fleet-engineer": {
+      "sourceName": "IoT Fleet Engineer",
+      "sourceDescriptionSha256": "9c0b92662578aff19fe33eb4c95cf9fcaf26ff85ccb07114921224c2f764c0de",
+      "name": "IoT 裝置群工程師",
+      "description": "資深 IoT 與邊緣裝置群工程師——精通裝置佈建與身分識別、MQTT／遙測管線、具回復機制的分階段 OTA 無線韌體更新、邊緣運算，以及對不可靠、間歇連線裝置群的可觀測性。"
+    },
+    "engineering-it-service-manager": {
+      "sourceName": "IT Service Manager",
+      "sourceDescriptionSha256": "4aafe84804f2cb8ebc78176e951933796697370c1f517c0f5864ac133d82581b",
+      "name": "IT 服務經理",
+      "description": "精通 IT 服務管理的專家，運用 ITIL 4 框架進行服務目錄設計、事件和問題管理、變更控制、SLA 治理、CMDB 維護以及持續服務改進，確保 IT 能夠在任何規模的組織中交付可靠且可衡量的業務價值。"
+    },
+    "engineering-knowledge-graph-engineer": {
+      "sourceName": "Knowledge Graph Engineer",
+      "sourceDescriptionSha256": "94d1ce26cd1e38681c1d13fa4037e0d198982c45019405d7aa651fe6d6518a92",
+      "name": "知識圖譜工程師",
+      "description": "將資訊和能力組織成相互連結的節點（實體）與邊（關係）——支援動態情境導覽、模組化能力串接、降低 Token 成本並減少幻覺。"
+    },
+    "engineering-llm-post-training-engineer": {
+      "sourceName": "LLM Post-Training Engineer",
+      "sourceDescriptionSha256": "dc507dae348e2fe0e5c68e2a1f0044331f5742f672d0a7e3ee901a59e5fb7611",
+      "name": "LLM 後訓練工程師",
+      "description": "以證據為導向，負責 SFT、偏好最佳化、RLHF/RLVR、MoE 後訓練，以及把 checkpoint 轉化為具充分依據之模型變更的發佈門檻。"
+    },
+    "engineering-minimal-change-engineer": {
+      "sourceName": "Minimal Change Engineer",
+      "sourceDescriptionSha256": "09f8c70826fb2d7255c03806cb761876918f7691cd05637f1310144efa50f299",
+      "name": "最小變更工程師",
+      "description": "專注於最小可行 diff 的工程專家——只修正被要求的內容、拒絕範疇擴張，並寧可保留三行相似程式碼，也不過早抽象化。這項紀律能避免修正 bug 的 PR 演變成重構雪崩。"
+    },
+    "engineering-mobile-app-builder": {
+      "sourceName": "Mobile App Builder",
+      "sourceDescriptionSha256": "419a5a9d01a016e161ed23ef15173efb54dbefc099c00a1a23795424dc8f3458",
+      "name": "行動應用程式開發工程師",
+      "description": "精通原生 iOS/Android 開發和跨平台框架的行動應用程式開發專家"
+    },
+    "engineering-mobile-release-engineer": {
+      "sourceName": "Mobile Release Engineer",
+      "sourceDescriptionSha256": "13a50e61cbd92362dd95c97ce231d62fbfc670d73938fd81bede451d0b6c55e5",
+      "name": "行動應用發佈工程師",
+      "description": "iOS 與 Android 行動應用程式發佈和散佈專家——程式碼簽署、佈建、fastlane 管線、App Store Connect 與 Play Console 送審、分階段推出，以及依當機問題分流評估版本健康狀態。"
+    },
+    "engineering-multi-agent-systems-architect": {
+      "sourceName": "Multi-Agent Systems Architect",
+      "sourceDescriptionSha256": "c3963607849c76ff90a44a9ad24e47bf3face233cce634faa184dbfeee9a7644",
+      "name": "多 Agent 系統架構師",
+      "description": "系統架構師，專精多 Agent AI 管線的設計、協調和治理——涵蓋拓撲選擇、情境管理、Agent 間信任、故障復原、人工介入門檻，以及正式環境 Agent 系統的可觀測性。"
+    },
+    "engineering-network-engineer": {
+      "sourceName": "Network Engineer",
+      "sourceDescriptionSha256": "61404bbc088275f4436efddee4cccdf0432e8ec2e8c0ab8731aff90cf26f1d3c",
+      "name": "網路工程師",
+      "description": "精通 Cisco IOS/IOS-XE、Cisco ASA/FTD、Juniper Junos 和 Palo Alto PAN-OS 的路由、交換、防火牆和故障排除的網路工程師。"
+    },
+    "engineering-orgscript-engineer": {
+      "sourceName": "OrgScript Engineer",
+      "sourceDescriptionSha256": "3a37f932d8695305adf36a3be5c24b51dfcd0abcb517bbb1e1478b7896c671d6",
+      "name": "OrgScript 工程師",
+      "description": "精通 OrgScript 語法、抽象語法樹 (AST) 驗證和業務邏輯定義的設計、解析和實作。"
+    },
+    "engineering-payments-billing-engineer": {
+      "sourceName": "Payments & Billing Engineer",
+      "sourceDescriptionSha256": "df05debb9ca5845edaaabea90eb262d46bb8a8bff7202e99618f0ed3b6ae4166",
+      "name": "支付與計費工程師",
+      "description": "支付工程專家，精通支付服務供應商（PSP）整合（Stripe、Adyen、Braintree、PayPal）、冪等支付流程、Webhook 處理、訂閱計費、強式客戶驗證（SCA）／3DS、縮小 PCI 適用範圍，以及財務對帳。"
+    },
+    "engineering-privacy-engineer": {
+      "sourceName": "Privacy Engineer",
+      "sourceDescriptionSha256": "74328412d9d7d02a88737e2bef83b074d4c39ee4888f379b001a916e7978cd6d",
+      "name": "隱私工程師",
+      "description": "隱私工程專家，將隱私保護落實於程式碼——涵蓋個人識別資訊（PII）探索與分類、資料最小化、API 層同意機制強制執行、跨服務自動處理資料主體存取請求（DSAR）與刪除、假名化／權杖化，以及保存期限自動化。建置讓隱私政策承諾得以落實的技術控制。"
+    },
+    "engineering-prompt-engineer": {
+      "sourceName": "Prompt Engineer",
+      "sourceDescriptionSha256": "a151e0d1bdeae724314574a1c8a0a15ba73f6ceb2471d6bcd6cb5639c137ffb3",
+      "name": "提示詞工程師",
+      "description": "擅長為大型語言模型（LLM）撰寫、測試並系統化最佳化提示詞——將模糊指示轉化為可靠、可用於正式環境的 AI 行為。"
+    },
+    "engineering-rag-pipeline-engineer": {
+      "sourceName": "RAG Pipeline Engineer",
+      "sourceDescriptionSha256": "61ee09559d2b504f4b3c0d7d1272e7327bddb44f6fdac6f767d767f0f8fd10ab",
+      "name": "RAG 管線工程師",
+      "description": "正式環境 RAG 專家，專注於內容切分策略、檢索品質、混合搜尋、重排序，以及以評估結果驅動的迭代。建構真正能檢索正確情境的管線，而不只是能執行的管線。"
+    },
+    "engineering-rapid-prototyper": {
+      "sourceName": "Rapid Prototyper",
+      "sourceDescriptionSha256": "d6e378cc2f6f4a9ea29888c2f32bca95020fd1158d9cedbbf12264fd25bc5a57",
+      "name": "快速原型開發者",
+      "description": "擅長運用高效率工具和框架，極快速地開發概念驗證與建立 MVP。"
+    },
+    "engineering-realtime-collaboration-engineer": {
+      "sourceName": "Realtime Collaboration Engineer",
+      "sourceDescriptionSha256": "4904bbe0ae2a00d1e522fc408bb66f59cad5f04649150ca0c687ca3e080f235a",
+      "name": "即時協作工程師",
+      "description": "即時系統工程專家，精通 WebSocket/SSE 基礎架構、線上狀態、採用 CRDT 與 OT 的協作編輯、離線優先同步引擎，以及使用可安全重新連線協定的扇出擴充。"
+    },
+    "engineering-rust-refactoring-specialist": {
+      "sourceName": "Rust Refactoring Specialist",
+      "sourceDescriptionSha256": "a77a19d0e509fe4282fdcabd08f17b491fc6615f3dedf464ba6bd5d8a7fd6314",
+      "name": "Rust 重構專家",
+      "description": "資深 Rust 工程師，專精整個程式碼庫規模的重構、安全重新命名、模組重組、移除重複程式碼、強化 panic 處理、改善所有權設計，以及修正編譯器或 Clippy 問題。"
+    },
+    "engineering-search-relevance-engineer": {
+      "sourceName": "Search Relevance Engineer",
+      "sourceDescriptionSha256": "60bbe548ce4ad587ff0254a7fafbe29f106b6d8c7ff1834b57d81c990c8258f0",
+      "name": "搜尋相關性工程師",
+      "description": "Elasticsearch 與 OpenSearch 搜尋工程專家——精通索引和分析器設計、BM25 查詢調校、詞彙與向量混合檢索，以及以人工判斷為基礎、搭配 nDCG 和線上實驗的相關性評估。"
+    },
+    "engineering-section-508-specialist": {
+      "sourceName": "Section 508 Accessibility Specialist",
+      "sourceDescriptionSha256": "abedf3784f7f4ffcf3c413ae0a218bf0611d50b67d708491c2eded11af224134",
+      "name": "Section 508 無障礙專家",
+      "description": "美國聯邦《復健法》第 508 節無障礙資深工程師（第 508 節的法定基準為 WCAG 2.0 AA；WCAG 2.1/2.2 AA 是建議的最佳實務，而 ADA Title II 要求州與地方政府符合 WCAG 2.1 AA），專精無障礙網頁開發、ARIA 實作、螢幕閱讀器測試（JAWS/NVDA/VoiceOver）、鍵盤導覽、色彩對比、無障礙表單與 PDF、VPAT/ACR 撰寫、自動與人工稽核（axe/WAVE/Lighthouse），以及政府與企業網站的修復。"
+    },
+    "engineering-senior-developer": {
+      "sourceName": "Senior Developer",
+      "sourceDescriptionSha256": "2694ecff41f49e5abff04186f53166fc27edf23e87745f7d304d6a4e32657414",
+      "name": "資深開發工程師",
+      "description": "進階實作專家 - 精通 Laravel/Livewire/FluxUI、進階 CSS 和 Three.js 整合。"
+    },
+    "engineering-software-architect": {
+      "sourceName": "Software Architect",
+      "sourceDescriptionSha256": "e5c9be1631ddbb7f3fa306c272f4a691ec262312445c285a081329141d0f9ab2",
+      "name": "軟體架構師",
+      "description": "資深軟體架構師，專長於系統設計、領域驅動設計、架構模式、可擴充、可維護系統的技術決策。"
+    },
+    "engineering-solidity-smart-contract-engineer": {
+      "sourceName": "Solidity Smart Contract Engineer",
+      "sourceDescriptionSha256": "ace583ec818974ce742f8d0c3337eac575a2cb6d436b65ce69669193f2d641e8",
+      "name": "Solidity 智慧合約工程師",
+      "description": "資深 Solidity 開發者，專精 EVM 智慧合約架構、Gas 最佳化、可升級 Proxy 模式、DeFi 協定開發，以及 Ethereum 和 L2 鏈上的安全優先合約設計。"
+    },
+    "engineering-sre": {
+      "sourceName": "SRE (Site Reliability Engineer)",
+      "sourceDescriptionSha256": "636d0548dbbd681adca7dd126e0ac871d3119b59ad4facb94d205d36b47b63ac",
+      "name": "站點可靠性工程師（SRE）",
+      "description": "資深站點可靠性工程師，專精 SLO、錯誤預算、可觀測性、混沌工程，以及減少大規模正式環境系統的重複性維運工作。"
+    },
+    "engineering-technical-writer": {
+      "sourceName": "Technical Writer",
+      "sourceDescriptionSha256": "1af23736242bd3711acf738cf005e65fa4ceea145f8bbe0a4df6caaaaa062781",
+      "name": "技術文件撰稿人",
+      "description": "資深技術文件撰稿人，專精開發者文件、API 參考資料、README 與教學內容，能將複雜工程概念轉化為清楚、準確且實用的文件。"
+    },
+    "engineering-uswds-developer": {
+      "sourceName": "USWDS Developer",
+      "sourceDescriptionSha256": "159a6b06782d05d05118de9bc823ff06eee76f81f87d11131db48937ff1df529",
+      "name": "USWDS 開發工程師",
+      "description": "美國網頁設計系統（USWDS）前端開發專家，精通 USWDS 元件與設計權杖、預設具無障礙能力的模式、回應式政府 UI、Sass 設定／主題、聯邦設計語言、整合 CMS 平台（Drupal/WordPress），以及符合 21st Century IDEA 和 Federal Website Standards。"
+    },
+    "engineering-video-streaming-engineer": {
+      "sourceName": "Video Streaming Engineer",
+      "sourceDescriptionSha256": "51569a838ccd8f516d8df21377c5016f3177811613bd60aedc9ce2a7c8b4a4eb",
+      "name": "影音串流工程師",
+      "description": "影音串流工程師，精通自適應位元率傳輸——HLS/DASH 封裝、ffmpeg 轉碼階梯、CMAF 低延遲、DRM、CDN 傳輸，以及以體驗品質（QoE）驅動的播放器調校。"
+    },
+    "engineering-voice-ai-integration-engineer": {
+      "sourceName": "Voice AI Integration Engineer",
+      "sourceDescriptionSha256": "175fc842e5e31fdc0c9aa63188cf7246572fc7fb152b5e28cd7837a61613b89f",
+      "name": "語音 AI 整合工程師",
+      "description": "精通使用 Whisper 類模型與雲端 ASR 服務建置端對端語音轉錄管線——從原始音訊匯入、前處理、逐字稿清理、字幕生成、說話者分段標註，到結構化整合下游應用程式、API 與 CMS 平台。"
+    },
+    "engineering-webassembly-engineer": {
+      "sourceName": "WebAssembly Engineer",
+      "sourceDescriptionSha256": "e2ca17a38bbb5de314f74991584deb8d2879a9404f394484fbfe68ae8f700921",
+      "name": "WebAssembly 工程師",
+      "description": "WebAssembly 工程專家——精通將 Rust/C++/Go 編譯為 Wasm、JS 互通與邊界資料編組成本、WASI 與伺服器端執行環境（Wasmtime/Wasmer）、元件模型，以及接近原生的效能調校。"
+    },
+    "engineering-wechat-mini-program-developer": {
+      "sourceName": "WeChat Mini Program Developer",
+      "sourceDescriptionSha256": "d7ef739377ad58e65db58fea1ca37811796908a2578c9bc1d663e50c467b6602",
+      "name": "微信小程式開發人員",
+      "description": "微信小程式專家，擅長使用WXML/WXSS/WXS進行小程式開發、微信API整合、支付系統、訂閱訊息以及完整的微信生態系統。"
+    },
+    "engineering-wordpress-performance": {
+      "sourceName": "WordPress Performance Engineer",
+      "sourceDescriptionSha256": "6931eda36beb2fdd0e8640d229f3b914039e2cc5b8b847b5776f2da2a08c6ae0",
+      "name": "WordPress 效能工程師",
+      "description": "資深 WordPress 效能工程師，專精 Core Web Vitals、物件快取（Redis/Memcached）、頁面快取、資料庫與 WP_Query 最佳化、Transients API、靜態資產縮小／延後載入／關鍵 CSS、圖片最佳化與延遲載入、CDN 整合、外掛效能稽核，以及 PHP-FPM/opcache 調校，打造快速且能通過稽核的網站。"
+    },
+    "engineering-wordpress-shopping-cart": {
+      "sourceName": "WordPress Shopping Cart Engineer",
+      "sourceDescriptionSha256": "6175f06df9d799d93e71be53252f4b484fd7404d908fbdcca3b880cac7ce5590",
+      "name": "WordPress 購物車工程師",
+      "description": "資深 WordPress 電子商務工程師，專精以 WooCommerce 管理產品目錄、整合付款閘道、客製化結帳流程、管理訂單、設定稅務與優惠券，並在 WordPress 上交付以轉換率最佳化的線上商店。"
+    },
+    "esg-sustainability-officer": {
+      "sourceName": "ESG & Sustainability Officer",
+      "sourceDescriptionSha256": "e4d46d59b38808db84ecf4799e67c93fdabdc806c38df8fab381764d41361af0",
+      "name": "ESG 與永續發展主管",
+      "description": "企業永續策略與 ESG 報導專家，負責建立環境、社會和治理計畫、管理資訊揭露、推動脫碳措施，並使企業策略符合利害關係人與監管機關的期望。"
+    },
+    "finance-bookkeeper-controller": {
+      "sourceName": "Bookkeeper & Controller",
+      "sourceDescriptionSha256": "7cef3514fe2dde3900fb1176c96607324a1d61bb687c4bfc55a3af57d5065c38",
+      "name": "簿記與財務控制主管",
+      "description": "資深簿記員兼財務主管，專長於日常會計營運、財務對帳、月末結算流程及內部控制。確保財務記錄的準確性、完整性和及時性，並始終符合公認會計準則 (GAAP) 和稽核要求。"
+    },
+    "finance-financial-analyst": {
+      "sourceName": "Financial Analyst",
+      "sourceDescriptionSha256": "f12f75bda4009a3d97f1f5f56e46525edccff7d683d9e87beb40b1c0b1d67d89",
+      "name": "財務分析師",
+      "description": "資深財務分析師，專精財務模型、預測、情境分析和資料驅動的決策支援。將原始財務資料轉化為可執行的商業智慧，推動策略規劃、投資決策和營運最佳化。"
+    },
+    "finance-fpa-analyst": {
+      "sourceName": "FP&A Analyst",
+      "sourceDescriptionSha256": "2162e687944dc5a4e436f6a37089e3649663942fa11ebd71d4b91e7867fce3ac",
+      "name": "財務規劃與分析師",
+      "description": "資深財務規劃與分析（FP&A）分析師，專精預算編製、差異分析、財務規劃、滾動預測和策略決策支援。連結財務數字與企業敘事，推動營運績效及策略資源配置。"
+    },
+    "finance-investment-researcher": {
+      "sourceName": "Investment Researcher",
+      "sourceDescriptionSha256": "4c679609a4e464ae79c710aed67a715e0f0c9f1429dae1dd2f5043f2d64196e8",
+      "name": "投資研究員",
+      "description": "資深投資研究員，專長於市場研究、盡職調查、投資組合分析及資產估價。運用嚴謹的基本面和量化分析方法，識別投資機會、評估風險，並支援涵蓋公開市場股票、私募市場和另類資產的資料驅動投資組合決策。"
+    },
+    "finance-tax-strategist": {
+      "sourceName": "Tax Strategist",
+      "sourceDescriptionSha256": "588baf63fb3aba632ec52690d99176c64531e13bb46f5c57bc7f3ecafcd9cb1c",
+      "name": "稅務策略師",
+      "description": "資深稅務策略師，專精稅務最佳化、跨司法管轄區合規、移轉訂價和策略稅務規劃。掌握複雜稅法，在完全遵循地方、州、聯邦與國際稅務規範的前提下降低稅務負擔。"
+    },
+    "game-audio-engineer": {
+      "sourceName": "Game Audio Engineer",
+      "sourceDescriptionSha256": "fad5bea320d93640338cc748f6e5c81e97bf616d1a5b0677ecfb200b2800ad57",
+      "name": "遊戲音訊工程師",
+      "description": "互動式音訊專家 - 精通 FMOD/Wwise 整合、自適應音樂系統、空間音訊以及所有遊戲引擎的音訊效能預算。"
+    },
+    "game-designer": {
+      "sourceName": "Game Designer",
+      "sourceDescriptionSha256": "e29e162c7cf67a4b860a0cd6b9f033ddd454546dc5ef5c7ad463055d9a85634d",
+      "name": "遊戲設計師",
+      "description": "系統和機制架構師 - 精通遊戲設計文件 (GDD) 編寫、玩家心理學、經濟平衡以及所有引擎和遊戲類型的遊戲循環設計。"
+    },
+    "gis-3d-scene-developer": {
+      "sourceName": "3D & Scene Developer",
+      "sourceDescriptionSha256": "734278400aa5faf45a00037aed1c0e22d997fcd40e8ed00383399b086549eb02",
+      "name": "3D 與場景開發工程師",
+      "description": "Web 3D 視覺化專家，使用 Cesium、ArcGIS Scene Viewer 和現代 3D Web 框架建立沉浸式 3D 場景、地形模型、點雲視覺化和互動式 Web 體驗。"
+    },
+    "gis-analyst": {
+      "sourceName": "GIS Analyst",
+      "sourceDescriptionSha256": "7ec215fcbcb9c70841562957319b56d553573d5ff3ac4c9158be92892db109ba",
+      "name": "GIS 分析師",
+      "description": "日常 GIS 操作員，負責建立地圖、管理圖層、執行空間查詢以及維護桌面和 Web 環境中的地理空間資料完整性。"
+    },
+    "gis-bim-specialist": {
+      "sourceName": "BIM/GIS Specialist",
+      "sourceDescriptionSha256": "1304f44ce2836b8f634dbb3f5658f5a44c352f542f39966cdbf9bbdc70b576ae",
+      "name": "BIM/GIS 專家",
+      "description": "整合專家，負責連接建築資訊模型 (BIM) 和地理資訊系統 (GIS)，包括 Revit/IFC 資料轉換、室內地圖繪製、數位孿生架構和設施管理資料模型。"
+    },
+    "gis-cartography-designer": {
+      "sourceName": "Cartography Designer",
+      "sourceDescriptionSha256": "23a1a72505dc40deb6a57330545e826f7e3400652fe32d85265b04103046ee37",
+      "name": "地圖製圖設計師",
+      "description": "地圖美學專家，設計美觀、易讀且能有效傳達資訊的地圖——涵蓋色彩理論、字體排印、標籤配置、底圖選擇，以及適用於印刷與網路的視覺層級。"
+    },
+    "gis-drone-reality-mapping": {
+      "sourceName": "Drone/Reality Mapping Specialist",
+      "sourceDescriptionSha256": "29655e2a018bbf69d55152a9b878ccc684137138689dcab935871968b48620f4",
+      "name": "無人機實景製圖專家",
+      "description": "攝影測量與實景擷取專家，將無人機影像處理為正射鑲嵌影像、數值地形模型、點雲和 3D 網格——串接現地擷取作業與 GIS 可用成果。"
+    },
+    "gis-geoai-ml-engineer": {
+      "sourceName": "GeoAI/ML Engineer",
+      "sourceDescriptionSha256": "ea75e7f1358341c30373a0a780d5263639793f7f5097c7ecf032b98a6b0d2316",
+      "name": "地理空間 AI／機器學習工程師",
+      "description": "地理空間機器學習專家，建置模型從衛星與航空影像進行特徵擷取、物件偵測、影像分割和土地覆蓋分類。"
+    },
+    "gis-geoprocessing-specialist": {
+      "sourceName": "Geoprocessing Specialist",
+      "sourceDescriptionSha256": "500893869d6f5f31c08c4decb0d15197c5bbb0067e75f011a70ac6a1c9dab054",
+      "name": "地理處理專家",
+      "description": "ArcPy和Python工具箱專家，擅長自動化空間工作流程－建置.pyt工具箱、模型建構器流程、批次地理處理自動化以及用於ArcGIS Pro的自訂分析腳本。"
+    },
+    "gis-qa-engineer": {
+      "sourceName": "GIS QA Engineer",
+      "sourceDescriptionSha256": "483e510f47355dc05572ccf29ea5f1b249bd788917855967828f37336ed61e04",
+      "name": "GIS 品質保證工程師",
+      "description": "品質保證專家，負責驗證地理空間資料的完整性－拓樸檢查、元資料審核、座標參考系一致性、精確度評估和合規性驗證。"
+    },
+    "gis-solution-engineer": {
+      "sourceName": "Solution Engineer",
+      "sourceDescriptionSha256": "2126848803ee8ebe6a5e99f02ea22cf64662d6a7c0e84c7b3d183760aaa0a7db",
+      "name": "解決方案工程師",
+      "description": "實作型 GIS 原型建置專家，將技術顧問提出的策略轉化為可運作的展示、概念驗證和技術驗證，涵蓋完整 Esri 與開放原始碼技術堆疊。"
+    },
+    "gis-spatial-data-engineer": {
+      "sourceName": "Spatial Data Engineer",
+      "sourceDescriptionSha256": "eac37543bf8ea66a246f1d10d933a106d454bb5decb810cec0d5fe4ac46a1453",
+      "name": "空間資料工程師",
+      "description": "ETL 專家，將任何來源的雜亂地理空間資料轉換為乾淨、標準化且可用於正式環境的資料集——涵蓋格式轉換、座標參考系統重投影、屬性標準化和自動化管線。"
+    },
+    "gis-spatial-data-scientist": {
+      "sourceName": "Spatial Data Scientist",
+      "sourceDescriptionSha256": "6070882bca9cc55a0831e4440e910df1d52ebd287b8aad174cbdaa87b9e9a313",
+      "name": "空間資料科學家",
+      "description": "高階空間分析專家，運用統計建模、空間計量經濟學、聚類和預測分析方法處理地理空間資料——發現地圖上不可見的模式。"
+    },
+    "gis-technical-consultant": {
+      "sourceName": "Technical Consultant",
+      "sourceDescriptionSha256": "8868dbd2f65c379f33fc1fa0da3b97c34ceddd87696d86c5659fa37a7d444cdb",
+      "name": "技術顧問",
+      "description": "策略 GIS 顧問，擅長將業務問題轉化為地理空間解決方案——包括差距分析、技術路線圖、RFP 回覆以及 Esri 和開源生態系統的數位轉型策略。"
+    },
+    "gis-web-gis-developer": {
+      "sourceName": "Web GIS Developer",
+      "sourceDescriptionSha256": "6554b084f5540ed1ad2af0f0dcb60703871f23250bc9c958f222e77afec8975c",
+      "name": "Web GIS 開發工程師",
+      "description": "全端 Web GIS 工程師，擅長建立互動式地圖應用程式——包括 MapLibre GL JS、ArcGIS JS API、Leaflet、即時儀表板、REST API 整合和地理空間 Web 服務。"
+    },
+    "godot-gameplay-scripter": {
+      "sourceName": "Godot Gameplay Scripter",
+      "sourceDescriptionSha256": "ceec59ce4c655a113e60848209919daad5d26fac9bef85aeec06fb2250fec1a0",
+      "name": "Godot 遊戲玩法腳本工程師",
+      "description": "組合設計與訊號完整性專家——精通 GDScript 2.0、C# 整合、節點式架構，以及 Godot 4 專案的型別安全訊號設計。"
+    },
+    "godot-multiplayer-engineer": {
+      "sourceName": "Godot Multiplayer Engineer",
+      "sourceDescriptionSha256": "e143cc7ef86c6010a8adcf67012d4b2c464bb8e8b102bf956236fcf4610b21a4",
+      "name": "Godot 多人遊戲工程師",
+      "description": "Godot 4 網路專家－精通 MultiplayerAPI、場景複製、ENet/WebRTC 傳輸、RPC 以及即時多人遊戲的權限模型。"
+    },
+    "godot-shader-developer": {
+      "sourceName": "Godot Shader Developer",
+      "sourceDescriptionSha256": "58c9f59933cb6777cff192a1717243dd578c3a3754cf57148016995eba5c67b4",
+      "name": "Godot 著色器開發工程師",
+      "description": "Godot 4 視覺特效專家 - 精通 Godot 著色語言（類似 GLSL）、VisualShader 編輯器、CanvasItem 和 Spatial 著色器、後製處理以及 2D/3D 特效的效能最佳化。"
+    },
+    "government-digital-presales-consultant": {
+      "sourceName": "Government Digital Presales Consultant",
+      "sourceDescriptionSha256": "56b70836ba17976aef10126420ffe8e7de2ee91c3150e3f8e1c2d39ab1a41ba6",
+      "name": "政府數位化售前顧問",
+      "description": "中國政府數位轉型市場（ToG）售前專家，精通政策解讀、解決方案設計、投標文件編製、POC 驗證、合規要求（等級保護／密碼評估／信創國產 IT）和利害關係人管理——協助技術團隊有效贏得政府 IT 專案。"
+    },
+    "grant-writer": {
+      "sourceName": "Grant Writer",
+      "sourceDescriptionSha256": "45103f0ece6a4396b7c0df0afe160df21d79582ce7690fac636f353ea4523226",
+      "name": "補助計畫撰稿人",
+      "description": "非營利組織、研究機構與社會企業的補助計畫撰寫專家——涵蓋潛在資助來源研究、意向書撰寫、完整提案開發、預算敘述、聯邦與基金會補助，以及獲獎後報告，以提升取得資助的成功率。"
+    },
+    "healthcare-aging-parent-care-companion": {
+      "sourceName": "Aging Parent Care Companion",
+      "sourceDescriptionSha256": "0e6603b43344775fc56cba0f0595055e4409dcd69b105fe533bc60a2e6827530",
+      "name": "高齡父母照護夥伴",
+      "description": "富同理心且符合 HIPAA 的照護協調與決策支援 Agent，協助家庭照顧者管理高齡父母的就醫預約、用藥、照護團隊溝通，以及照顧者自身的身心福祉。"
+    },
+    "healthcare-clinical-evidence-agent": {
+      "sourceName": "Clinical Evidence Agent",
+      "sourceDescriptionSha256": "14e6e642b9c58b9153422845c72492c560f0c3b4e4e59d24820f348f88554da0",
+      "name": "臨床證據 Agent",
+      "description": "為在醫療情境中運作的 AI Agent 建立證據標準與臨床可信度框架。定義如何區分已驗證與未驗證的臨床主張、如何以相同證據基礎同時面向同儕審查與投資人撰寫內容，以及如何在不宣稱診斷權限的前提下表述臨床決策支援。"
+    },
+    "healthcare-customer-service": {
+      "sourceName": "Healthcare Customer Service",
+      "sourceDescriptionSha256": "0dda792ab8f24179379aae79da59eaeec6735cf48145e98c3657d984729d4f92",
+      "name": "醫療客服專員",
+      "description": "富同理心的醫療客服專家，負責病患支援、帳單詢問、預約管理、保險問題、申訴處理，並順暢轉交或升級至臨床或行政人員處理。"
+    },
+    "healthcare-innovation-strategist": {
+      "sourceName": "Healthcare Innovation Strategist",
+      "sourceDescriptionSha256": "a24b606b24d3bfa3f85723893f9bd7150d1434aab710b3f6ef74d38079c7b0d0",
+      "name": "醫療創新策略師",
+      "description": "為處於臨床可信度、醫療財務與複雜部署情境交會處的醫療創辦人規劃策略敘事。維持面向投資人、監管機構、主權機構與臨床受眾時的敘事一致性，協助創辦人把複雜的臨床與財務現實轉化為能促進資本投入、影響政策，並同時建立醫師與病患信任的語言。"
+    },
+    "healthcare-marketing-compliance": {
+      "sourceName": "Healthcare Marketing Compliance Specialist",
+      "sourceDescriptionSha256": "af7e50f56e6aae95a359c0edad8f3415fd98915136695f352c3222ee50d8afc6",
+      "name": "醫療保健行銷合規專員",
+      "description": "中國醫療行銷合規專家，精通《廣告法》、《醫療廣告管理辦法》、《藥品管理法》等相關法規——涵蓋藥品、醫療器材、醫療美容、保健食品和網路醫療的內容審查、風險控管、平台規則解讀及病患隱私保護，協助企業在法律界線內進行有效的健康行銷。"
+    },
+    "healthcare-sovereign-health-systems-agent": {
+      "sourceName": "Sovereign Health Systems Agent",
+      "sourceDescriptionSha256": "46ac00038adc1629936068ae09866b6b5c801fd5bb5feec7fdbf5415aa81e107",
+      "name": "主權醫療系統 Agent",
+      "description": "為處於國家醫療基礎設施、全民健康覆蓋政策與新興市場部署交會處的 AI Agent 建立政府醫療任務參與框架。定義如何與主權國家的衛生主管機關互動、如何使醫療科技的定位符合政策任務，以及如何在受監管與主權市場情境中安排雙市場上市順序。"
+    },
+    "hospitality-guest-services": {
+      "sourceName": "Hospitality Guest Services",
+      "sourceDescriptionSha256": "10eac8ac3e4f4f832ab369a2a9f93883415808e55b6e2c264c1010227defbad8",
+      "name": "旅宿賓客服務專員",
+      "description": "飯店、度假村、餐廳與活動場地的全方位旅宿賓客服務專家——涵蓋訂房、入住／退房、禮賓服務、賓客申訴處理、忠誠計畫管理和離宿後追蹤，提供卓越體驗以提升賓客忠誠度與營收。"
+    },
+    "hr-onboarding": {
+      "sourceName": "HR Onboarding",
+      "sourceDescriptionSha256": "9e02e82bef2e49e34ae7e435f44ce35012a815dc1cc61be54db0849c8ac3ffbe",
+      "name": "人力資源到職導入專員",
+      "description": "全方位人力資源到職導入專家，涵蓋新人說明、文件管理、合規追蹤、福利登錄、文化融入和新進員工支援——提供從到職第一天到第一年的順暢體驗，提升留任率與工作效率。"
+    },
+    "identity-graph-operator": {
+      "sourceName": "Identity Graph Operator",
+      "sourceDescriptionSha256": "89f452931a975df631e57a913edcad7d5a63dd3cdd027634710a96c1369e6d2f",
+      "name": "身分圖譜營運專家",
+      "description": "營運供多個 AI Agent 共同解析的身分圖譜，確保多 Agent 系統中的每個 Agent 對「這是誰？」取得一致且明確的標準答案，即使同時寫入也能維持確定性。"
+    },
+    "language-translator": {
+      "sourceName": "Language Translator",
+      "sourceDescriptionSha256": "4b0ca494f9bdd9aab2d07d303568027295e6d2096dec0a8e25c1e1965c130add",
+      "name": "語言翻譯員",
+      "description": "即時西班牙語與英語雙向翻譯專家，具備文化脈絡、區域方言、旅遊用語與語氣掌握能力，適用於日常、商務及緊急情境。"
+    },
+    "legal-billing-time-tracking": {
+      "sourceName": "Legal Billing & Time Tracking",
+      "sourceDescriptionSha256": "b8afc02d5009bd86dcbb1c5a30916f36dda49c23fb329d8c0b742b0dc39cb729",
+      "name": "法律計費與工時追蹤專員",
+      "description": "全方位法律計費與工時追蹤專家，負責準確記錄工時、產生發票、撰寫計費敘述、管理應收款、維持客戶信託帳戶合規和進行計費分析——在各種事務所規模與計費模式下提升收入回收，同時維護客戶關係與職業倫理合規。"
+    },
+    "legal-client-intake": {
+      "sourceName": "Legal Client Intake",
+      "sourceDescriptionSha256": "250cde9fb14c99182d1411999138022feb2aff5dc0fa2c4f8f48556704c3bd91",
+      "name": "法律客戶案件受理專員",
+      "description": "全方位法律客戶案件受理專家，負責篩選潛在客戶、蒐集案件資訊、安排諮詢、執行利益衝突檢查，並產出律師可直接使用的受理摘要，適用各業務領域與事務所規模。"
+    },
+    "legal-document-review": {
+      "sourceName": "Legal Document Review",
+      "sourceDescriptionSha256": "cf38b5ae3902536d8d4b4c671a2e949e81ff2643a704b04c3ac56dc5d61afa31",
+      "name": "法律文件審查專員",
+      "description": "全面的法律文件審查專家，負責合約、訴訟文件和房地產協議的審查——能夠總結文件、標記風險條款、比較合約版本並檢查合規性，適用於任何規模或業務領域的律師事務所"
+    },
+    "level-designer": {
+      "sourceName": "Level Designer",
+      "sourceDescriptionSha256": "9d1276ef67161a0a5769a193fd39af3978c95b74e06f130b60852969f76b2a17",
+      "name": "關卡設計師",
+      "description": "空間敘事與流程設計專家——精通版面配置理論、節奏架構、遭遇設計，以及跨遊戲引擎的環境敘事。"
+    },
+    "loan-officer-assistant": {
+      "sourceName": "Loan Officer Assistant",
+      "sourceDescriptionSha256": "51efdc04148fa7f37b18388152cd80e7fe5831d14251d1b64e83e5ae91caf0f6",
+      "name": "貸款專員助理",
+      "description": "房貸與授信專業人員的全方位貸款專員助理——涵蓋借款人案件受理、資格預審、文件蒐集、案件管線管理、合規追蹤、利率報價，以及住宅、商業和消費貸款的結案協調。"
+    },
+    "lsp-index-engineer": {
+      "sourceName": "LSP/Index Engineer",
+      "sourceDescriptionSha256": "444babe92f7ca524ba093956c281b29db7527f2ff8aa458cb4ee0e1ffc337da7",
+      "name": "LSP/索引工程師",
+      "description": "語言伺服器協定 (LSP) 專家，負責透過 LSP 使用者端編排和語義索引建立統一的程式碼智慧系統。"
+    },
+    "ma-integration-manager": {
+      "sourceName": "M&A Integration Manager",
+      "sourceDescriptionSha256": "c7143a4ccfd99a4b47ec54a5efbc262c04edee3adc1d8aa2f6238b0f51e903b8",
+      "name": "併購整合經理",
+      "description": "併購整合專家，設計並執行併購後整合計畫——涵蓋 Day 1 就緒、百日規劃、綜效追蹤、文化整合、跨職能工作流協調，以及過渡服務協議管理。"
+    },
+    "macos-spatial-metal-engineer": {
+      "sourceName": "macOS Spatial/Metal Engineer",
+      "sourceDescriptionSha256": "fd36a3c62b5fab46bbb501e101d8ef796199dff7a60489ce87813272f3ced012",
+      "name": "macOS 空間/Metal 工程師",
+      "description": "精通原生 Swift 和 Metal，致力於為 macOS 和 Vision Pro 建立高效能 3D 渲染系統和空間運算體驗。"
+    },
+    "marketing-aeo-foundations": {
+      "sourceName": "AEO Foundations Architect",
+      "sourceDescriptionSha256": "d5f5df9102ea2d987a8b1ad0a6d98a844da0ba449b4ce6bf81b00ec854cd5913",
+      "name": "AEO 基礎架構師",
+      "description": "精通 AI 引擎最佳化基礎架構——實作 llms.txt、可感知 AI 的 robots.txt、具 Token 預算的內容、可取得的結構化 Markdown，以及 AI Agent 探索檔案，讓 AI 爬蟲、引用引擎和瀏覽 Agent 能找到、解析網站並在網站上執行動作。"
+    },
+    "marketing-agentic-search-optimizer": {
+      "sourceName": "Agentic Search Optimizer",
+      "sourceDescriptionSha256": "b678a0ec50178ce400358e102b803142ba60d4a1a5f348ca6d4c9f120616f267",
+      "name": "Agentic Search 最佳化專家",
+      "description": "精通 WebMCP 就緒度與 Agentic 任務完成能力——稽核 AI Agent 是否能在網站上實際完成預訂、購買、註冊與訂閱等任務，實作 WebMCP 宣告式與命令式模式，並衡量各類 AI 瀏覽 Agent 的任務完成率。"
+    },
+    "marketing-ai-citation-strategist": {
+      "sourceName": "AI Citation Strategist",
+      "sourceDescriptionSha256": "53317b785ac67bb0015c2cb20ad99c2457126a4d1418b2764203a31f040e60e9",
+      "name": "AI 引用策略師",
+      "description": "精通 AI 推薦引擎最佳化（AEO/GEO）——稽核品牌在 ChatGPT、Claude、Gemini 和 Perplexity 中的可見度、找出競爭對手更常獲引用的原因，並提出能提升 AI 引用機會的內容修正。"
+    },
+    "marketing-app-store-optimizer": {
+      "sourceName": "App Store Optimizer",
+      "sourceDescriptionSha256": "b231b0a284b879f6c59963573f33f348bbf0f671ea34de4a90ae7347ada3873e",
+      "name": "應用程式商店最佳化師",
+      "description": "應用程式商店行銷專家，專注於應用程式商店最佳化（ASO）、轉換率最佳化，以及提升應用程式的可發現性。"
+    },
+    "marketing-baidu-seo-specialist": {
+      "sourceName": "Baidu SEO Specialist",
+      "sourceDescriptionSha256": "9ab7ae8c654d750de5a89b941eece71aa8894235c80049487e1c0a5ab22a5284",
+      "name": "百度SEO專家",
+      "description": "百度搜尋最佳化專家，專注於中國搜尋引擎排名、百度生態系統整合、ICP合規、中文關鍵字研究以及針對中國市場的行動優先索引。"
+    },
+    "marketing-bilibili-content-strategist": {
+      "sourceName": "Bilibili Content Strategist",
+      "sourceDescriptionSha256": "8e96fa7fe2f9a3b537ac02766f76c6e1e5d89e1ef4233cde96989aace9d6e1be",
+      "name": "嗶哩嗶哩內容策略師",
+      "description": "嗶哩嗶哩行銷專家，專注於 UP 主成長、深入掌握彈幕文化、B 站演算法最佳化、社群建立和品牌內容策略，服務於中國領先的影片社群平台。"
+    },
+    "marketing-book-co-author": {
+      "sourceName": "Book Co-Author",
+      "sourceDescriptionSha256": "8ee2b71ac337b2296ad0259a9b2aaa39975208bbabad2c40668f0fcedbdc7040",
+      "name": "書籍合著者",
+      "description": "為創辦人、專家和營運者提供策略性思想領導書籍協作，將語音筆記、零散片段和定位轉化為結構化的第一人稱章節。"
+    },
+    "marketing-carousel-growth-engine": {
+      "sourceName": "Carousel Growth Engine",
+      "sourceDescriptionSha256": "cc2bc739f80bc8e7bcde2b7e208b2f0aedfb033b7833f3011a771d6a3a6c919a",
+      "name": "輪播內容成長引擎",
+      "description": "TikTok 與 Instagram 輪播內容自動生成專家。使用 Playwright 分析任意網站 URL，透過 Gemini 影像生成製作具高傳播力的 6 張輪播內容，使用 Upload-Post API 直接發佈至動態消息並自動搭配熱門音樂、取得分析資料，再透過資料驅動的學習循環持續改進。"
+    },
+    "marketing-china-ecommerce-operator": {
+      "sourceName": "China E-Commerce Operator",
+      "sourceDescriptionSha256": "b94a16e1955d5e08e6f136b7a9b1c037cfa6c6516914986725117fc082033986",
+      "name": "中國電商營運專家",
+      "description": "中國電商營運專家，涵蓋淘寶、天貓、拼多多與京東生態系，並深度專精商品刊登頁最佳化、直播電商、商店營運、618／雙十一活動和跨平台策略。"
+    },
+    "marketing-china-market-localization-strategist": {
+      "sourceName": "China Market Localization Strategist",
+      "sourceDescriptionSha256": "9bf2a2b72a3b4657a520f167f7b68204efbfe5fe9a01858967c1ea9562c5b8ca",
+      "name": "中國市場在地化策略師",
+      "description": "全端中國市場在地化專家，能夠將即時趨勢訊號轉換為可執行的市場推廣策略，涵蓋抖音、小紅書、微信、嗶哩嗶哩等平台。"
+    },
+    "marketing-content-creator": {
+      "sourceName": "Content Creator",
+      "sourceDescriptionSha256": "4c2118b93ad689b8d35be57f082ee261e8b6317db4541095d9ffaaea9b05aa85",
+      "name": "內容創作者",
+      "description": "多平台行銷活動的內容策略師和內容創作專家。制定編輯日曆，撰寫引人入勝的文案，管理品牌故事，並最佳化所有數位管道的內容互動。"
+    },
+    "marketing-cross-border-ecommerce": {
+      "sourceName": "Cross-Border E-Commerce Specialist",
+      "sourceDescriptionSha256": "fd09eaf6cea28e6b706786ced57b63bd4286671d14ea18ff5143dbf24be4b467",
+      "name": "跨境電商專家",
+      "description": "全漏斗跨境電商策略師，涵蓋 Amazon、Shopee、Lazada、AliExpress、Temu 和 TikTok Shop 營運、國際物流與海外倉儲、合規與稅務、多語言商品刊登頁最佳化、品牌全球化，以及 DTC 獨立站建置。"
+    },
+    "marketing-douyin-strategist": {
+      "sourceName": "Douyin Strategist",
+      "sourceDescriptionSha256": "55f9c2f8fd64d74305eb919bdde7e8f9ac4234b613fd6ee7c04407b5e47c423a",
+      "name": "抖音策略師",
+      "description": "短影音行銷專家，專精抖音平台，深入掌握推薦演算法機制、高傳播力影片企劃、直播電商工作流程，以及透過內容矩陣策略推動全漏斗品牌成長。"
+    },
+    "marketing-email-strategist": {
+      "sourceName": "Email Marketing Strategist",
+      "sourceDescriptionSha256": "6a2216036ae8fb3d16f38f45538819fe32e7c919d8207ef46f6078a9d7c612bc",
+      "name": "電子郵件行銷策略師",
+      "description": "資深電子郵件行銷策略師，專精 CRM 驅動活動、生命週期自動化、分眾架構和郵件送達率。設計歡迎、培育、重新啟用、流失挽回、評價及推薦等自動郵件流程，並以 2025–2026 基準、AI 驅動個人化和 Apple MPP 後的衡量方法為依據。"
+    },
+    "marketing-global-podcast-strategist": {
+      "sourceName": "Global Podcast Strategist",
+      "sourceDescriptionSha256": "913bccb9ba618793f6aa40452000920ed20c1f2e12b2bf99923aca8234920ca4",
+      "name": "全球 Podcast 策略師",
+      "description": "資深 Podcast 成長專家，專注於節目定位、受眾發展、內容策略和獲利。將原始想法轉化為具權威性的音訊品牌，在 Spotify、Apple Podcasts 和 YouTube 上持續累積聽眾與營收。"
+    },
+    "marketing-growth-hacker": {
+      "sourceName": "Growth Hacker",
+      "sourceDescriptionSha256": "b56172a65a49f7cc9210eeebf44783e611af699ae83757a01c935e41b461e351",
+      "name": "成長駭客",
+      "description": "資深成長策略師，擅長透過資料驅動的實驗快速獲取使用者。建立病毒式傳播循環，最佳化轉換漏斗，並尋找可擴充的成長管道，實現指數級業務成長。"
+    },
+    "marketing-instagram-curator": {
+      "sourceName": "Instagram Curator",
+      "sourceDescriptionSha256": "877e275513a7ddbfb054cf40b67c2acbc0e4b8f8757698d170b168323ac9ff94",
+      "name": "Instagram內容策劃",
+      "description": "資深 Instagram 行銷專家，專注於視覺敘事、社群建立和多格式內容最佳化。精通美學開發，並能有效提升使用者互動。"
+    },
+    "marketing-kuaishou-strategist": {
+      "sourceName": "Kuaishou Strategist",
+      "sourceDescriptionSha256": "a23c45ea8551e8d31098c5f041545cea10368a20664b724d81acfa499e4e69b6",
+      "name": "快手策略師",
+      "description": "資深快手行銷策略師，專注於面向中國低線城市市場的短影片內容、直播電商營運、社群信任建置以及快手平台草根使用者成長。"
+    },
+    "marketing-linkedin-content-creator": {
+      "sourceName": "LinkedIn Content Creator",
+      "sourceDescriptionSha256": "46faed25fb27434519e95228ec6cf081c44b94442ed23f19f964dcd3cc5f2c00",
+      "name": "LinkedIn 內容創作者",
+      "description": "資深 LinkedIn 內容策略師，專注於專業思想領導力、個人品牌與高互動專業內容。精通 LinkedIn 演算法和文化，為創辦人、求職者、開發者及建立專業形象者創造主動上門的機會。"
+    },
+    "marketing-livestream-commerce-coach": {
+      "sourceName": "Livestream Commerce Coach",
+      "sourceDescriptionSha256": "d7d41c344bbaa29ff3b621845c417e42de9d8839bc42e09a9ac9a9e502a8a569",
+      "name": "直播電商教練",
+      "description": "資深直播電商教練，專精抖音、快手、淘寶直播和 Channels（微信視頻號）的主播訓練與直播間營運，涵蓋腳本設計、商品排序、付費與自然流量平衡、成交轉換技巧，以及即時資料驅動最佳化。"
+    },
+    "marketing-multi-platform-publisher": {
+      "sourceName": "Multi-Platform Publisher",
+      "sourceDescriptionSha256": "4b9583f40bc88382bc66d8b9369f240c24479e49f2cf102275ee86ac4723f277",
+      "name": "多平台發佈專家",
+      "description": "中文部落格一鍵發佈編排專家。以 Wechatsync 為主要管道，將單篇文章送至知乎／小紅書／CSDN／B站／公眾號／掘金，並以 xhs-mcp 和 biliup 作為專用備援。處理各平台內容調整、草稿優先發佈、速率控管和風險規避。絕不自動正式發佈，始終停在草稿供人工審查。"
+    },
+    "marketing-podcast-strategist": {
+      "sourceName": "Podcast Strategist",
+      "sourceDescriptionSha256": "72364ee96a68f08069dca2c4031468e59ae53e13039078e9f0fadaf9cbe95790",
+      "name": "Podcast 策略師",
+      "description": "中國 Podcast 市場的內容策略與營運專家，深度掌握小宇宙、喜馬拉雅等主要音訊平台，涵蓋節目定位、音訊製作、受眾成長、多平台發行與獲利，協助創作者建立高黏著度的音訊內容品牌。"
+    },
+    "marketing-pr-communications-manager": {
+      "sourceName": "PR & Communications Manager",
+      "sourceDescriptionSha256": "562748c9c384ecc4b29aafa3a88da07dc9a0ec7ac13f20185a7ee859c08d8139",
+      "name": "公關與傳播經理",
+      "description": "策略公關與傳播專家，涵蓋媒體關係、新聞稿、危機溝通、高階主管思想領導力、品牌聲譽管理和整合傳播規劃——透過自然媒體報導、敘事和主動掌握論述來建立並保護聲譽。"
+    },
+    "marketing-private-domain-operator": {
+      "sourceName": "Private Domain Operator",
+      "sourceDescriptionSha256": "4fc629ebfa68af756b161cb3d4671a93c89db8af59656defb99017727e0a68f2",
+      "name": "私域營運專家",
+      "description": "企業微信（WeCom）私域生態系建置專家，精通 SCRM 系統、分眾社群營運、微信小程式電商整合、使用者生命週期管理與全漏斗轉換最佳化。"
+    },
+    "marketing-reddit-community-builder": {
+      "sourceName": "Reddit Community Builder",
+      "sourceDescriptionSha256": "26fe2a37cb57ae3ff599c3dab4e9c3762471413c5fe68f2277ae567deea51cc0",
+      "name": "Reddit 社群建構者",
+      "description": "Reddit行銷專家，專注於真實的社群互動、價值驅動的內容創作和長期關係維護。精通Reddit文化。"
+    },
+    "marketing-seo-specialist": {
+      "sourceName": "SEO Specialist",
+      "sourceDescriptionSha256": "38c62fd4184086d16d37950bf99a6232d58472888f89973ea2e4699c60682629",
+      "name": "SEO 專家",
+      "description": "精通技術SEO、內容最佳化、連結權威建立和自然搜尋成長的資深搜尋引擎最佳化策略師。透過資料驅動的搜尋策略，實現永續流量成長。"
+    },
+    "marketing-short-video-editing-coach": {
+      "sourceName": "Short-Video Editing Coach",
+      "sourceDescriptionSha256": "3bad2111c276881844f002d332ed2c342f8ca9a8c0a2f7c0b53ccd91e0e03020",
+      "name": "短影音剪輯教練",
+      "description": "實作型短影音剪輯教練，涵蓋完整後製管線，精通 CapCut Pro、Premiere Pro、DaVinci Resolve 和 Final Cut Pro，以及構圖與鏡頭語言、調色、音訊工程、動態圖像與 VFX、字幕設計、多平台匯出最佳化、剪輯工作流程效率和 AI 輔助剪輯。"
+    },
+    "marketing-social-media-strategist": {
+      "sourceName": "Social Media Strategist",
+      "sourceDescriptionSha256": "403b70db88bea9be57caadbe970af62e62c85fc1f496e1c91b95e79ba99aa88b",
+      "name": "社群媒體策略師",
+      "description": "資深社群媒體策略師，專精 LinkedIn、Twitter 和專業平台。建立跨平台行銷活動、經營社群、管理即時互動，並制定思想領導力策略。"
+    },
+    "marketing-tiktok-strategist": {
+      "sourceName": "TikTok Strategist",
+      "sourceDescriptionSha256": "cfecae6ed1564f08935326ac938e292cc88471e97ff008114f93be541c184969",
+      "name": "TikTok 策略師",
+      "description": "專注於病毒式內容創作、演算法最佳化和社群建構的資深TikTok行銷專家。精通TikTok獨特的文化與功能，協助品牌成長。"
+    },
+    "marketing-twitter-engager": {
+      "sourceName": "Twitter Engager",
+      "sourceDescriptionSha256": "f08192076e1c5bde1259bec8c97edbd6861db1011319dc3f9998b88f97403327",
+      "name": "Twitter 互動專家",
+      "description": "資深 Twitter 行銷專家，專注於即時互動、思想領導力和社群驅動成長。透過真誠參與對話及創作高傳播力推文串，建立品牌權威。"
+    },
+    "marketing-video-optimization-specialist": {
+      "sourceName": "Video Optimization Specialist",
+      "sourceDescriptionSha256": "636e762832c9bf384e3a90d0033e2d6dd20b5e55bd16faae4abe253c3ec9acb1",
+      "name": "影片最佳化專家",
+      "description": "影片行銷策略師，專精 YouTube 演算法最佳化、觀眾觀看留存、章節編排、縮圖概念，以及跨平台影片聯播。"
+    },
+    "marketing-wechat-official-account": {
+      "sourceName": "WeChat Official Account Manager",
+      "sourceDescriptionSha256": "fed02612ee2969e7785b2bb08c01e8d4d63d079754e67f1c5e4184a6cbe8bcbb",
+      "name": "微信公眾號經理",
+      "description": "資深微信公眾號（OA）策略專家，專長於內容行銷、使用者互動與轉換率最佳化。精通多格式內容創作，並透過持續提供價值，建立忠實社群。"
+    },
+    "marketing-weibo-strategist": {
+      "sourceName": "Weibo Strategist",
+      "sourceDescriptionSha256": "04e58d8f0679cc87163adc42e247388032c0ec06949ab67b1793b363cf0e2fd9",
+      "name": "微博策略師",
+      "description": "新浪微博全方位營運專家，深入掌握熱門話題機制、超級話題社群管理、輿情監測、粉絲經濟策略和微博廣告，協助品牌在中國主要公共討論平台取得高傳播觸及與持續成長。"
+    },
+    "marketing-x-twitter-intelligence-analyst": {
+      "sourceName": "X/Twitter Intelligence Analyst",
+      "sourceDescriptionSha256": "fe36c9b8be1b2de03b68104b93db53cb2f8c8e7a4a4f6d4b23dae35de4219732",
+      "name": "X/Twitter 情報分析師",
+      "description": "X/Twitter 社群情報專家，運用公開訊號和結構化資料工作流程進行研究、趨勢偵測、帳號監控，以及具證據支持的受眾洞察。"
+    },
+    "marketing-xiaohongshu-specialist": {
+      "sourceName": "Xiaohongshu Specialist",
+      "sourceDescriptionSha256": "a4ffc127bda9dea243d0549e122b12bc77da6a22b5a4ae1d450c3e73d64e132b",
+      "name": "小紅書專家",
+      "description": "小紅書行銷專家，專注於生活風格內容、趨勢驅動策略和真實的社群互動。精通微內容創作，並透過美學敘事推動病毒式成長。"
+    },
+    "marketing-zhihu-strategist": {
+      "sourceName": "Zhihu Strategist",
+      "sourceDescriptionSha256": "8ea1cf55d9d5e268d11762eed6c65d8578147ea2f9b2eaaa11e28d98b32d9113",
+      "name": "知乎策略師",
+      "description": "知乎行銷專家，專注於思想領導、社群信譽和知識驅動互動。精通問答策略，並透過真實的專業知識分享建立品牌權威。"
+    },
+    "medical-billing-coding-specialist": {
+      "sourceName": "Medical Billing & Coding Specialist",
+      "sourceDescriptionSha256": "42fa9783c9a1f81abb2046e7821a068d206fa540b057eabe0a5b66cb750c9490",
+      "name": "醫療計費與編碼專家",
+      "description": "精通 ICD-10-CM/PCS、CPT 和 HCPCS 編碼的醫療計費與編碼專家，涵蓋申報提交、退件管理、收入循環最佳化、合規稽核和支付方合約分析，協助各規模醫療服務提供者提升無誤申報率與收入回收。"
+    },
+    "narrative-designer": {
+      "sourceName": "Narrative Designer",
+      "sourceDescriptionSha256": "841d8e6118c8b7eac2945ea5d315dcc2fceeab7e1437c7a5ee8925281515c08e",
+      "name": "敘事設計師",
+      "description": "故事系統與對話架構師——精通符合 GDD 的敘事設計、分支對話、世界觀架構，以及跨遊戲引擎的環境敘事。"
+    },
+    "operations-manager": {
+      "sourceName": "Operations Manager",
+      "sourceDescriptionSha256": "43e735a2349ab24893c61c48a69006527c2c4d92e647d6be016b57ef0068567d",
+      "name": "營運經理",
+      "description": "業務營運專家，運用精實、六西格瑪和系統思維進行流程圖繪製、產能規劃、KPI 管理、供應商管理和組織效率提升，將營運複雜性轉化為可重複、可衡量的績效。"
+    },
+    "organizational-psychologist": {
+      "sourceName": "Organizational Psychologist",
+      "sourceDescriptionSha256": "166c186a29a20d3be7802b07b755985db36595f483645d96e46ca88dc139d27c",
+      "name": "組織心理學家",
+      "description": "應用組織心理學家，診斷團隊動力、心理安全、職業倦怠風險和文化健康，運用實證框架協助領導者建立高績效、有韌性且具心理安全的組織。"
+    },
+    "paid-media-auditor": {
+      "sourceName": "Paid Media Auditor",
+      "sourceDescriptionSha256": "b625150ce4394b8d478afca167c61b55ce9c822106de732ad5ebbf6472b8aaeb",
+      "name": "付費媒體稽核員",
+      "description": "資深付費媒體稽核師，系統性地評估 Google Ads、Microsoft Ads 和 Meta 帳戶，涵蓋帳戶結構、追蹤、出價、創意、受眾和競爭定位等 200 多個檢查點。產生可操作的稽核報告，其中包含優先建議和預期影響。"
+    },
+    "paid-media-creative-strategist": {
+      "sourceName": "Ad Creative Strategist",
+      "sourceDescriptionSha256": "4e33f89354a98975f943ac0a4de72ca8cc31c7b6a1054b716d246a0dbac3c5f2",
+      "name": "廣告創意策略師",
+      "description": "付費媒體創意專家，專注於廣告文案撰寫、RSA 最佳化、素材組設計，以及跨 Google、Meta、Microsoft 和程式化平台的創意測試框架。連結成效資料與具說服力的訊息。"
+    },
+    "paid-media-paid-social-strategist": {
+      "sourceName": "Paid Social Strategist",
+      "sourceDescriptionSha256": "ed6057e13697e22a71a4b69ee71e21867ce431253c418aeac38c886928016bab",
+      "name": "付費社群媒體策略師",
+      "description": "跨平台付費社群廣告專家，涵蓋 Meta（Facebook/Instagram）、LinkedIn、TikTok、Pinterest、X 和 Snapchat。設計從潛在客戶開發到再行銷的全漏斗社群廣告計畫，搭配各平台專屬的創意與受眾策略。"
+    },
+    "paid-media-ppc-strategist": {
+      "sourceName": "PPC Campaign Strategist",
+      "sourceDescriptionSha256": "6dc650ac37f9f1607cadbef5b47f0ced309ced8167f22b53f64b7b79ef3c8390",
+      "name": "PPC 廣告活動策略師",
+      "description": "資深付費媒體策略師，專精 Google、Microsoft 和 Amazon 廣告平台上的大規模搜尋、購物與 Performance Max 活動架構。設計可支援每月 1 萬至 1,000 萬美元以上支出規模的帳戶結構、預算分配框架和出價策略。"
+    },
+    "paid-media-programmatic-buyer": {
+      "sourceName": "Programmatic & Display Buyer",
+      "sourceDescriptionSha256": "30d8332cae69f1a46cdff76d126c50b2e30a69f2ca494e4bc33d67812617493d",
+      "name": "程式化與展示廣告採購專家",
+      "description": "展示廣告和程式化媒體購買專家，涵蓋託管廣告位、Google 展示廣告網路、DV360、交易平台、合作夥伴媒體（新聞簡報、贊助內容）以及透過 Demandbase 和 6Sense 等平台實施的 ABM 展示廣告策略。"
+    },
+    "paid-media-search-query-analyst": {
+      "sourceName": "Search Query Analyst",
+      "sourceDescriptionSha256": "15f2fc1218d10f4217f6164b75036b50f848eefb6e1322c3c1fc14f54bd4dcdc",
+      "name": "搜尋查詢分析師",
+      "description": "搜尋詞分析、否定關鍵字架構和查詢意圖對應專家。將原始搜尋查詢資料轉化為可執行的最佳化措施，減少浪費並放大付費搜尋帳戶中的高意圖流量。"
+    },
+    "paid-media-tracking-specialist": {
+      "sourceName": "Tracking & Measurement Specialist",
+      "sourceDescriptionSha256": "1890f9030f5bd3087175864d251be56504cacc1b65f3b82d35beb2c7c4ba956a",
+      "name": "追蹤與衡量專家",
+      "description": "精通轉換追蹤架構、標籤管理和歸因建模，涵蓋 Google Tag Manager、GA4、Google Ads、Meta CAPI、LinkedIn Insight Tag 以及伺服器端實作。確保每次轉換都被準確統計，每一分廣告支出都可衡量。"
+    },
+    "personal-growth-mentor": {
+      "sourceName": "Personal Growth Mentor",
+      "sourceDescriptionSha256": "ba96c9c07e4b09db64af6fddc3e3a29bb45347ca09bef134851759ee4b613abf",
+      "name": "個人成長導師",
+      "description": "跨領域個人成長導師，協助釐清目標、設計習慣、制定策略決策和落實責任追蹤，不以空泛的激勵話術取代實際方法。"
+    },
+    "product-behavioral-nudge-engine": {
+      "sourceName": "Behavioral Nudge Engine",
+      "sourceDescriptionSha256": "390274c0605e25fe4610e3b736225760ffaf153451b1f70ee8c7a25a5729b776",
+      "name": "行為引導引擎",
+      "description": "行為心理學專家，調整軟體互動節奏與風格，以提升使用者動機和成功達成目標的機會。"
+    },
+    "product-feedback-synthesizer": {
+      "sourceName": "Feedback Synthesizer",
+      "sourceDescriptionSha256": "49ba01f6fe78b7476ce9dfd15713dcf11e4ff4d27d76b7fe7cd028e4c6f1393c",
+      "name": "回饋綜整師",
+      "description": "擅長蒐集、分析並綜整多個管道的使用者回饋，擷取可執行的產品洞察。將質性回饋轉化為量化優先順序和策略建議。"
+    },
+    "product-manager": {
+      "sourceName": "Product Manager",
+      "sourceDescriptionSha256": "3c4f7a0b53524c2bbc666a4e892e089f113d6a37f62c3254c0f8a5b7abf2acc9",
+      "name": "產品經理",
+      "description": "全面負責產品生命週期的產品領導者，涵蓋從探索和策略制定到路線圖規劃、利害關係人協調、市場推廣和結果評估的各個環節。能夠將業務目標、使用者需求和技術現實結合，確保在正確的時間交付正確的產品。"
+    },
+    "product-sprint-prioritizer": {
+      "sourceName": "Sprint Prioritizer",
+      "sourceDescriptionSha256": "6aa36db34f25a363522873743578d06057af571b4c51dc0e9119bb0ad90d07b1",
+      "name": "Sprint 優先排序師",
+      "description": "資深產品經理，專精敏捷 Sprint 規劃、功能優先排序和資源配置。透過資料驅動的排序框架提升團隊速度和商業價值交付。"
+    },
+    "product-trend-researcher": {
+      "sourceName": "Trend Researcher",
+      "sourceDescriptionSha256": "325c44126048611699c970fa44159e376f999eca761b852e65ff009e1fed79f6",
+      "name": "趨勢研究員",
+      "description": "經驗豐富的市場情報分析師，擅長辨識新興趨勢、進行競爭分析和機會評估。致力於提供可執行的洞察，從而推動產品策略和創新決策。"
+    },
+    "project-management-experiment-tracker": {
+      "sourceName": "Experiment Tracker",
+      "sourceDescriptionSha256": "9425457acddf90a311c30c72b3ff0ecf92a9a96e3c18cf46e7e4db05f7cf571b",
+      "name": "實驗追蹤員",
+      "description": "資深專案經理，擅長實驗設計、執行追蹤和資料驅動決策。專注於透過系統化的實驗和嚴謹的分析來管理 A/B 測試、功能實驗和假設驗證。"
+    },
+    "project-management-jira-workflow-steward": {
+      "sourceName": "Jira Workflow Steward",
+      "sourceDescriptionSha256": "3e81f223e044feabedef7b2751dd98e90c2c701be5ae062cab700575564f9e03",
+      "name": "Jira 工作流程管理員",
+      "description": "資深交付營運專家，負責在軟體團隊中推行與 Jira 關聯的 Git 工作流程、可追溯的提交、結構化的拉取請求以及安全發佈分支策略。"
+    },
+    "project-management-meeting-notes-specialist": {
+      "sourceName": "Meeting Notes Specialist",
+      "sourceDescriptionSha256": "758b866d73aa9b714247d4fe5c26a7770c8220c362373dc7b1954341291fa00e",
+      "name": "會議紀錄專家",
+      "description": "從會議逐字稿或零散筆記中擷取結構化決策、待辦事項和未決問題，整理成清楚的四節摘要。"
+    },
+    "project-management-project-shepherd": {
+      "sourceName": "Project Shepherd",
+      "sourceDescriptionSha256": "a633276a13cbe2e045c24fda8c0e9cdfd8414b035de3944620390a4dac312dfc",
+      "name": "專案引導者",
+      "description": "資深專案經理，擅長跨職能專案協調、時間軸管理和利害關係人協調。專注於帶領專案從概念到完成，同時管理跨多個團隊和部門的資源、風險和溝通。"
+    },
+    "project-management-studio-operations": {
+      "sourceName": "Studio Operations",
+      "sourceDescriptionSha256": "694b770ff3f0f840d307b0c4d4aa770e3cc7a10db6e3467f88c75a82f7de80f8",
+      "name": "工作室營運專家",
+      "description": "資深營運經理，擅長提升工作室日常效率、最佳化流程和協調資源。致力於確保營運順暢，維持生產力標準，並為所有團隊提供成功所需的工具和流程。"
+    },
+    "project-management-studio-producer": {
+      "sourceName": "Studio Producer",
+      "sourceDescriptionSha256": "dcfcb06d59db46111455cb2a7be709497631651f3e9df951932f480528878314",
+      "name": "工作室製片人",
+      "description": "資深策略領導者，擅長高水準創意和技術專案統籌、資源分配和多專案組合管理。專注於將創意願景與業務目標保持一致，同時管理複雜的跨職能專案，並確保工作室的最佳運作。"
+    },
+    "project-manager-senior": {
+      "sourceName": "Senior Project Manager",
+      "sourceDescriptionSha256": "0fd2274b2d3140d61f97b85e6542c2d9ffdf331ec2bba94e2ad6307a006a260b",
+      "name": "資深專案經理",
+      "description": "將規格轉換為任務並記得先前專案。專注於務實範疇、不執行背景程序，並精確遵循規格要求。"
+    },
+    "real-estate-buyer-seller": {
+      "sourceName": "Real Estate Buyer & Seller",
+      "sourceDescriptionSha256": "a25e6e89b67081b198d08cbe34ff274e0628f96ffee531fa22ba34e903fd9ed9",
+      "name": "房地產買賣顧問",
+      "description": "提供全方位的房地產經紀人助理服務，包括買方代理、賣方代理、房源管理、報價談判、交易協調和交割支援——從首次看房到最終交割，為住宅和投資房地產客戶提供世界一流的體驗。"
+    },
+    "recruitment-specialist": {
+      "sourceName": "Recruitment Specialist",
+      "sourceDescriptionSha256": "55dd6a6b6c6d0a8c5b67eda25524a117060ca9b1f275f855337d54e056ed1337",
+      "name": "招募專員",
+      "description": "經驗豐富的招募營運和人才獲取專家—精通中國主流招募平台、人才評估框架和勞動法合規。幫助企業有效率地吸引、篩選和留住頂尖人才，同時打造具有競爭力的雇主品牌。"
+    },
+    "report-distribution-agent": {
+      "sourceName": "Report Distribution Agent",
+      "sourceDescriptionSha256": "ab6a9d6c1cdc9ec99b6b8c5a531b099046136715a76c5db2ecc81b8b3193d3d2",
+      "name": "報告分送 Agent",
+      "description": "依區域參數自動將彙整後的銷售報告分送給銷售代表的 AI Agent。"
+    },
+    "research-synthesist": {
+      "sourceName": "Research Synthesist",
+      "sourceDescriptionSha256": "fc0f21425d9ac63ef514b5d626f604af37ee5fffc568544f27667d2697b68afe",
+      "name": "研究綜整專家",
+      "description": "專精文獻回顧、來源評估與證據綜整，將分散的來源整理成結構化且如實反映證據權重與實際支持範圍的圖譜。"
+    },
+    "resume-tailor": {
+      "sourceName": "Resume Tailor",
+      "sourceDescriptionSha256": "eb12888acb15bd4669cbed86d600305d41cb19622b829c76f0494952dbad95ab",
+      "name": "履歷優化專家",
+      "description": "求職者端的履歷最佳化專家，分析職缺說明、將真實經驗對應職務要求、改善 ATS 關鍵字契合度，並在不捏造資格的前提下重寫履歷要點。"
+    },
+    "retail-customer-returns": {
+      "sourceName": "Retail Customer Returns",
+      "sourceDescriptionSha256": "7eafa0d1ad9ac5735f1a89b9956613eba9e41259f4dfdbd7bb7663dae24b1ad9",
+      "name": "零售退換貨專員",
+      "description": "全方位零售退換貨專家，處理實體門市、線上與全通路的退貨、換貨和退款——涵蓋政策執行、詐欺防範、顧客維繫、退回供應商和退貨分析，在維持顧客忠誠度的同時提升回收價值。"
+    },
+    "roblox-avatar-creator": {
+      "sourceName": "Roblox Avatar Creator",
+      "sourceDescriptionSha256": "c312b998c460c6059ace85f63d9053d87b8d3b97a2e730eec83da04a443f2206",
+      "name": "Roblox 虛擬人偶創作者",
+      "description": "Roblox 使用者產生內容 (UGC) 和虛擬形象流程專家——精通 Roblox 的虛擬形象系統、UGC 物品建立、配件綁定、紋理標準以及創作者市場提交流程。"
+    },
+    "roblox-experience-designer": {
+      "sourceName": "Roblox Experience Designer",
+      "sourceDescriptionSha256": "81f0ff9407166c27c17470ad9d92b90805e19428f2b0fffce65d243295b95517",
+      "name": "Roblox 體驗設計師",
+      "description": "Roblox 平台使用者體驗與獲利專家——精通玩家參與循環設計、DataStore 驅動的進度系統、Roblox 獲利系統（遊戲通行證、Developer Products、UGC），以及 Roblox 體驗的玩家留存。"
+    },
+    "roblox-systems-scripter": {
+      "sourceName": "Roblox Systems Scripter",
+      "sourceDescriptionSha256": "e8679ddfbeb96749503e441042980ac80a787e65f59e321a082ce8778905cb10",
+      "name": "Roblox 系統腳本工程師",
+      "description": "Roblox 平台工程專家——精通 Luau、用戶端—伺服器安全模型、RemoteEvents/RemoteFunctions、DataStore，以及可擴充 Roblox 體驗的模組架構。"
+    },
+    "sales-account-strategist": {
+      "sourceName": "Account Strategist",
+      "sourceDescriptionSha256": "93e9064b9b8b75f99f3d97668bcbf6b3508242b673a1e7ad6ac22fda96829d59",
+      "name": "客戶策略師",
+      "description": "資深售後客戶策略師，專精先立足再擴張的執行、利害關係人圖譜、主持季度業務回顧（QBR）和淨收入留存。透過系統化擴張規劃及多線關係經營，將已成交案件轉化為長期平台合作關係。"
+    },
+    "sales-coach": {
+      "sourceName": "Sales Coach",
+      "sourceDescriptionSha256": "05ccf959611a7db095c4a27f201b58b5a210ddd9cf17bcb4d2ffd1585315c14d",
+      "name": "銷售教練",
+      "description": "資深銷售輔導專家，專注於銷售代表發展、銷售管道審核、電話輔導、交易策略和預測準確性。透過結構化的輔導方法和行為回饋，提升每位銷售代表和每筆交易的表現。"
+    },
+    "sales-data-extraction-agent": {
+      "sourceName": "Sales Data Extraction Agent",
+      "sourceDescriptionSha256": "25f8d97695d4047f29de02962d0698357977fcaabd6f26f411b97a5aad5c0c7e",
+      "name": "銷售資料擷取專員",
+      "description": "監控 Excel 檔案並擷取月累計、年累計與年終等關鍵銷售指標，以產生內部即時報告的 AI Agent。"
+    },
+    "sales-deal-strategist": {
+      "sourceName": "Deal Strategist",
+      "sourceDescriptionSha256": "950fcd8d9ee2db9f8a1cd92096e95df43a98bbb1d531ec8a07cbd3fb7e4d6f82",
+      "name": "交易策略師",
+      "description": "資深交易策略師，專精 MEDDPICC 案件資格判定、競爭定位，以及複雜 B2B 銷售週期的致勝規劃。評分商機、揭露銷售管線風險，並建立能通過預測檢視的交易策略。"
+    },
+    "sales-discovery-coach": {
+      "sourceName": "Discovery Coach",
+      "sourceDescriptionSha256": "07310e21f9580f12f8b0a6a1e8ae6aed5ce7d22c3054da63b751b814ea4ca4e6",
+      "name": "需求探索教練",
+      "description": "指導銷售團隊採用高階需求探索方法——包括問題設計、現況盤點、差距量化，以及能揭示真實購買動機的通話架構。"
+    },
+    "sales-engineer": {
+      "sourceName": "Sales Engineer",
+      "sourceDescriptionSha256": "280730f255d0ef7d849def32af19564443cffbc155b8d52ebfa12fdf64b5f3cd",
+      "name": "銷售工程師",
+      "description": "資深售前工程師，專精技術需求探索、展示方案設計、POC 範疇界定、競爭戰卡，以及將產品能力連結到商業成果。協助贏得技術評選，使交易得以成交。"
+    },
+    "sales-offer-lead-gen-strategist": {
+      "sourceName": "Offer & Lead Gen Strategist",
+      "sourceDescriptionSha256": "9f16e652773f4291b686b4f9bf65267ff420de9890e2d129a121e09e4ef259d1",
+      "name": "方案與潛在客戶開發策略師",
+      "description": "漏斗頂端架構師，設計難以抗拒的方案與潛在客戶誘因內容，大規模吸引合格買家。專精以價值方程式建構方案、設計潛在客戶誘因類型、多管道名單開發，並透過客戶、員工、代理商和聯盟夥伴累積觸及。"
+    },
+    "sales-outbound-strategist": {
+      "sourceName": "Outbound Strategist",
+      "sourceDescriptionSha256": "057a8d6a467881cd44186447fddd70c051769fb9848fc14f5fe7c67e5b55308c",
+      "name": "主動開發策略師",
+      "description": "以訊號為基礎的主動開發專家，設計多管道潛在客戶開發流程、定義理想客戶輪廓（ICP），並以研究驅動的個人化方式建立銷售管線，而非追求大量投放。"
+    },
+    "sales-outreach": {
+      "sourceName": "Sales Outreach",
+      "sourceDescriptionSha256": "35697938d955db3eefff4a19596c9741ecaff7794d1f453b3cacacd585dd426b",
+      "name": "銷售拓展專員",
+      "description": "諮詢式 B2B 銷售主動接觸專家，涵蓋陌生客戶開發、潛在客戶後續聯繫、異議處理、提案撰寫和銷售管線管理——結合資料驅動的目標篩選與真誠的關係建立，以開啟商機並促成交易。"
+    },
+    "sales-pipeline-analyst": {
+      "sourceName": "Pipeline Analyst",
+      "sourceDescriptionSha256": "ccb03aa47974dd0abbe10c7ecd7c76bb54a5181f7f35328da573e6b39a3ba411",
+      "name": "銷售管線分析師",
+      "description": "營收營運分析師，專精銷售管線健康度診斷、交易速度分析、預測準確性和資料驅動的銷售輔導。將 CRM 資料轉化為可執行的管線情報，在風險造成季度目標未達前予以揭露。"
+    },
+    "sales-proposal-strategist": {
+      "sourceName": "Proposal Strategist",
+      "sourceDescriptionSha256": "6db408260dbba0ee3617f2614db4956c0f1554358ae134415922197a0f85568e",
+      "name": "提案撰寫策略師",
+      "description": "策略提案架構師，將 RFP 和銷售機會轉化為具說服力的致勝敘事。專精致勝主題、競爭定位、高階主管摘要，以及建立不只符合要求、更能說服讀者的提案。"
+    },
+    "security-ai-generated-code-auditor": {
+      "sourceName": "AI-Generated Code Security Auditor",
+      "sourceDescriptionSha256": "4a7d8fb3e75cc01009ef795347372f0a1b3c0f20bf770270d60f31c22cafa194",
+      "name": "AI 產生程式碼資安稽核員",
+      "description": "AI 生成及 Vibe Coding 應用程式的資安審查專家——找出程式設計助理預設產出中的硬編碼機密資訊、失效的資料列層級安全性和提示詞注入落點，再以誠實且對應 CWE 的發現推動掃描、修正與重新掃描循環。"
+    },
+    "security-appsec-engineer": {
+      "sourceName": "Application Security Engineer",
+      "sourceDescriptionSha256": "49efb2cb65442024753de3465ab680846ffd63c18c1de4a26fbe85d465fdf203",
+      "name": "應用程式安全工程師",
+      "description": "應用安全專家，透過威脅建模、安全程式碼審查、SAST／DAST 整合和開發者安全教育，確保軟體開發生命週期的安全，使安全程式碼成為預設行為。"
+    },
+    "security-architect": {
+      "sourceName": "Security Architect",
+      "sourceDescriptionSha256": "3a217afe1e5655006e649b1a4ad347f942bcdc3ecfe8e24e0696656c35275213",
+      "name": "資安架構師",
+      "description": "資深資安架構師，專長於威脅建模、安全設計架構、信任邊界分析、縱深防禦和依風險進行的安全審查，涵蓋 Web、API、雲端原生和分散式系統。負責設計安全模型，並將程式碼層級的 SAST／DAST 和 SDLC 工作交由應用程式安全工程師處理。"
+    },
+    "security-blockchain-security-auditor": {
+      "sourceName": "Blockchain Security Auditor",
+      "sourceDescriptionSha256": "9a9c78d91d97873c1b51602acef3268e5a5e21033dd7ffd978c0eda4d5c5aff6",
+      "name": "區塊鏈資安稽核員",
+      "description": "智慧合約資安稽核專家，專精漏洞偵測、形式化驗證、攻擊利用分析，以及為 DeFi 協定和區塊鏈應用程式撰寫完整稽核報告。"
+    },
+    "security-cloud-security-architect": {
+      "sourceName": "Cloud Security Architect",
+      "sourceDescriptionSha256": "636f7efe58effd3f1b0feba3ee53b2c7e062fae1ad375b5f69df8366ae894ef7",
+      "name": "雲端資安架構師",
+      "description": "雲端原生安全專家，擅長設計零信任架構，在 AWS、Azure 和 GCP 等雲端平台上實施縱深防禦，並從一開始就保障基礎架構即程式碼 (IaC) 管道的安全。"
+    },
+    "security-compliance-auditor": {
+      "sourceName": "Compliance Auditor",
+      "sourceDescriptionSha256": "dedb39de0d277958f9f33401a2c5c572605be652e070bac3076d0d74c60d62e5",
+      "name": "合規稽核員",
+      "description": "精通 SOC 2、ISO 27001、HIPAA 和 PCI-DSS 稽核的專家級技術合規稽核師——從準備情況評估、證據收集到認證，全程提供服務。"
+    },
+    "security-incident-responder": {
+      "sourceName": "Incident Responder",
+      "sourceDescriptionSha256": "c8d35a8926cf5d69f900a9f1cf6a9ddc505d116467fd0e62eeb5ee60e499dc54",
+      "name": "資安事件應變專家",
+      "description": "數位鑑識與事件應變專家，領導資料外洩和資安事件調查、控制進行中的威脅、協調危機應變，並撰寫能防止再發的事後檢討。"
+    },
+    "security-penetration-tester": {
+      "sourceName": "Penetration Tester",
+      "sourceDescriptionSha256": "1966c7d21e7ee4e87bb0e4cb5158e5c8a499743c86ba42003e1b3e4454430651",
+      "name": "滲透測試工程師",
+      "description": "攻擊性安全專家，負責在網路、Web 應用程式和雲端基礎設施中執行授權滲透測試、紅隊演練和漏洞評估。"
+    },
+    "security-secrets-credential-engineer": {
+      "sourceName": "Secrets & Credential Hygiene Engineer",
+      "sourceDescriptionSha256": "f636e71a08779894e42d6cbb73585f237c71d2ce20cbdcba029dc34f28a55e06",
+      "name": "機密與憑證衛生工程師",
+      "description": "負責機密資訊與憑證的完整生命週期——偵測、預防、金庫保管、輪替和洩漏應變——讓應用程式使用短效、最小權限且絕不寫入程式碼的憑證，並在洩漏被發現時已完成輪替。"
+    },
+    "security-senior-secops": {
+      "sourceName": "Senior SecOps Engineer",
+      "sourceDescriptionSha256": "d4a7eecf8f8fe1c1b4ef466961242a01d3f70c461749a70573d762af9928e69a",
+      "name": "資深資安營運工程師",
+      "description": "防禦型應用程式資安專家，會先掃描每次程式碼提交中的機密資訊與敏感資料暴露，再依組織安全標準實作或稽核安全控制——涵蓋身分驗證、授權、權杖、Cookie、HTTP 標頭、CORS、速率限制、CSP、機密資訊管理、輸入驗證和安全日誌。"
+    },
+    "security-threat-detection-engineer": {
+      "sourceName": "Threat Detection Engineer",
+      "sourceDescriptionSha256": "777e0db6fbd0b6e50c4666e69db861c6b6d3f67d56aed597f68220ff9bb81112",
+      "name": "威脅偵測工程師",
+      "description": "資深威脅偵測工程師，專精 SIEM 規則開發、MITRE ATT&CK 涵蓋範圍對應、威脅獵捕、警示調校，以及資安營運團隊的偵測即程式碼管線。"
+    },
+    "security-threat-intelligence-analyst": {
+      "sourceName": "Threat Intelligence Analyst",
+      "sourceDescriptionSha256": "92bf42cbedded8d632bd19f88e0271f711bcfe7b7ea19bc9d7c1324edc27d7ab",
+      "name": "威脅情報分析師",
+      "description": "網路威脅情報專家，追蹤攻擊者群組、將攻擊活動對應至 MITRE ATT&CK、產出可執行的情報報告，並建立能發現真實威脅的偵測規則。"
+    },
+    "specialized-chief-of-staff": {
+      "sourceName": "Chief of Staff",
+      "sourceDescriptionSha256": "ea228c44e78bf396c89074492b29aade97bd70d4e5a4521f80c4ee22f677026d",
+      "name": "幕僚長",
+      "description": "創辦人與高階主管的首席協調者——過濾雜訊、負責流程、維持一致性、安排決策路徑，並調整成果呈現以發揮影響力，讓主管能清楚思考。"
+    },
+    "specialized-civil-engineer": {
+      "sourceName": "Civil Engineer",
+      "sourceDescriptionSha256": "b8ceff9ddea08c2b3ed646b4bf5d6fc331f9dc6472157354303ba0c88ad25ff2",
+      "name": "土木與結構工程師",
+      "description": "熟悉全球標準的土木與結構工程師，涵蓋 Eurocode、DIN、ACI、AISC、ASCE、AS/NZS、CSA、GB、IS、AIJ 等規範。專精結構分析、大地工程設計、施工文件、建築法規遵循與多標準國際專案。"
+    },
+    "specialized-codebase-archaeologist": {
+      "sourceName": "Codebase Archaeologist",
+      "sourceDescriptionSha256": "57d669ed515e7bf9be18a4c1da8456330521d9e78f0b74a410e9beb2696de560",
+      "name": "程式碼庫考古學家",
+      "description": "多工作階段、多工具漂移偵測專家，稽核長期由多種 AI 程式設計工具（Claude、Cursor、Copilot、Windsurf 等）修改的程式碼庫，找出單一工作階段無法自行察覺的隱性邏輯不一致、無效程式碼，以及文件與程式碼的分歧。"
+    },
+    "specialized-cultural-intelligence-strategist": {
+      "sourceName": "Cultural Intelligence Strategist",
+      "sourceDescriptionSha256": "a1c5100de2c75ab18062bd8d91b3e8abb223a820ea32bbe187785ec2512623cb",
+      "name": "文化智商策略師",
+      "description": "文化智商（CQ）專家，偵測不易察覺的排除現象、研究全球脈絡，並確保軟體能真誠回應不同交織身分的需求。"
+    },
+    "specialized-developer-advocate": {
+      "sourceName": "Developer Advocate",
+      "sourceDescriptionSha256": "ce5546acd2c4bd55dc310949a7adb71603ea18088c6314d28c328a9bbdf9f76d",
+      "name": "開發者倡導者",
+      "description": "資深開發者倡導者，專精建立開發者社群、製作具吸引力的技術內容、最佳化開發者體驗（DX），並透過真誠的工程交流推動平台採用。連結產品、工程團隊與外部開發者。"
+    },
+    "specialized-document-generator": {
+      "sourceName": "Document Generator",
+      "sourceDescriptionSha256": "95629b8d431c94942b5a5d51e21ee462613e625bc64fc919ba6a29475b62f8db",
+      "name": "文件產生專家",
+      "description": "資深文件建立專家，精通使用程式碼方法產生專業的 PDF、PPTX、DOCX 和 XLSX 文件，並能正確格式化、新增圖表和資料視覺化。"
+    },
+    "specialized-fedramp-rmf-compliance": {
+      "sourceName": "FedRAMP & RMF Compliance Engineer",
+      "sourceDescriptionSha256": "3b80982dd200e38f6ac3ccc15bffebe47bc60baacb5904a09159e150fd2870d0",
+      "name": "FedRAMP & RMF 合規工程師",
+      "description": "FedRAMP 與 NIST 風險管理框架合規資深工程師，專精兩種 FedRAMP 授權途徑：傳統 Rev5 路徑（實作 NIST 800-53 Rev 5 控制措施、系統安全計畫、3PAO 評估與機關授權）及現代化 FedRAMP 20x 路徑（關鍵安全指標、自動化機器可讀驗證與合規即程式碼）；亦涵蓋 ATO 流程、持續監控（ConMon）、POA&M 管理、FIPS 199 分類、授權邊界圖、OSCAL 機器可讀套件，以及政府與受監管產業的雲端安全合規。"
+    },
+    "specialized-french-consulting-market": {
+      "sourceName": "French Consulting Market Navigator",
+      "sourceDescriptionSha256": "1208445fe09889f401fa54543e1babb48ccdec03933e575edec2eb973ac3b699",
+      "name": "法國顧問市場導航員",
+      "description": "協助掌握法國 ESN/SI 自由工作生態系——涵蓋利潤模式、平台機制（Malt、collective.work）、portage salarial（薪資代管／傘式雇用）、費率定位和實際付款週期。"
+    },
+    "specialized-korean-business-navigator": {
+      "sourceName": "Korean Business Navigator",
+      "sourceDescriptionSha256": "6d561819d6e9b1a868bf70583fff6e51153cf40fbfce8297e801577061fab3a2",
+      "name": "韓國商業導航員",
+      "description": "為外國專業人士解析韓國商業文化——涵蓋 품의（稟議）決策流程、nunchi 察言觀色、KakaoTalk 商務禮儀、階層互動，以及關係優先的交易機制。"
+    },
+    "specialized-master-plan-architect": {
+      "sourceName": "Master Plan Architect",
+      "sourceDescriptionSha256": "5892c538455b4ab61445e419ce77664745b74d9606c08d3385d07b2832908670",
+      "name": "總體計畫架構師",
+      "description": "總體規劃架構師、技術教育者與不留情面的計畫批評者，專精深入架構教學、紅隊演練／風險檢視，以及以 Markdown 撰寫完整 Implementation Plan，且完全不執行程式碼。"
+    },
+    "specialized-mcp-builder": {
+      "sourceName": "MCP Builder",
+      "sourceDescriptionSha256": "9cffb01f7fdc80fea9b0fe13c7c6820880165486bfed93e4f6fd19fa6cd575ec",
+      "name": "MCP 建置專家",
+      "description": "資深模型情境協定（MCP）開發者，設計、建置並測試 MCP 伺服器，以自訂工具、資源和提示詞擴充 AI Agent 能力。"
+    },
+    "specialized-model-qa": {
+      "sourceName": "Model QA Specialist",
+      "sourceDescriptionSha256": "6b74e0d9c7ea39f40124629c81acbbdffa71ca0cbf1232a49661b0d57b2378ce",
+      "name": "模型 QA 專家",
+      "description": "獨立模型品質保證（QA）專家，負責對機器學習（ML）和統計模型進行端到端稽核，包括文件審查、資料重建、重現、校準測試、可解釋性分析、效能監控和稽核級報告。"
+    },
+    "specialized-pricing-analyst": {
+      "sourceName": "Pricing Analyst",
+      "sourceDescriptionSha256": "8b3551dbd2f8eb4704503b51a33ebb36efe49c2eec5a5cf09e83ed515ffc325c",
+      "name": "定價分析師",
+      "description": "專業定價分析師，透過市場研究、競爭對手分析、成本結構評估與利潤率最佳化，發展最佳定價模型，將定價從猜測轉化為資料驅動的競爭優勢。"
+    },
+    "specialized-salesforce-architect": {
+      "sourceName": "Salesforce Architect",
+      "sourceDescriptionSha256": "cff1746375990f26614490c654902e7dcaf3c334a5341f9527c30fac1ea1b60c",
+      "name": "Salesforce 架構師",
+      "description": "Salesforce 平台解決方案架構——涵蓋企業級組織的多雲設計、整合模式、Governor Limits、部署策略和資料模型治理。"
+    },
+    "specialized-strategy-duel-agent": {
+      "sourceName": "Strategy Duel Agent",
+      "sourceDescriptionSha256": "f1f3d2a3c117c1f58af9e7b857e8a4a4841402dcc8ce0ea763f4b5203fcf59ba",
+      "name": "策略對決 Agent",
+      "description": "運用博弈論和中國三十六計進行實戰策略對決。"
+    },
+    "specialized-workflow-architect": {
+      "sourceName": "Workflow Architect",
+      "sourceDescriptionSha256": "ee75e70d0056486398c8d1be935298a3827fa7a78f32baae2f492ba4a3f8e73c",
+      "name": "工作流程架構師",
+      "description": "工作流程設計專家，負責為每個系統、使用者旅程和 Agent 互動繪製完整的工作流程樹——涵蓋正常路徑、所有分支條件、故障模式、復原路徑、交接契約和可觀察狀態，產生可供 Agent 實作及 QA 測試的建置就緒規格。"
+    },
+    "study-abroad-advisor": {
+      "sourceName": "Study Abroad Advisor",
+      "sourceDescriptionSha256": "5fb405b3dd4fe47026ce45dbb6d91031451722a16017d7d14b03545d9a06ef20",
+      "name": "留學顧問",
+      "description": "全方位留學規劃專家，涵蓋美國、英國、加拿大、澳洲、歐洲、香港和新加坡——精通學士、碩士與博士申請策略、選校、申請文書輔導、申請背景強化、標準化測驗規劃、簽證準備和海外生活適應，協助中國學生制定個人化的端到端留學計畫。"
+    },
+    "supply-chain-strategist": {
+      "sourceName": "Supply Chain Strategist",
+      "sourceDescriptionSha256": "66fbf4df640e499dd9fcccbfdc2c844ecc76d869844900712b55b0851a865332",
+      "name": "供應鏈策略師",
+      "description": "資深供應鏈管理與採購策略專家——精通供應商開發、策略尋源、品質控制和供應鏈數位化。立足中國製造業生態系，協助企業建立高效率、有韌性且永續的供應鏈。"
+    },
+    "support-analytics-reporter": {
+      "sourceName": "Analytics Reporter",
+      "sourceDescriptionSha256": "e459ecf6e8a617d23fd26afbdc49160c61e5c6162549de337fb4f2d996624e5a",
+      "name": "分析報告員",
+      "description": "資深資料分析師，將原始資料轉化為可執行的商業洞察。建立儀表板、執行統計分析、追蹤 KPI，並透過資料視覺化和報告提供策略決策支援。"
+    },
+    "support-executive-summary-generator": {
+      "sourceName": "Executive Summary Generator",
+      "sourceDescriptionSha256": "c9575e6c1355e70ddd4db0eadc34e0a58ccf35fbb4651c1804eaf662e334af9b",
+      "name": "高階主管摘要產生器",
+      "description": "具顧問水準的 AI 專家，運用高階策略顧問的思考與溝通方式，結合 SCQA、金字塔原則與策略框架，把複雜的業務輸入轉化為簡潔、可執行的高階主管摘要，支援主管決策。"
+    },
+    "support-finance-tracker": {
+      "sourceName": "Finance Tracker",
+      "sourceDescriptionSha256": "f6e225bfe91aa728bfb26c45a36eaae3a0aeb231b2ef3e7aec2b7102ad959aaf",
+      "name": "財務追蹤員",
+      "description": "資深財務分析師和財務主管，專長於財務規劃、預算管理和業務績效分析。維護財務健康，最佳化現金流，並為業務成長提供策略財務洞察。"
+    },
+    "support-infrastructure-maintainer": {
+      "sourceName": "Infrastructure Maintainer",
+      "sourceDescriptionSha256": "5d51c4aa8254e24312abe6f661b6c756917f6abd92c729afcc4b7b86dcd41988",
+      "name": "基礎設施維護專家",
+      "description": "資深基礎設施專家，專注於系統可靠性、效能最佳化和技術維運管理。維護穩健且可擴充的基礎設施，以安全、效能與成本效益支援企業營運。"
+    },
+    "support-legal-compliance-checker": {
+      "sourceName": "Legal Compliance Checker",
+      "sourceDescriptionSha256": "2488a1f4f6b9696a1fef191d6a56c84320ac7c4c9cdfdf679fcc701d15259cee",
+      "name": "法律合規性檢查員",
+      "description": "精通法律和合規的專家，確保業務運作、資料處理和內容創作符合多個司法管轄區的相關法律、法規和產業標準。"
+    },
+    "support-support-responder": {
+      "sourceName": "Support Responder",
+      "sourceDescriptionSha256": "dd0930cebbd2b5a60a2c895a5256b33c0722011d9a45dc9e3b6624e7e5de3668",
+      "name": "客戶支援回應專員",
+      "description": "精通客戶支援的專家，提供卓越的客戶服務、問題解決和使用者體驗最佳化。擅長多通路支援、主動式客戶關懷，並將支援互動轉化為積極的品牌體驗。"
+    },
+    "technical-artist": {
+      "sourceName": "Technical Artist",
+      "sourceDescriptionSha256": "ac63b61a8d1e7d3f2bf60cd9a9a79b3236198e6f7264ea4b8e32c6dfb3764964",
+      "name": "技術美術",
+      "description": "美術到引擎管線專家——精通著色器、VFX 系統、LOD 管線、效能預算，以及跨引擎資產最佳化。"
+    },
+    "terminal-integration-specialist": {
+      "sourceName": "Terminal Integration Specialist",
+      "sourceDescriptionSha256": "c48b8a23c81b43bd41446b9f4c9601708f9c863c76b6df6d143e61b715b28d61",
+      "name": "終端機整合專家",
+      "description": "專精終端機模擬、文字渲染最佳化，以及在現代 Swift 應用程式中整合 SwiftTerm。"
+    },
+    "testing-accessibility-auditor": {
+      "sourceName": "Accessibility Auditor",
+      "sourceDescriptionSha256": "1454676ea648c41934a1705f55ea4a1e3d7a97aee650c5975071a21ff6f8bb42",
+      "name": "無障礙稽核員",
+      "description": "資深無障礙專家，依 WCAG 標準稽核介面、使用輔助科技測試，並確保包容性設計。預設以找出障礙為目標——若未使用螢幕閱讀器測試，就不應視為具無障礙能力。"
+    },
+    "testing-api-tester": {
+      "sourceName": "API Tester",
+      "sourceDescriptionSha256": "1ddb9ee47e4796dd48a03e32b039d7146765bcff23411f66a702650721d1c1ee",
+      "name": "API 測試員",
+      "description": "專業 API 測試專家，專注於全面驗證所有系統與第三方整合的 API、執行效能測試並確保品質。"
+    },
+    "testing-evidence-collector": {
+      "sourceName": "Evidence Collector",
+      "sourceDescriptionSha256": "8a3a06ba65497e8d55e6697de1faf8bca32d932a9da765c72bb8bf336ed7c99c",
+      "name": "證據蒐集員",
+      "description": "執著於螢幕截圖、不接受空想結論的 QA 專家——預設找出 3–5 個問題，且所有判斷都要求視覺證據。"
+    },
+    "testing-performance-benchmarker": {
+      "sourceName": "Performance Benchmarker",
+      "sourceDescriptionSha256": "68da159db6e9d9a77f6cdf831d750544510480bc4174cafd1dfb064750972de1",
+      "name": "效能基準測試專家",
+      "description": "效能測試與最佳化專家，專注於衡量、分析並改善所有應用程式和基礎架構的系統效能。"
+    },
+    "testing-reality-checker": {
+      "sourceName": "Reality Checker",
+      "sourceDescriptionSha256": "64522385f8a64ef8ed638e4658ebce851c7853fa57a8af0d698ef1df5149cc5d",
+      "name": "現實檢查員",
+      "description": "阻止空想式核准，採用以證據為基礎的認證——預設判定為「需要改進」，必須有壓倒性證據才認定可用於正式環境。"
+    },
+    "testing-test-automation-engineer": {
+      "sourceName": "Test Automation Engineer",
+      "sourceDescriptionSha256": "dda1c8813fc4c1257c9d1a5d688852fc5bbc596dac20979549831c71ecf19596",
+      "name": "測試自動化工程師",
+      "description": "Playwright 與 Cypress 端對端測試自動化專家——精通穩健的選擇器、消除不穩定測試、隔離測試資料、CI 平行化，以及以 trace 為依據的失敗除錯。"
+    },
+    "testing-test-results-analyzer": {
+      "sourceName": "Test Results Analyzer",
+      "sourceDescriptionSha256": "bd4774713c62a7a2a6634fc2f87bde6fcbde11805115a8a4dcfbdac0d6acac1a",
+      "name": "測試結果分析員",
+      "description": "測試分析專家，專注於全面的測試結果評估、品質指標分析以及從測試活動中產生可執行的洞察。"
+    },
+    "testing-tool-evaluator": {
+      "sourceName": "Tool Evaluator",
+      "sourceDescriptionSha256": "9ed019c49e382171d547b104aa262f717617c7e4d3521bd6bed6ea69e940ba75",
+      "name": "工具評估員",
+      "description": "技術評估專家，專注於評估、測試和推薦用於業務用途和生產力最佳化的工具、軟體和平台。"
+    },
+    "testing-workflow-optimizer": {
+      "sourceName": "Workflow Optimizer",
+      "sourceDescriptionSha256": "03b33d514cc208011dd3c2b16cb067bb071c24d093f97d300a7558d1f480fa41",
+      "name": "工作流程最佳化專家",
+      "description": "流程改善專家，專注於分析、最佳化和自動化所有業務職能的工作流程，以實現最高的生產力和效率。"
+    },
+    "unity-architect": {
+      "sourceName": "Unity Architect",
+      "sourceDescriptionSha256": "3a10420e532d9937ffd09e5edd58808375a62faa1065cb0939d51562ddfd2577",
+      "name": "Unity 架構師",
+      "description": "資料驅動模組化專家——精通 ScriptableObjects、解耦系統，以及可擴充 Unity 專案的單一職責元件設計。"
+    },
+    "unity-editor-tool-developer": {
+      "sourceName": "Unity Editor Tool Developer",
+      "sourceDescriptionSha256": "28e55550f83a6f23409d9c5ea947c8b70fa583b9c1e463242b8187eb9e5aeac5",
+      "name": "Unity 編輯器工具開發者",
+      "description": "Unity 編輯器自動化專家——精通自訂 EditorWindows、PropertyDrawers、AssetPostprocessors、ScriptedImporters 和管線自動化，每週可為團隊節省數小時。"
+    },
+    "unity-multiplayer-engineer": {
+      "sourceName": "Unity Multiplayer Engineer",
+      "sourceDescriptionSha256": "2c53d8a6703caac67e1a943c54271b7ddc40d0b1480e9ad89abbf79020463d7a",
+      "name": "Unity 多人遊戲工程師",
+      "description": "網路遊戲專家，精通 Netcode for GameObjects、Unity Gaming Services（Relay/Lobby）、用戶端與伺服器權威模型、延遲補償及狀態同步。"
+    },
+    "unity-shader-graph-artist": {
+      "sourceName": "Unity Shader Graph Artist",
+      "sourceDescriptionSha256": "596693d3287c763cc931eea716fa6e722de97920e505ecad2d914c99d8798c8f",
+      "name": "Unity 著色器圖美術師",
+      "description": "視覺特效與材質專家——精通 Unity Shader Graph、HLSL、URP/HDRP 渲染管線，以及即時視覺特效的自訂渲染 Pass 撰寫。"
+    },
+    "unreal-multiplayer-architect": {
+      "sourceName": "Unreal Multiplayer Architect",
+      "sourceDescriptionSha256": "e14f69df31acbb41f0dc21ab4b2cd8cbdf00b9de42fc6937361756d892147c48",
+      "name": "Unreal 多人遊戲架構師",
+      "description": "Unreal Engine 網路專家——精通 Actor 複寫、GameMode/GameState 架構、伺服器權威式遊戲玩法、網路預測，以及 UE5 專用伺服器設定。"
+    },
+    "unreal-systems-engineer": {
+      "sourceName": "Unreal Systems Engineer",
+      "sourceDescriptionSha256": "1c893a23ad62b6c728e03a768c85a45c2ed209ec3c1736eff4926339469ae592",
+      "name": "Unreal 系統工程師",
+      "description": "效能與混合架構專家——精通 C++ 與 Blueprint 的協作光譜、Nanite 幾何、Lumen 全域照明，以及 AAA 級 Unreal Engine 專案的 Gameplay Ability System。"
+    },
+    "unreal-technical-artist": {
+      "sourceName": "Unreal Technical Artist",
+      "sourceDescriptionSha256": "9c8e1d6c9dbc5b759a8394d47907d14723a84d02b0f92902c4b1388ceb064589",
+      "name": "Unreal 技術美術",
+      "description": "Unreal Engine 視覺管線專家——精通材質編輯器、Niagara VFX、程序化內容產生，以及 UE5 專案的美術到引擎管線。"
+    },
+    "unreal-world-builder": {
+      "sourceName": "Unreal World Builder",
+      "sourceDescriptionSha256": "a8f3827e0c66f95f0c4b50fe18ab05a790266c915cd7c3755e3a206039c2d5b0",
+      "name": "Unreal 世界建構師",
+      "description": "開放世界與環境專家——精通 UE5 World Partition、Landscape、程序化植被、HLOD 和大規模關卡串流，打造無縫開放世界體驗。"
+    },
+    "visionos-spatial-engineer": {
+      "sourceName": "visionOS Spatial Engineer",
+      "sourceDescriptionSha256": "af92a0fa313657398666db10c88e03bb338eb2034a9adc7665b07ea47d424313",
+      "name": "visionOS 空間工程師",
+      "description": "原生 visionOS 空間運算、SwiftUI 立體介面，以及 Liquid Glass 設計實作。"
+    },
+    "xr-cockpit-interaction-specialist": {
+      "sourceName": "XR Cockpit Interaction Specialist",
+      "sourceDescriptionSha256": "28e3cf3b79aa0761e2e0ceea1f0e1b9e9e235ad6b993f2f73e2dce5608e43a9e",
+      "name": "XR 駕駛艙互動專家",
+      "description": "專注於為 XR 環境設計和開發沉浸式駕駛艙控制系統"
+    },
+    "xr-immersive-developer": {
+      "sourceName": "XR Immersive Developer",
+      "sourceDescriptionSha256": "d8ec18fc9875963c424edf1981b5b16ce4cddfacfcc83edb391cc6dc7a1925e4",
+      "name": "XR 沉浸式開發工程師",
+      "description": "WebXR 與沉浸式技術專家，專精以瀏覽器為基礎的 AR／VR／XR 應用程式。"
+    },
+    "xr-interface-architect": {
+      "sourceName": "XR Interface Architect",
+      "sourceDescriptionSha256": "40807d54e48c5e454f8a0374d187986c42d6f52f4c7e52fad0388def207a9d5d",
+      "name": "XR 介面架構師",
+      "description": "沉浸式 AR/VR/XR 環境的空間互動設計師與介面策略師"
+    },
+    "zk-steward": {
+      "sourceName": "ZK Steward",
+      "sourceDescriptionSha256": "59a76f6d7e541add61f8fcf7b89a8098b3675d24416d601b44876f6d13f26417",
+      "name": "Zettelkasten 知識庫管理員",
+      "description": "以尼克拉斯·盧曼的 Zettelkasten 為理念的知識庫管理者。預設視角：盧曼視角；根據任務切換到領域專家視角（費曼、蒙格、奧格威等）。強制執行原子性筆記、連接性和驗證循環。用於建立知識庫、筆記連結、複雜任務分解和跨領域決策支援。"
+    }
+  }
+}
