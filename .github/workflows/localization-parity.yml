@@ -1,0 +1,48 @@
+name: Localization Parity
+
+on:
+  pull_request:
+    paths:
+      - "src-tauri/resources/corpus-baseline/scripts/i18n/**"
+      - "src-tauri/src/corpus/**"
+      - "src-tauri/src/render/**"
+      - "src-tauri/src/install/**"
+      - "src/lib/util/agentLocalization.ts"
+      - "tools/localization/check-parity.py"
+  push:
+    paths:
+      - "src-tauri/resources/corpus-baseline/scripts/i18n/**"
+      - "tools/localization/check-parity.py"
+  workflow_dispatch:
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Agency Agents App
+        uses: actions/checkout@v4
+
+      - name: Resolve durable source parity ref
+        id: source-ref
+        env:
+          CANDIDATE_REF: ${{ github.head_ref || github.ref_name }}
+        run: |
+          if git ls-remote --exit-code --heads \
+            https://github.com/keyrc0816/agency-agents.git \
+            "refs/heads/${CANDIDATE_REF}" >/dev/null 2>&1; then
+            echo "ref=${CANDIDATE_REF}" >> "$GITHUB_OUTPUT"
+            echo "Using matching source branch: ${CANDIDATE_REF}"
+          else
+            echo "ref=main" >> "$GITHUB_OUTPUT"
+            echo "Matching source branch unavailable; using durable main ref."
+          fi
+
+      - name: Checkout localization source
+        uses: actions/checkout@v4
+        with:
+          repository: keyrc0816/agency-agents
+          ref: ${{ steps.source-ref.outputs.ref }}
+          path: .parity-source
+
+      - name: Verify byte-identical zh-TW metadata and pinned association
+        run: python3 tools/localization/check-parity.py --source-root .parity-source
