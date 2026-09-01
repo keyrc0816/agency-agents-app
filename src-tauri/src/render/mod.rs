@@ -148,11 +148,11 @@ pub fn output_slug(agent: &Agent, raw_source: &str, tool: &str) -> String {
 fn unsupported(tool: &str) -> AppError {
     // Error messages use the kebab id (matching `scripts/install.sh`); fall back
     // to the raw id for an unrecognized tool.
-    let kebab = registry::get(tool).map(|m| m.kebab.as_str()).unwrap_or(tool);
+    let kebab = registry::get(tool)
+        .map(|m| m.kebab.as_str())
+        .unwrap_or(tool);
     AppError::Io {
-        message: format!(
-            "tool '{kebab}' is not supported for install yet (multi-file format)"
-        ),
+        message: format!("tool '{kebab}' is not supported for install yet (multi-file format)"),
     }
 }
 
@@ -240,6 +240,32 @@ pub fn render(_agent: &Agent, raw_source: &str, tool: &str) -> Result<String, Ap
     Ok(out)
 }
 
+/// Render with optional display metadata localization. Only Codex consumes the
+/// locale; every other target delegates byte-for-byte to the canonical renderer.
+/// Paths and slugs are resolved separately from canonical English metadata.
+pub fn render_for_locale(
+    agent: &Agent,
+    raw_source: &str,
+    tool: &str,
+    render_locale: Option<&str>,
+) -> Result<String, AppError> {
+    if tool != "codex" || render_locale != Some("zh-TW") {
+        return render(agent, raw_source, tool);
+    }
+    let Some(localized) = agent.localizations.get("zh-TW") else {
+        return render(agent, raw_source, tool);
+    };
+    let body = source_body(raw_source);
+    let name = format!("{}｜{}", agent.name, localized.name);
+    let description = format!("{}\n\n中文：\n{}", agent.description, localized.description);
+    Ok(format!(
+        "name = \"{name}\"\ndescription = \"{description}\"\ndeveloper_instructions = \"{body}\"\n",
+        name = toml_escape(&name),
+        description = toml_escape(&description),
+        body = toml_escape(&body),
+    ))
+}
+
 /// Render + hash in one shot.
 pub fn render_with_hash(
     agent: &Agent,
@@ -247,6 +273,19 @@ pub fn render_with_hash(
     tool: &str,
 ) -> Result<(String, String), AppError> {
     let bytes = render(agent, raw_source, tool)?;
+    let hash = sha256_hex(bytes.as_bytes());
+    Ok((bytes, hash))
+}
+
+/// Locale-aware render + hash. The canonical wrapper above remains unchanged
+/// for every pre-localization caller and all non-Codex tools.
+pub fn render_with_hash_for_locale(
+    agent: &Agent,
+    raw_source: &str,
+    tool: &str,
+    render_locale: Option<&str>,
+) -> Result<(String, String), AppError> {
+    let bytes = render_for_locale(agent, raw_source, tool, render_locale)?;
     let hash = sha256_hex(bytes.as_bytes());
     Ok((bytes, hash))
 }
@@ -282,7 +321,9 @@ pub fn dests(
     // project root) request must surface the existing "project path required"
     // error rather than a multi-file `unsupported`.
     if templates.is_empty() {
-        let kebab = registry::get(tool).map(|m| m.kebab.as_str()).unwrap_or(tool);
+        let kebab = registry::get(tool)
+            .map(|m| m.kebab.as_str())
+            .unwrap_or(tool);
         return Err(AppError::Io {
             message: format!("tool '{kebab}' is project-scoped; a project path is required"),
         });
@@ -354,7 +395,7 @@ fn toml_escape(s: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::collections::HashSet;
+    use std::collections::{BTreeMap, HashSet};
     use std::fs;
     use std::process::Command;
 
@@ -363,6 +404,7 @@ mod tests {
             slug: "frontend-developer".into(),
             name: "Frontend Developer".into(),
             description: "Builds UIs.".into(),
+            localizations: BTreeMap::new(),
             category: "engineering".into(),
             emoji: Some("🎨".into()),
             color: Some("blue".into()),
@@ -386,7 +428,8 @@ mod tests {
     #[test]
     fn cursor_mdc_shape() {
         let out = render(&agent(), raw(), "cursor").unwrap();
-        assert!(out.starts_with("---\ndescription: Builds UIs.\nglobs: \"\"\nalwaysApply: false\n---\n"));
+        assert!(out
+            .starts_with("---\ndescription: Builds UIs.\nglobs: \"\"\nalwaysApply: false\n---\n"));
         assert!(out.contains("You are a frontend dev."));
     }
 
@@ -399,6 +442,30 @@ mod tests {
         assert!(out.contains("description = \"has \\\"quotes\\\" and\\tcontrols\""));
         assert!(out.contains("developer_instructions = \"line 1\\nline \\\"2\\\"\""));
         assert!(out.starts_with("name = \"Frontend Developer\""));
+    }
+
+    #[test]
+    fn codex_zh_tw_localizes_only_human_readable_metadata() {
+        let mut a = agent();
+        a.localizations.insert(
+            "zh-TW".into(),
+            crate::types::AgentLocalization {
+                name: "前端開發工程師".into(),
+                description: "建立使用者介面。".into(),
+                localization_hash: "localization-hash".into(),
+            },
+        );
+        let canonical = render(&a, raw(), "codex").unwrap();
+        let localized = render_for_locale(&a, raw(), "codex", Some("zh-TW")).unwrap();
+        assert!(localized.contains("Frontend Developer｜前端開發工程師"));
+        assert!(localized.contains("Builds UIs.\\n\\n中文：\\n建立使用者介面。"));
+        let canonical_body = canonical.split("developer_instructions = ").nth(1).unwrap();
+        let localized_body = localized.split("developer_instructions = ").nth(1).unwrap();
+        assert_eq!(localized_body, canonical_body);
+        assert_eq!(
+            render_for_locale(&a, raw(), "cursor", Some("zh-TW")).unwrap(),
+            render(&a, raw(), "cursor").unwrap()
+        );
     }
 
     #[test]
@@ -418,12 +485,23 @@ mod tests {
             "---\nname: agency-frontend-developer\ndescription: Builds UIs.\n---\nYou are a frontend dev.\n"
         );
         // output_slug carries the prefix → it names the skill directory.
-        assert_eq!(output_slug(&agent(), raw(), "osaurus"), "agency-frontend-developer");
+        assert_eq!(
+            output_slug(&agent(), raw(), "osaurus"),
+            "agency-frontend-developer"
+        );
         // dest is the nested ~/.osaurus/skills/<name>/SKILL.md (user-scope).
-        let d = dests("osaurus", "agency-frontend-developer", Path::new("/home"), None).unwrap();
+        let d = dests(
+            "osaurus",
+            "agency-frontend-developer",
+            Path::new("/home"),
+            None,
+        )
+        .unwrap();
         assert_eq!(
             d,
-            vec![PathBuf::from("/home/.osaurus/skills/agency-frontend-developer/SKILL.md")]
+            vec![PathBuf::from(
+                "/home/.osaurus/skills/agency-frontend-developer/SKILL.md"
+            )]
         );
     }
 
@@ -437,12 +515,23 @@ mod tests {
             out,
             "---\nname: agency-frontend-developer\ndescription: Builds UIs.\n---\nYou are a frontend dev.\n"
         );
-        assert_eq!(output_slug(&agent(), raw(), "antigravity"), "agency-frontend-developer");
+        assert_eq!(
+            output_slug(&agent(), raw(), "antigravity"),
+            "agency-frontend-developer"
+        );
         // user-scope → ~/.gemini/config/skills/<name>/SKILL.md
-        let user = dests("antigravity", "agency-frontend-developer", Path::new("/home"), None).unwrap();
+        let user = dests(
+            "antigravity",
+            "agency-frontend-developer",
+            Path::new("/home"),
+            None,
+        )
+        .unwrap();
         assert_eq!(
             user,
-            vec![PathBuf::from("/home/.gemini/config/skills/agency-frontend-developer/SKILL.md")]
+            vec![PathBuf::from(
+                "/home/.gemini/config/skills/agency-frontend-developer/SKILL.md"
+            )]
         );
         // project-scope → <project>/.agents/skills/<name>/SKILL.md
         let proj = dests(
@@ -454,7 +543,9 @@ mod tests {
         .unwrap();
         assert_eq!(
             proj,
-            vec![PathBuf::from("/proj/.agents/skills/agency-frontend-developer/SKILL.md")]
+            vec![PathBuf::from(
+                "/proj/.agents/skills/agency-frontend-developer/SKILL.md"
+            )]
         );
     }
 
@@ -592,6 +683,7 @@ mod tests {
                 slug: source_slug,
                 name: name.to_string(),
                 description: String::new(),
+                localizations: BTreeMap::new(),
                 category: String::new(),
                 emoji: None,
                 color: None,
@@ -604,8 +696,10 @@ mod tests {
                 "duplicate conversion slug: {converted_slug}"
             );
             for (tool, subdir, ext) in tools {
-                let expected_path =
-                    temp.path().join(subdir).join(format!("{converted_slug}.{ext}"));
+                let expected_path = temp
+                    .path()
+                    .join(subdir)
+                    .join(format!("{converted_slug}.{ext}"));
                 let expected = fs::read(&expected_path)
                     .unwrap_or_else(|e| panic!("read {}: {e}", expected_path.display()));
                 let actual = render(&agent, &raw, tool).unwrap();
@@ -633,7 +727,10 @@ mod tests {
         // dests() legitimately returns the upstream templates; the install path is
         // gated on render(), and these tools aren't in the installable set anyway.
         for tool in ["windsurf", "aider", "openclaw", "kimi"] {
-            assert!(render(&agent(), "raw", tool).is_err(), "{tool} has no app renderer");
+            assert!(
+                render(&agent(), "raw", tool).is_err(),
+                "{tool} has no app renderer"
+            );
         }
     }
 

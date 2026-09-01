@@ -226,6 +226,12 @@ pub struct InstallRecord {
     /// so ledgers written before this field still parse (older rows get "").
     #[serde(default)]
     pub body_hash: String,
+    /// Codex display locale used for this render. Additive for old ledgers.
+    #[serde(default)]
+    pub render_locale: Option<String>,
+    /// Hash of display-only localization metadata used for this render.
+    #[serde(default)]
+    pub localization_hash: Option<String>,
     pub rendered_hash: String,
     pub installed_at: String,
     pub corpus_version: String,
@@ -253,6 +259,7 @@ pub enum InstallState {
 pub enum UpdateKind {
     Cosmetic,
     Substantive,
+    Localization,
 }
 
 /// Reconciled view-model for the Library — one on-disk agent file
@@ -381,6 +388,10 @@ mod tests {
             serde_json::to_string(&UpdateKind::Substantive).unwrap(),
             "\"substantive\""
         );
+        assert_eq!(
+            serde_json::to_string(&UpdateKind::Localization).unwrap(),
+            "\"localization\""
+        );
     }
 
     #[test]
@@ -407,10 +418,18 @@ mod tests {
             "state",
             "updateKind",
         ] {
-            assert!(v.get(k).is_some(), "InstalledAgent must have wire field {:?}", k);
+            assert!(
+                v.get(k).is_some(),
+                "InstalledAgent must have wire field {:?}",
+                k
+            );
         }
         for snake in ["project_path", "update_kind"] {
-            assert!(v.get(snake).is_none(), "snake key {:?} must not leak", snake);
+            assert!(
+                v.get(snake).is_none(),
+                "snake key {:?} must not leak",
+                snake
+            );
         }
         assert_eq!(v["tool"], "claudeCode");
         assert_eq!(v["state"], "outdated");
@@ -433,10 +452,18 @@ mod tests {
         };
         let v = serde_json::to_value(&e).unwrap();
         for k in ["sourceHash", "frontmatterHash", "bodyHash"] {
-            assert!(v.get(k).is_some(), "CorpusEntry must have wire field {:?}", k);
+            assert!(
+                v.get(k).is_some(),
+                "CorpusEntry must have wire field {:?}",
+                k
+            );
         }
         for snake in ["source_hash", "frontmatter_hash", "body_hash"] {
-            assert!(v.get(snake).is_none(), "snake key {:?} must not leak", snake);
+            assert!(
+                v.get(snake).is_none(),
+                "snake key {:?} must not leak",
+                snake
+            );
         }
     }
 }

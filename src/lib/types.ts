@@ -461,6 +461,10 @@ export interface InstallRecord {
   sourceHash: string;
   /** SHA-256 of the agent body at install time (cosmetic vs substantive updates). */
   bodyHash: string;
+  /** Codex display locale used for the installed TOML; null for canonical English. */
+  renderLocale: string | null;
+  /** Hash of display-only localization metadata used for that render. */
+  localizationHash: string | null;
   renderedHash: string;
   installedAt: string;
   corpusVersion: string;
@@ -480,7 +484,7 @@ export type InstallState =
 
 /** Whether an available update is cosmetic (frontmatter/metadata only,
     `bodyHash` unchanged) or substantive (prompt body changed). */
-export type UpdateKind = "cosmetic" | "substantive";
+export type UpdateKind = "cosmetic" | "substantive" | "localization";
 
 /**
  * Reconciled view-model for the Library — one on-disk agent file resolved
